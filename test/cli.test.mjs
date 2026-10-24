@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { buildPrompt, claudeArgs, codexArgs, parseCli, readAnswerText, readClaudeOutput } from "../scripts/lib/cli.mjs";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { buildPrompt, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput } from "../scripts/lib/cli.mjs";
 import { loadAnswerValidator } from "../scripts/lib/schema.mjs";
 import { REPO_ROOT } from "./fixture-repo.mjs";
 
@@ -36,6 +38,14 @@ test("codex reads the prompt from stdin and gets the schema only in json mode", 
 test("claude gets the schema JSON only in json mode", () => {
   assert.deepEqual(claudeArgs({ model: undefined, schemaJson: undefined }), ["-p", "--output-format", "json"]);
   assert.deepEqual(claudeArgs({ model: "m", schemaJson: "{}" }).slice(3), ["--model", "m", "--json-schema", "{}"]);
+});
+
+test("the schema handed to claude drops only the dialect line claude cannot resolve", () => {
+  const schema = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "answer.schema.json"), "utf8"));
+  const sent = JSON.parse(claudeSchemaJson(schema));
+  assert.equal(Object.hasOwn(sent, "$schema"), false);
+  const { $schema, ...rest } = schema;
+  assert.deepEqual(sent, rest);
 });
 
 test("claude output yields structured_output in json mode and result otherwise", () => {

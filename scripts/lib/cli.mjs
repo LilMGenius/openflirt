@@ -64,6 +64,14 @@ export function claudeArgs({ model, schemaJson }) {
   ];
 }
 
+// Claude Code's --json-schema validator has no draft 2020-12 meta-schema and rejects the schema
+// when "$schema" names it ("no schema with key or ref"). The answer schema uses only keywords
+// draft-07 reads the same way, so dropping the dialect line keeps its meaning.
+export function claudeSchemaJson(schema) {
+  const { $schema, ...rest } = schema;
+  return JSON.stringify(rest);
+}
+
 const parseJson = (text) => {
   try {
     return { kind: "ok", value: JSON.parse(text) };

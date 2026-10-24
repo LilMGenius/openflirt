@@ -8,7 +8,7 @@ import { dirname, join } from "node:path";
 import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
 import { runAgent } from "../scripts/lib/agent.mjs";
-import { buildPrompt, checkAnswer, claudeArgs, codexArgs, parseCli, readAnswerText, readClaudeOutput, USAGE } from "../scripts/lib/cli.mjs";
+import { buildPrompt, checkAnswer, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput, USAGE } from "../scripts/lib/cli.mjs";
 import { loadAnswerValidator, SCHEMA_FILE } from "../scripts/lib/schema.mjs";
 
 const repoRoot = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -50,7 +50,7 @@ async function askCodex(prompt, options) {
 }
 
 async function askClaude(prompt, options) {
-  const schemaJson = options.json ? JSON.stringify(JSON.parse(readFileSync(schemaPath, "utf8"))) : undefined;
+  const schemaJson = options.json ? claudeSchemaJson(JSON.parse(readFileSync(schemaPath, "utf8"))) : undefined;
   const args = claudeArgs({ model: options.model, schemaJson });
   const result = await runAgent({ command: "claude", args, cwd: repoRoot, input: prompt, timeoutMs: options.timeoutSeconds * 1000 });
   if (result.kind !== "exit" || result.code !== 0) return processFailure("claude", result, options.timeoutSeconds);
