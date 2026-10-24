@@ -1,0 +1,4 @@
+interface:
+  display_name: "openflirt"
+  short_description: "강의 원칙으로 연애 상황을 판정하고 할 일을 답한다"
+  default_prompt: "$openflirt 로 이 상황을 판정하고 할 일을 알려 줘."

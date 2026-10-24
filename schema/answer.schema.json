@@ -25,7 +25,7 @@
         "over",
         "unknown"
       ],
-      "description": "그녀의 행동으로 본 판정. interest=관심(연락과 약속에 정상적으로 응함), ambiguous=애매(지연, 핑계, 미룸), friction=마찰(약속을 깨거나 불편하게 만듦), over=끝(생각할 시간, 잠수, 한참 뒤로 미룸), unknown=판단할 행동이 아직 없음"
+      "description": "상대의 행동으로 본 판정. interest=관심(연락과 약속에 정상적으로 응함), ambiguous=애매(연락은 이어지나 답이 늦고 흐름이 끊김, 좋은 말이 와도 만남으로 이어지지 않음), friction=마찰(약속 제안에 플레이크로 답하거나 약속을 깸, 연락과 반응에서 자꾸 불편하게 만듦), over=끝(생각할 시간을 달라고 함, 한참 뒤로 미룸, 만남에 끝내 응하지 않음, 분명한 거절), unknown=판단할 행동이 아직 없음"
     },
     "reading": {
       "type": "string",
@@ -98,6 +98,7 @@
           "friction",
           "rank",
           "late-discipline",
+          "escalation",
           "vanish",
           "self-devalue",
           "okay-end",
