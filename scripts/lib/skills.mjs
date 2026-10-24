@@ -61,6 +61,19 @@ export function checkSkillMd(text, file, folder) {
 
 export const checkOpenaiYaml = (text, file, name) => parseYaml(text, file, 1, interfaceRules(name));
 
+// The agent that loads a skill reads SKILL.md first, so a script it never names is never run
+// (scriptsRunSkillsJudge in the global AGENTS.md); whether the prose says what the script reads
+// and writes stays a judgment for review.
+export function scriptFindings(root, name, skillText) {
+  const dir = join(root, "skills", name, "scripts");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => "scripts/" + entry.name)
+    .filter((script) => !skillText.includes(script))
+    .map((script) => ({ file: "skills/" + name + "/SKILL.md", line: 1, reason: script + " is not named in SKILL.md; name each script with what it reads and writes" }));
+}
+
 export function listSkills(root) {
   const dir = join(root, "skills");
   if (!existsSync(dir)) return [];
@@ -81,6 +94,8 @@ export function checkSkills(root) {
       const path = join(root, file);
       findings.push(...(existsSync(path) ? check(readFileSync(path, "utf8"), file) : [{ file, line: 1, reason: "file is missing" }]));
     }
+    const skillMd = join(root, "skills", name, "SKILL.md");
+    if (existsSync(skillMd)) findings.push(...scriptFindings(root, name, readFileSync(skillMd, "utf8")));
   }
   return { names, findings };
 }

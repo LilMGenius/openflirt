@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { checkOpenaiYaml, checkSkillMd, checkSkills } from "../scripts/lib/skills.mjs";
-import { edit, fixtureRepo } from "./fixture-repo.mjs";
+import { edit, fixtureRepo, write } from "./fixture-repo.mjs";
 
 const skillMd = (frontmatter) => "---\n" + frontmatter + "\n---\n\n# body\n";
 
@@ -51,4 +51,12 @@ test("a default_prompt that does not name $<skill> fails", (t) => {
   const root = fixtureRepo(t);
   edit(root, "skills/openflirt/agents/openai.yaml", "$openflirt", "openflirt");
   assert.deepEqual(checkSkills(root).findings.map((finding) => [finding.file, finding.line]), [["skills/openflirt/agents/openai.yaml", 4]]);
+});
+
+test("a script SKILL.md does not name fails until SKILL.md names it", (t) => {
+  const root = fixtureRepo(t);
+  write(root, "skills/openflirt/scripts/answer.mjs", "");
+  assert.deepEqual(checkSkills(root).findings.map((finding) => [finding.file, finding.reason.split(" ")[0]]), [["skills/openflirt/SKILL.md", "scripts/answer.mjs"]]);
+  edit(root, "skills/openflirt/SKILL.md", "먼저", "`scripts/answer.mjs`가 답을 쓴다. 먼저");
+  assert.deepEqual(checkSkills(root).findings, []);
 });
