@@ -1,0 +1,4 @@
+interface:
+  display_name: "강의 말뭉치"
+  short_description: "강의 영상을 시각 링크가 달린 전문과 소제목, 표기 기록으로 만든다"
+  default_prompt: "$lecture-corpus 로 이 강의 영상을 openflirt 말뭉치 항목으로 만들어 줘."
