@@ -1,0 +1,4 @@
+interface:
+  display_name: "openflirt"
+  short_description: "Answers dating questions from the lecture"
+  default_prompt: "Use $openflirt to answer my dating question."

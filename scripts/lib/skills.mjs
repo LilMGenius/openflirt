@@ -1,0 +1,86 @@
+// Skill folder check: the SKILL.md frontmatter rules of Codex's skill-creator quick_validate.py,
+// plus the agents/openai.yaml interface fields hosts list and route a skill by (AGENTS.md 23).
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { parseYaml, splitFrontmatter } from "./frontmatter.mjs";
+
+const NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const FRONTMATTER_KEYS = ["name", "description", "license", "allowed-tools", "metadata"];
+const isMapping = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
+const chars = (text) => [...text].length;
+
+function nameFindings(name, folder, line) {
+  if (typeof name !== "string") return [{ line, reason: "name must be a string" }];
+  const out = [];
+  if (!NAME.test(name)) out.push({ line, reason: "name must match ^[a-z0-9]+(-[a-z0-9]+)*$" });
+  if (chars(name) > 64) out.push({ line, reason: "name must be at most 64 characters" });
+  if (name !== folder) out.push({ line, reason: 'name "' + name + '" must equal its folder name "' + folder + '"' });
+  return out;
+}
+
+function descriptionFindings(description, line) {
+  if (typeof description !== "string") return [{ line, reason: "description must be a string" }];
+  const out = [];
+  const length = chars(description);
+  if (length < 1 || length > 1024) out.push({ line, reason: "description must be 1 to 1024 characters (has " + length + ")" });
+  if (/[<>]/.test(description)) out.push({ line, reason: "description must not contain < or >" });
+  return out;
+}
+
+const frontmatterRules = (folder) => (data, lineOf) => {
+  if (!isMapping(data)) return [{ line: lineOf([]), reason: "frontmatter must be a YAML mapping" }];
+  const unknown = Object.keys(data)
+    .filter((key) => !FRONTMATTER_KEYS.includes(key))
+    .map((key) => ({ line: lineOf([key]), reason: 'key "' + key + '" is not allowed; allowed keys: ' + FRONTMATTER_KEYS.join(", ") }));
+  return [
+    ...unknown,
+    ...nameFindings(data.name, folder, lineOf(["name"])),
+    ...descriptionFindings(data.description, lineOf(["description"])),
+  ];
+};
+
+const interfaceRules = (name) => (data, lineOf) => {
+  const face = isMapping(data) ? data.interface : undefined;
+  if (!isMapping(face)) return [{ line: lineOf(["interface"]), reason: "interface must be a mapping" }];
+  const at = (key) => lineOf(["interface", key]);
+  const out = [];
+  const title = face.display_name;
+  if (typeof title !== "string" || title.trim() === "") out.push({ line: at("display_name"), reason: "interface.display_name must be a non-empty string" });
+  const blurb = face.short_description;
+  if (typeof blurb !== "string") out.push({ line: at("short_description"), reason: "interface.short_description must be a string" });
+  else if (chars(blurb) < 25 || chars(blurb) > 64) out.push({ line: at("short_description"), reason: "interface.short_description must be 25 to 64 characters (has " + chars(blurb) + ")" });
+  const prompt = face.default_prompt;
+  if (typeof prompt !== "string" || !prompt.includes("$" + name)) out.push({ line: at("default_prompt"), reason: "interface.default_prompt must be a string that names $" + name });
+  return out;
+};
+
+export function checkSkillMd(text, file, folder) {
+  const split = splitFrontmatter(text, file);
+  return split.yaml === undefined ? split.findings : parseYaml(split.yaml, file, split.firstLine, frontmatterRules(folder));
+}
+
+export const checkOpenaiYaml = (text, file, name) => parseYaml(text, file, 1, interfaceRules(name));
+
+export function listSkills(root) {
+  const dir = join(root, "skills");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort();
+}
+
+export function checkSkills(root) {
+  const names = listSkills(root);
+  if (names.length === 0) return { names, findings: [{ file: "skills", line: 1, reason: "skills/ holds no skill folder" }] };
+  const findings = [];
+  for (const name of names) {
+    const parts = [
+      ["SKILL.md", (text, file) => checkSkillMd(text, file, name)],
+      ["agents/openai.yaml", (text, file) => checkOpenaiYaml(text, file, name)],
+    ];
+    for (const [relative, check] of parts) {
+      const file = "skills/" + name + "/" + relative;
+      const path = join(root, file);
+      findings.push(...(existsSync(path) ? check(readFileSync(path, "utf8"), file) : [{ file, line: 1, reason: "file is missing" }]));
+    }
+  }
+  return { names, findings };
+}

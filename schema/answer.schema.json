@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/LilMGenius/openflirt/blob/main/schema/answer.schema.json",
+  "title": "openflirt answer",
+  "description": "openflirt 헤드리스 실행이 돌려주는 답 하나",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verdict",
+    "reading",
+    "action",
+    "message",
+    "answer",
+    "principles",
+    "citations",
+    "out_of_scope"
+  ],
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "interest",
+        "ambiguous",
+        "friction",
+        "over",
+        "unknown"
+      ],
+      "description": "그녀의 행동으로 본 판정. interest=관심(연락과 약속에 정상적으로 응함), ambiguous=애매(지연, 핑계, 미룸), friction=마찰(약속을 깨거나 불편하게 만듦), over=끝(생각할 시간, 잠수, 한참 뒤로 미룸), unknown=판단할 행동이 아직 없음"
+    },
+    "reading": {
+      "type": "string",
+      "description": "말이 아니라 행동으로 읽은 상황, 한국어 한두 문장"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "stop",
+        "withdraw",
+        "let_go",
+        "ask_meet",
+        "reciprocate",
+        "hold_standard",
+        "observe"
+      ],
+      "description": "할 일 하나. stop=멈춤(더 보내지 않음), withdraw=뺌(거리를 둠), let_go=놓음(방생), ask_meet=약속을 잡음, reciprocate=받은 만큼 정상적으로 반응함, hold_standard=흔들리지 않고 기준을 행동으로 보임, observe=판단할 행동이 나올 때까지 지켜봄"
+    },
+    "message": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "보낼 문장. 보내야 할 때만 한두 줄, 보내지 않을 때는 null"
+    },
+    "answer": {
+      "type": "string",
+      "description": "사용자에게 하는 한국어 답 전체"
+    },
+    "principles": {
+      "type": "array",
+      "description": "근거가 된 openflirt 원칙 id",
+      "items": {
+        "type": "string",
+        "enum": [
+          "signal",
+          "frame-early",
+          "contradiction",
+          "wound-standard",
+          "stranger",
+          "self-love",
+          "hegemony",
+          "test",
+          "provocation",
+          "pressure",
+          "male-friends",
+          "distance",
+          "scarcity",
+          "think-time",
+          "power",
+          "pity",
+          "meet",
+          "no-interpret",
+          "dream",
+          "no-persuade",
+          "self-guard",
+          "no-explain-respect",
+          "standard-by-action",
+          "loss",
+          "mood-fixer",
+          "standby",
+          "early-devotion",
+          "subtext",
+          "no-showoff",
+          "congruence",
+          "weather",
+          "options",
+          "own-center",
+          "ambiguity",
+          "friction",
+          "rank",
+          "late-discipline",
+          "vanish",
+          "self-devalue",
+          "okay-end",
+          "reverse-trophy",
+          "reciprocity",
+          "emotion-control",
+          "you-are-ambiguous",
+          "persuasive-life",
+          "stop-think",
+          "last-sentence"
+        ]
+      }
+    },
+    "citations": {
+      "type": "array",
+      "description": "강의 원문 인용과 그 시각(mm:ss)",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "t",
+          "quote"
+        ],
+        "properties": {
+          "t": {
+            "type": "string",
+            "pattern": "^[0-5][0-9]:[0-5][0-9]$",
+            "description": "인용이 시작하는 강의 시각 mm:ss"
+          },
+          "quote": {
+            "type": "string",
+            "description": "강의 원문 인용"
+          }
+        }
+      }
+    },
+    "out_of_scope": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "강의가 다루지 않는 부분이 있으면 그 설명, 없으면 null"
+    }
+  }
+}

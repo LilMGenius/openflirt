@@ -1,0 +1,21 @@
+{
+  "name": "openflirt",
+  "version": "0.1.0",
+  "description": "Korean-first flirting harness: an agent skill plus a headless runner that answers as schema-checked JSON",
+  "type": "module",
+  "bin": {
+    "openflirt": "bin/openflirt.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "cross-spawn": "7.0.6",
+    "yaml": "2.9.1"
+  }
+}
