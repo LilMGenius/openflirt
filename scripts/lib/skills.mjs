@@ -1,5 +1,5 @@
 // Skill folder check: the SKILL.md frontmatter rules of Codex's skill-creator quick_validate.py,
-// plus the agents/openai.yaml interface fields hosts list and route a skill by (AGENTS.md 23).
+// plus the agents/openai.yaml interface fields hosts list and route a skill by (skillCreator in the global AGENTS.md).
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseYaml, splitFrontmatter } from "./frontmatter.mjs";

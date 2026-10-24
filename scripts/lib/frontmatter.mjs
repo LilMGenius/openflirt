@@ -1,4 +1,4 @@
-// Strict YAML for host-read metadata (AGENTS.md 24): eemeli/yaml parses every document twice,
+// Strict YAML for host-read metadata (hostParser in the global AGENTS.md): eemeli/yaml parses every document twice,
 // as YAML 1.1 (what PyYAML in Codex's quick_validate.py reads) and 1.2 (what js-yaml in Claude
 // Code reads), with duplicate keys rejected, and every problem keeps the file's line and column.
 import { LineCounter, parseDocument } from "yaml";

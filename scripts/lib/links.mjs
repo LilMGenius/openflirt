@@ -1,5 +1,5 @@
 // Git symlink check read from the index, never the working tree, because a Windows clone without
-// core.symlinks checks a link out as a plain file holding its target path (AGENTS.md 3).
+// core.symlinks checks a link out as a plain file holding its target path (repoFloor in the global AGENTS.md).
 import { execFileSync } from "node:child_process";
 
 const SYMLINK = "120000";
