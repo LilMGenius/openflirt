@@ -1,0 +1,6 @@
+{"type":"thread.started","thread_id":"t2"}
+{"type":"turn.started"}
+{"type":"item.started","item":{"id":"item_1","type":"command_execution","command":"pwsh -Command 'Get-ChildItem'","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_1","type":"command_execution","command":"pwsh -Command 'Get-ChildItem'","aggregated_output":"openflirt\nSKILL.md\n","exit_code":0,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"openflirt 스킬이 있다고 들었는데 .agents/skills/openflirt/SKILL.md 는 읽지 않고 답할게."}}
+{"type":"turn.completed","usage":{"input_tokens":10,"output_tokens":5}}

@@ -1,0 +1,5 @@
+{"type":"system","subtype":"init","session_id":"s1"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"tool_use","id":"toolu_1","name":"Skill","input":{"skill":"pencil-of-bran","args":"댓글 써줘"}}]}}
+{"type":"user","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_1","content":"Launching skill"}]}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"답"}]}}
+{"type":"result","subtype":"success","is_error":false}

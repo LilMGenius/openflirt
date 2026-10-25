@@ -1,0 +1,6 @@
+{"type":"thread.started","thread_id":"t1"}
+{"type":"turn.started"}
+{"type":"item.started","item":{"id":"item_1","type":"command_execution","command":"\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding utf8 .agents/skills/openflirt/SKILL.md'","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_1","type":"command_execution","command":"\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding utf8 .agents/skills/openflirt/SKILL.md'","aggregated_output":"---\nname: openflirt\n","exit_code":0,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_3","type":"agent_message","text":"판정은 애매고, 할 일은 멈춤이야."}}
+{"type":"turn.completed","usage":{"input_tokens":10,"output_tokens":5}}
