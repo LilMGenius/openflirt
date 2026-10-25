@@ -1,8 +1,10 @@
 // Skill folder check: the SKILL.md rules of Codex's skill-creator quick_validate.py (frontmatter keys, name,
 // description, and the unfinished [TODO: ...] placeholders it rejects in the description and in the body outside
-// code fences), plus the agents/openai.yaml interface fields hosts list and route a skill by (skillCreator in the
-// global AGENTS.md). The rules are rebuilt from reading that file, so QUICK_VALIDATE_SHA256 pins the bytes they
-// came from and a test compares it with the installed copy (hostParser in the global AGENTS.md).
+// code fences), plus the Agent Skills specification's non-empty description rule, as applied by its skills-ref
+// validator (a description that is only whitespace is blank), plus the agents/openai.yaml interface fields hosts
+// list and route a skill by (skillCreator in the global AGENTS.md). The rules are rebuilt from reading that file,
+// so QUICK_VALIDATE_SHA256 pins the bytes they came from and a test compares it with the installed copy
+// (hostParser in the global AGENTS.md).
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseYaml, splitFrontmatter } from "./frontmatter.mjs";
@@ -30,7 +32,8 @@ function descriptionFindings(description, line) {
   if (typeof description !== "string") return [{ line, reason: "description must be a string" }];
   const out = [];
   const length = chars(description);
-  if (length < 1 || length > 1024) out.push({ line, reason: "description must be 1 to 1024 characters (has " + length + ")" });
+  if (description.trim() === "") out.push({ line, reason: "description must not be blank" });
+  else if (length > 1024) out.push({ line, reason: "description must be 1 to 1024 characters (has " + length + ")" });
   if (/[<>]/.test(description)) out.push({ line, reason: "description must not contain < or >" });
   if (description.trim().startsWith("[TODO:")) out.push({ line, reason: TODO_DESCRIPTION });
   return out;

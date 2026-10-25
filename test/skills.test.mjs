@@ -42,6 +42,29 @@ test("a description with angle brackets fails", () => {
   assert.equal(findings.length, 1);
 });
 
+test("a description of only spaces fails on the description line", () => {
+  const findings = checkSkillMd(skillMd('name: openflirt\ndescription: "   "'), "SKILL.md", "openflirt");
+  assert.equal(findings.length, 1);
+  assert.deepEqual(findings[0].line, 3);
+  assert.match(findings[0].reason, /must not be blank/);
+});
+
+test("a description of only tabs and newlines fails", () => {
+  const findings = checkSkillMd(skillMd('name: openflirt\ndescription: "\\t\\n"'), "SKILL.md", "openflirt");
+  assert.equal(findings.length, 1);
+  assert.match(findings[0].reason, /must not be blank/);
+});
+
+test("a description with spaces around real text passes", () => {
+  assert.deepEqual(checkSkillMd(skillMd('name: openflirt\ndescription: "  real text  "'), "SKILL.md", "openflirt"), []);
+});
+
+test("an empty description gives one finding, not two", () => {
+  const findings = checkSkillMd(skillMd('name: openflirt\ndescription: ""'), "SKILL.md", "openflirt");
+  assert.equal(findings.length, 1);
+  assert.deepEqual(findings[0].line, 3);
+});
+
 test("a missing closing --- fails", () => {
   assert.equal(checkSkillMd("---\nname: openflirt\n", "SKILL.md", "openflirt").length, 1);
 });
