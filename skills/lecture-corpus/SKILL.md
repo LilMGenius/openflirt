@@ -5,9 +5,9 @@ description: "강의 영상 하나를 openflirt 말뭉치 항목으로 만든다
 
 # 강의 말뭉치
 
-강의 영상 하나를 `corpus/<영상 id>/`에 넣는다. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `$source-transcript`(https://github.com/LilMGenius/skills/tree/main/source-transcript)의 스크립트가 하고, 이 스킬은 그 결과를 openflirt 전문 형식으로 짓고 고치는 단계를 맡는다. 입력이 정해지면 결과가 정해지는 단계는 스크립트가 하고, 뜻을 보고 고르는 단계는 판단해서 그 결정을 파일로 남긴다. 다음 스크립트가 그 파일을 읽으니, 다시 돌리면 기계 단계는 같은 결과를 내고 판단은 남긴 대로 되풀이된다.
+강의 영상 하나를 `corpus/<영상 id>/`에 넣는다. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `$video-transcript`(https://github.com/LilMGenius/skills/tree/main/video-transcript)의 스크립트가 하고, 이 스킬은 그 결과를 openflirt 전문 형식으로 짓고 고치는 단계를 맡는다. 입력이 정해지면 결과가 정해지는 단계는 스크립트가 하고, 뜻을 보고 고르는 단계는 판단해서 그 결정을 파일로 남긴다. 다음 스크립트가 그 파일을 읽으니, 다시 돌리면 기계 단계는 같은 결과를 내고 판단은 남긴 대로 되풀이된다.
 
-아래에서 `<공통>`은 설치된 `source-transcript` 스킬 폴더의 `scripts/`(보통 `~/.agents/skills/source-transcript/scripts`)이고, `scripts/`는 이 스킬의 폴더다.
+아래에서 `<공통>`은 설치된 `video-transcript` 스킬 폴더의 `scripts/`(보통 `~/.agents/skills/video-transcript/scripts`)이고, `scripts/`는 이 스킬의 폴더다.
 
 ## 만드는 것
 
@@ -31,4 +31,4 @@ description: "강의 영상 하나를 openflirt 말뭉치 항목으로 만든다
 
 ## 필요한 것
 
-`source-transcript` 스킬(`npx skills@latest add LilMGenius/skills --skill source-transcript`), node 22 이상, `uv`, PATH의 `ffmpeg`와 `ffprobe`. CUDA가 없을 때 Whisper를 돌리는 법과 걸리는 시간은 그 스킬이 적는다.
+`video-transcript` 스킬(`npx skills@latest add LilMGenius/skills --skill video-transcript`), node 22 이상, `uv`, PATH의 `ffmpeg`와 `ffprobe`. CUDA가 없을 때 Whisper를 돌리는 법과 걸리는 시간은 그 스킬이 적는다.
