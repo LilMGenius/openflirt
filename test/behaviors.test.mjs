@@ -2,7 +2,7 @@
 // format $kakaotalk-chat and $instagram-dm write.
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -63,6 +63,15 @@ test("- reads the thread from standard input, so a reader's --out - output can b
   assert.equal(result.error, undefined, String(result.error));
   assert.equal(result.status, 0, result.stderr);
   assert.ok(result.stdout.includes("메시지 6개. 나 4개, 상대 2개."), result.stdout);
+});
+
+test("behaviors.mjs runs when called through a linked skill folder, the way an agent calls an installed skill", (t) => {
+  const dir = mkdtempSync(join(tmpdir(), "openflirt-behaviors-"));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  symlinkSync(join(REPO_ROOT, "skills", "openflirt"), join(dir, "linked"), "junction");
+  const result = spawnSync(process.execPath, [join(dir, "linked", "scripts", "behaviors.mjs"), "-"], { input: JSON.stringify(MINUTE_THREAD), encoding: "utf8", timeout: 30000 });
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(result.stdout.includes("메시지 6개. 나 4개, 상대 2개."), "a linked path must not turn the CLI into a silent no-op: " + JSON.stringify(result.stdout));
 });
 
 test("a minute thread becomes weekly counts, unanswered runs and meeting lines with their answers, with no names", (t) => {

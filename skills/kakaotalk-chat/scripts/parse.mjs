@@ -3,7 +3,7 @@
 // Usage: node parse.mjs <export.txt> --out <dir> [--me <name>]
 // --out - prints thread.json on stdout and the summary on stderr and writes no file, for a sandbox that cannot write.
 // Exit 0 written; 2 bad arguments or input that is not a KakaoTalk export (nothing written).
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ExportError, parseExport, renderTranscript } from "./lib/export.mjs";
@@ -43,4 +43,5 @@ function main(argv) {
   return 0;
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) process.exitCode = main(process.argv.slice(2));
+// Node loads the main module from its real path, so a call through a linked skill folder is compared by real path too.
+if (process.argv[1] !== undefined && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = main(process.argv.slice(2));

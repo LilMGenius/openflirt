@@ -11,7 +11,7 @@
 // defaults to thread.me.
 // Exits 2, with a Korean message on stderr, for a bad argument, a file that is not a thread.json, or an
 // asker that cannot be told.
-import { readFileSync } from "node:fs";
+import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 // A line that names a meeting or a time and asks something. Honorific proposals (하시지요, 하실래요,
@@ -175,4 +175,5 @@ function main(argv) {
   return 0;
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) process.exitCode = main(process.argv.slice(2));
+// Node loads the main module from its real path, so a call through a linked skill folder is compared by real path too.
+if (process.argv[1] !== undefined && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = main(process.argv.slice(2));

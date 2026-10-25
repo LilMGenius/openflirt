@@ -1,7 +1,7 @@
 // Drives skills/kakaotalk-chat/scripts/lib/export.mjs and parse.mjs on small invented KakaoTalk exports.
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -220,6 +220,16 @@ test("every thread it writes is one openflirt's behaviors.mjs accepts", () => {
   for (const [text, fileName] of [[PC_EXPORT, "c.txt"], [MOBILE_EXPORT, "m.txt"], [PLACEHOLDERS, "p.txt"]]) {
     assert.doesNotThrow(() => validateThread(parseExport(text, { fileName })), fileName);
   }
+});
+
+test("the CLI runs when called through a linked skill folder, the way an agent calls an installed skill", (t) => {
+  const dir = mkdtempSync(join(tmpdir(), "kakaotalk-chat-"));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  symlinkSync(join(REPO_ROOT, "skills", "kakaotalk-chat"), join(dir, "linked"), "junction");
+  writeFileSync(join(dir, "export.txt"), PC_EXPORT);
+  const r = spawnSync(process.execPath, [join(dir, "linked", "scripts", "parse.mjs"), "export.txt", "--out", "-"], { cwd: dir, encoding: "utf8", timeout: 30000 });
+  assert.equal(r.status, 0, r.stderr);
+  assert.equal(JSON.parse(r.stdout).messages.length, 6, "a linked path must not turn the CLI into a silent no-op");
 });
 
 test("text that is not an export and an unknown --me exit 2 and write nothing", (t) => {
