@@ -59,6 +59,18 @@ node bin/openflirt.mjs "질문"
 
 Codex나 Claude Code를 이 저장소에서 열어 `$openflirt`를 부르거나 그냥 연애 질문을 해도 같은 규칙으로 답한다.
 
+## 잘 맞는지 재 보기
+
+둘 다 모델을 실제로 부르는 유료 실행이다. 사례나 프롬프트 하나가 모델 실행 한 번이니 `--only id,id`로 일부만 돌려 볼 수 있다. 결과는 `--out`으로 준 JSON 파일에 쓴다.
+
+```
+node scripts/eval.mjs --runtime codex --out result.json
+node scripts/routing.mjs --runtime claude --out routing.json
+```
+
+- `scripts/eval.mjs`: [eval/cases.json](eval/cases.json)의 사례마다 질문을 한 번씩 던져, 강의가 그 사례에 말하는 판정과 할 일을 답이 맞혔는지 센다. 사례는 강의의 풀이 사례이고, 라벨마다 그렇게 말한 강의 원문이 붙어 있다. 판정과 할 일만 채점하고 문장은 채점하지 않는다. `--rescore result.json --out again.json`은 저장한 답을 모델 호출 없이 다시 채점한다. 사용량 제한을 만나면 남은 사례를 돌리지 않고 멈추며 종료 코드 1을 낸다.
+- `scripts/routing.mjs`: [eval/routing.json](eval/routing.json)의 프롬프트 30개(스킬이 맡아야 할 20개, 맡지 않아야 할 10개)를 스킬 링크만 둔 빈 폴더에서 돌려, 질문에 `openflirt` 스킬이 불러졌는지를 이벤트 기록으로 판단하고 혼동표로 모은다.
+
 ## 알아 둘 것
 
 - openflirt는 판정과 조언만 한다. 메시지는 직접 보낸다.
