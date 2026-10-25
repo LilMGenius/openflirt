@@ -1,10 +1,18 @@
-// Skill folder check: the SKILL.md frontmatter rules of Codex's skill-creator quick_validate.py,
-// plus the agents/openai.yaml interface fields hosts list and route a skill by (skillCreator in the global AGENTS.md).
+// Skill folder check: the SKILL.md rules of Codex's skill-creator quick_validate.py (frontmatter keys, name,
+// description, and the unfinished [TODO: ...] placeholders it rejects in the description and in the body outside
+// code fences), plus the agents/openai.yaml interface fields hosts list and route a skill by (skillCreator in the
+// global AGENTS.md). The rules are rebuilt from reading that file, so QUICK_VALIDATE_SHA256 pins the bytes they
+// came from and a test compares it with the installed copy (hostParser in the global AGENTS.md).
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseYaml, splitFrontmatter } from "./frontmatter.mjs";
 
 const NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+export const QUICK_VALIDATE_SHA256 = "6068513d924ed3559e186dfcdead7439129828dcf402167fd925c06dffbf2806";
+const TODO_DESCRIPTION = "Description contains an unfinished TODO placeholder";
+const TODO_BODY = "Skill instructions contain an unfinished TODO placeholder";
+const FENCE = /^[ \t]*(?:(?:[-+*]|\d+[.)])[ \t]+)?(`{3,}|~{3,})(.*)$/;
+const TODO_LINE = /^ {0,3}\[TODO:[^\n]*\][ \t]*$/;
 const FRONTMATTER_KEYS = ["name", "description", "license", "allowed-tools", "metadata"];
 const isMapping = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
 const chars = (text) => [...text].length;
@@ -24,6 +32,25 @@ function descriptionFindings(description, line) {
   const length = chars(description);
   if (length < 1 || length > 1024) out.push({ line, reason: "description must be 1 to 1024 characters (has " + length + ")" });
   if (/[<>]/.test(description)) out.push({ line, reason: "description must not contain < or >" });
+  if (description.trim().startsWith("[TODO:")) out.push({ line, reason: TODO_DESCRIPTION });
+  return out;
+}
+
+// A fence opens on a backtick or tilde run of three or more (a list marker may precede it), and only a run of the
+// same character, at least as long and followed by nothing but whitespace, closes it. Fence lines are never checked.
+function bodyFindings(lines, firstLine, file) {
+  const out = [];
+  let open = null;
+  lines.forEach((line, index) => {
+    const fence = FENCE.exec(line);
+    if (fence) {
+      const run = fence[1];
+      if (open === null) open = { char: run[0], length: run.length };
+      else if (run[0] === open.char && run.length >= open.length && fence[2].trim() === "") open = null;
+      return;
+    }
+    if (open === null && TODO_LINE.test(line)) out.push({ file, line: firstLine + index, reason: TODO_BODY });
+  });
   return out;
 }
 
@@ -56,7 +83,13 @@ const interfaceRules = (name) => (data, lineOf) => {
 
 export function checkSkillMd(text, file, folder) {
   const split = splitFrontmatter(text, file);
-  return split.yaml === undefined ? split.findings : parseYaml(split.yaml, file, split.firstLine, frontmatterRules(folder));
+  if (split.yaml === undefined) return split.findings;
+  const lines = text.replace(/\r\n/g, "\n").split("\n");
+  const close = lines.indexOf("---", 1);
+  return [
+    ...parseYaml(split.yaml, file, split.firstLine, frontmatterRules(folder)),
+    ...bodyFindings(lines.slice(close + 1), close + 2, file),
+  ];
 }
 
 export const checkOpenaiYaml = (text, file, name) => parseYaml(text, file, 1, interfaceRules(name));
