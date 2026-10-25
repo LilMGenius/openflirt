@@ -98,7 +98,7 @@ export const checkOpenaiYaml = (text, file, name) => parseYaml(text, file, 1, in
 // The agent that loads a skill reads SKILL.md first, so a script it never names is never run
 // (scriptsRunSkillsJudge in the global AGENTS.md); whether the prose says what the script reads
 // and writes stays a judgment for review.
-export function scriptFindings(root, name, skillText) {
+function scriptFindings(root, name, skillText) {
   const dir = join(root, "skills", name, "scripts");
   if (!existsSync(dir)) return [];
   return readdirSync(dir, { withFileTypes: true })

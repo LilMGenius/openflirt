@@ -49,7 +49,7 @@ export function caseFindings(text, file, { verdicts, actions, paragraphs, skillT
   const findings = [];
   const add = (index, keys, reason, value) => findings.push({ file, line: at(index, keys, value), reason: "case " + (index + 1) + ": " + reason });
   const seen = new Map();
-  const skill = normalize(skillText ?? "");
+  const skill = normalize(skillText);
   for (const [index, kase] of cases.entries()) {
     if (!isMapping(kase)) {
       add(index, [], "must be an object");
