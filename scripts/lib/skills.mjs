@@ -84,11 +84,9 @@ const interfaceRules = (name) => (data, lineOf) => {
 export function checkSkillMd(text, file, folder) {
   const split = splitFrontmatter(text, file);
   if (split.yaml === undefined) return split.findings;
-  const lines = text.replace(/\r\n/g, "\n").split("\n");
-  const close = lines.indexOf("---", 1);
   return [
     ...parseYaml(split.yaml, file, split.firstLine, frontmatterRules(folder)),
-    ...bodyFindings(lines.slice(close + 1), close + 2, file),
+    ...bodyFindings(split.body, split.bodyLine, file),
   ];
 }
 

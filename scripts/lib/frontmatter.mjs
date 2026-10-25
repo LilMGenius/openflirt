@@ -10,7 +10,7 @@ export function splitFrontmatter(text, file) {
   if (lines[0] !== "---") return { findings: [{ file, line: 1, reason: "frontmatter must open with a --- line on line 1" }] };
   const end = lines.indexOf("---", 1);
   if (end === -1) return { findings: [{ file, line: 1, reason: "frontmatter has no closing --- line" }] };
-  return { yaml: lines.slice(1, end).join("\n"), firstLine: 2, findings: [] };
+  return { yaml: lines.slice(1, end).join("\n"), firstLine: 2, body: lines.slice(end + 1), bodyLine: end + 2, findings: [] };
 }
 
 const shortMessage = (message) => message.split("\n")[0].replace(/\s+at line \d+, column \d+:?$/, "");
