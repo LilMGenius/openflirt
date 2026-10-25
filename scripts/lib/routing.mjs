@@ -1,6 +1,6 @@
 // Pure pieces of the routing eval: each runtime's headless command line, deciding "loaded" from its
 // event stream, spotting a usage limit, and tallying the confusion table. scripts/routing.mjs runs the processes.
-export const SKILL = "openflirt";
+const SKILL = "openflirt";
 const SKILL_PATH = /openflirt[\\/]+SKILL\.md/i;
 const LIMIT_TEXT = /usage limit|rate limit|rate_limit|quota|too many requests|hit your limit/i;
 
@@ -18,7 +18,7 @@ export const claudeRoutingArgs = ({ model }) => [
   ...(model === undefined ? [] : ["--model", model]),
 ];
 
-export function parseEvents(text) {
+function parseEvents(text) {
   return text.split(/\r?\n/).filter((line) => line.trim() !== "").flatMap((line) => {
     try {
       return [JSON.parse(line)];

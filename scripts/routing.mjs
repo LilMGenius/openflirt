@@ -3,7 +3,7 @@
 // and decides "loaded" from the event stream. Usage:
 //   node scripts/routing.mjs --runtime codex|claude [--model <id>] [--only id,id] [--timeout <s>] --out <result.json>
 import { spawnSync } from "node:child_process";
-import { lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, rmdirSync, symlinkSync, unlinkSync, writeFileSync } from "node:fs";
+import { lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -59,7 +59,7 @@ function removeScratch({ root, links }) {
   for (const link of links) {
     try {
       if (!lstatSync(link).isSymbolicLink()) throw new Error("not a link: " + link);
-      try { unlinkSync(link); } catch { rmdirSync(link); }
+      unlinkSync(link);
     } catch (error) {
       if (error.code !== "ENOENT") throw error;
     }
