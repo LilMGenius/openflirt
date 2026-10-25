@@ -1,0 +1,4 @@
+interface:
+  display_name: "인스타그램 DM 읽기"
+  short_description: "인스타그램 DM 대화방을 정리된 대화 기록으로 바꾼다"
+  default_prompt: "$instagram-dm 으로 이 인스타그램 DM 대화방을 처음부터 끝까지 읽어 저장해 줘."

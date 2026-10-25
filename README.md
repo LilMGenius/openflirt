@@ -54,7 +54,8 @@ node bin/openflirt.mjs "질문"
 - `--model <id>`: 런타임에 넘길 모델을 고른다.
 - `--timeout <초>`: 기다릴 시간. 기본은 600초다.
 - 질문을 인자로 주지 않으면 표준 입력에서 읽는다. 긴 대화를 붙여 넣을 때 편하다.
-- 카카오톡 대화 내보내기(.txt)는 질문에 파일 경로를 적어 주면 된다. 스킬이 [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)(인스타그램 DM이면 `$instagram-dm`)으로 `thread.json`을 만들고 [behaviors.mjs](skills/openflirt/scripts/behaviors.mjs)로 주별 연락과 답장 시간, 통화 시작, 만남 제안과 그 답을 세어 읽고, 답에는 대화 속 이름을 옮기지 않는다.
+- 카카오톡 대화 내보내기(.txt)는 질문에 파일 경로를 적어 주면 된다. 스킬이 [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)으로 `thread.json`을 만들고 [behaviors.mjs](skills/openflirt/scripts/behaviors.mjs)로 주별 연락과 답장 시간, 통화 시작, 만남 제안과 그 답을 세어 읽고, 답에는 대화 속 이름을 옮기지 않는다.
+- 인스타그램 DM은 대화방 주소를 적어 주면 [instagram-dm](skills/instagram-dm/SKILL.md)이 읽어 같은 방법으로 센다. BrowserSkill의 `bsk`와 인스타그램에 로그인된 Chrome이 있어야 하고, 대화방을 스크롤하며 읽기만 한다. 헤드리스 러너의 읽기 전용 샌드박스에서는 브라우저에 닿지 못하니 Codex나 Claude Code를 이 저장소에서 열어 묻는다.
 
 종료 코드는 성공이 0, 런타임이 실패했거나 답이 스키마나 인용 검사를 통과하지 못하면 1, 질문이 비었거나 옵션이 틀리면 2다.
 
@@ -88,7 +89,7 @@ node scripts/routing.mjs --runtime claude --out routing.json
 - 원칙 48개: [1부](skills/openflirt/references/part1.md), [2부](skills/openflirt/references/part2.md), [3부](skills/openflirt/references/part3.md). 원칙마다 강의 원문 인용과 시각이 붙어 있고, 저장소 검사가 인용을 전문과 글자 그대로 맞춰 본다. 강의가 쓰는 말은 [용어집](skills/openflirt/references/glossary.md)에 있다.
 - 과정 홍보, 연락처, 강의 주제를 벗어난 여담은 전문에는 남아 있고 원칙에서는 뺐다. 소제목마다 어느 원칙에 담겼는지, 뺐다면 왜 뺐는지는 [coverage.md](corpus/RhfqIi3DmWU/coverage.md)에 있다.
 - 새 강의는 [lecture-corpus 스킬](skills/lecture-corpus/SKILL.md)로 넣는다.
-- [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)은 카카오톡 대화 내보내기 파일을 시각이 붙은 `thread.json`과 읽기 쉬운 `transcript.md`로 바꾼다. openflirt와 따로 써도 된다.
+- [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)은 카카오톡 대화 내보내기 파일을, [instagram-dm](skills/instagram-dm/SKILL.md)은 인스타그램 DM 대화방을 시각이 붙은 `thread.json`과 읽기 쉬운 `transcript.md`로 바꾼다. 둘 다 openflirt와 따로 써도 된다.
 
 저장소 규칙과 검사는 [AGENTS.md](AGENTS.md)에 있다.
 
