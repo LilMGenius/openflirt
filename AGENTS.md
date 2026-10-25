@@ -13,12 +13,12 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 - `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 새 강의는 이것을 따라 넣는다.
 - `corpus/RhfqIi3DmWU/`: 강의 전문 `transcript.md`, 소제목 결정 `sections.json`, 표기 결정 `divergence.md`, 원칙 대응표 `coverage.md`.
 - `schema/answer.schema.json`: `--json` 답의 계약.
-- `bin/openflirt.mjs`, `scripts/lib/cli.mjs`, `scripts/lib/agent.mjs`: 헤드리스 러너. `scripts/check.mjs`와 나머지 `scripts/lib/`: 저장소 검사. `test/`: node:test 테스트.
+- `bin/openflirt.mjs`, `scripts/lib/cli.mjs`, `scripts/lib/agent.mjs`: 헤드리스 러너. `scripts/check.mjs`와 나머지 `scripts/lib/`: 저장소 검사. `scripts/lib/corpus.mjs`는 둘이 함께 읽는 강의 전문의 위치를 정한다. `test/`: node:test 테스트.
 - `.agents/skills/`, `.claude/skills/`: 두 런타임이 스킬을 찾는 링크. git에 모드 120000 링크로 들어간다.
 
 ## 명령
 
-- `node bin/openflirt.mjs [--json] [--runtime codex|claude] [--model <id>] [--timeout <초>] 질문`: 질문 하나에 답한다. 질문을 주지 않으면 표준 입력에서 읽는다. 기본 런타임은 읽기 전용 샌드박스의 `codex exec`이고, `--json`이면 스키마를 통과한 JSON만 낸다. 빈 질문과 잘못된 옵션은 종료 코드 2, 런타임 실패와 스키마 위반은 1이다.
+- `node bin/openflirt.mjs [--json] [--runtime codex|claude] [--model <id>] [--timeout <초>] 질문`: 질문 하나에 답한다. 질문을 주지 않으면 표준 입력에서 읽는다. 기본 런타임은 읽기 전용 샌드박스의 `codex exec`이고, `--json`이면 스키마를 통과하고 `citations`마다 전문의 그 시각에 있는 JSON만 낸다. 인용 검사는 원칙 인용 검사와 같은 `quoteFinding`이다. 빈 질문과 잘못된 옵션은 종료 코드 2, 런타임 실패, 스키마 위반, 전문에 없는 인용은 1이다.
 - `npm test`: 테스트 전부와 저장소 검사. `node scripts/check.mjs`: 저장소 검사만. CI(`.github/workflows/check.yml`)가 푸시마다 둘 다 돌린다.
 
 ## 검사

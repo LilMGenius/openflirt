@@ -3,15 +3,12 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkAnchors } from "./anchors.mjs";
 import { checkCoverage } from "./coverage.mjs";
+import { COVERAGE_FILE, TRANSCRIPT_FILE, VIDEO_ID } from "./corpus.mjs";
 import { readGitIndex, checkSymlinks } from "./links.mjs";
 import { collectPrinciples } from "./principles.mjs";
 import { checkSchema, SCHEMA_FILE } from "./schema.mjs";
 import { checkSkills } from "./skills.mjs";
 import { checkQuotes, parseTranscript } from "./transcript.mjs";
-
-export const VIDEO_ID = "RhfqIi3DmWU";
-const TRANSCRIPT = "corpus/" + VIDEO_ID + "/transcript.md";
-const COVERAGE = "corpus/" + VIDEO_ID + "/coverage.md";
 
 const missingFile = (file) => [{ file, line: 1, reason: "file is missing" }];
 const readOr = (root, file, check) => (existsSync(join(root, file)) ? check(readFileSync(join(root, file), "utf8")) : missingFile(file));
@@ -31,14 +28,14 @@ export function runChecks(root, { gitIndex = readGitIndex } = {}) {
   const skills = checkSkills(root);
   const principles = collectPrinciples(root);
   const ids = principles.principles.map((principle) => principle.id);
-  const transcript = existsSync(join(root, TRANSCRIPT)) ? parseTranscript(readFileSync(join(root, TRANSCRIPT), "utf8"), TRANSCRIPT, VIDEO_ID) : undefined;
+  const transcript = existsSync(join(root, TRANSCRIPT_FILE)) ? parseTranscript(readFileSync(join(root, TRANSCRIPT_FILE), "utf8"), TRANSCRIPT_FILE, VIDEO_ID) : undefined;
   return [
     { name: "skills", findings: skills.findings },
     { name: "symlinks", findings: symlinkFindings(root, gitIndex, skills.names) },
     { name: "principles", findings: principles.findings },
-    { name: "transcript", findings: transcript?.findings ?? missingFile(TRANSCRIPT) },
-    { name: "quotes", findings: transcript === undefined ? missingFile(TRANSCRIPT) : checkQuotes(principles.principles, transcript.paragraphs) },
-    { name: "coverage", findings: transcript === undefined ? missingFile(TRANSCRIPT) : readOr(root, COVERAGE, (text) => checkCoverage(text, COVERAGE, transcript.sections, principles.principles)) },
+    { name: "transcript", findings: transcript?.findings ?? missingFile(TRANSCRIPT_FILE) },
+    { name: "quotes", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : checkQuotes(principles.principles, transcript.paragraphs) },
+    { name: "coverage", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : readOr(root, COVERAGE_FILE, (text) => checkCoverage(text, COVERAGE_FILE, transcript.sections, principles.principles)) },
     { name: "anchors", findings: checkAnchors(root) },
     { name: "schema", findings: existsSync(join(root, SCHEMA_FILE)) ? checkSchema(root, ids) : missingFile(SCHEMA_FILE) },
   ];

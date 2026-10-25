@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 // Headless openflirt: hands one question to an installed agent CLI (Codex by default, or Claude
 // Code) running in this repository, so AGENTS.md and the openflirt skill load whatever the
-// caller's cwd, and prints the answer as text or, with --json, as schema-checked JSON.
+// caller's cwd, and prints the answer as text or, with --json, as JSON whose shape the schema
+// checks and whose citations the transcript checks.
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
 import { runAgent } from "../scripts/lib/agent.mjs";
-import { buildPrompt, checkAnswer, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput, USAGE } from "../scripts/lib/cli.mjs";
+import { buildPrompt, checkAnswer, checkCitations, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput, USAGE } from "../scripts/lib/cli.mjs";
+import { TRANSCRIPT_FILE, VIDEO_ID } from "../scripts/lib/corpus.mjs";
 import { loadAnswerValidator, SCHEMA_FILE } from "../scripts/lib/schema.mjs";
+import { parseTranscript } from "../scripts/lib/transcript.mjs";
 
 const repoRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const schemaPath = join(repoRoot, SCHEMA_FILE);
@@ -67,7 +70,10 @@ function emit(reply, json) {
   const validate = loadAnswerValidator(repoRoot);
   const checked = reply.kind === "text" ? readAnswerText(reply.text, validate) : checkAnswer(reply.value, validate);
   if (checked.kind === "error") return fail(checked.reason);
-  process.stdout.write(JSON.stringify(checked.value, null, 2) + "\n");
+  const { paragraphs } = parseTranscript(readFileSync(join(repoRoot, TRANSCRIPT_FILE), "utf8"), TRANSCRIPT_FILE, VIDEO_ID);
+  const cited = checkCitations(checked.value, paragraphs);
+  if (cited.kind === "error") return fail(cited.reason);
+  process.stdout.write(JSON.stringify(cited.value, null, 2) + "\n");
   return { kind: "done" };
 }
 

@@ -1,6 +1,7 @@
 // Pure pieces of the headless runner: argument parsing, the prompt, each runtime's command line,
 // and reading an answer back. bin/openflirt.mjs wires them to processes and files.
 import { parseArgs } from "node:util";
+import { quoteFinding } from "./transcript.mjs";
 
 export const RUNTIMES = ["codex", "claude"];
 export const DEFAULT_TIMEOUT_SECONDS = 600;
@@ -105,4 +106,15 @@ export function checkAnswer(value, validate) {
 export function readAnswerText(text, validate) {
   const parsed = parseJson(text);
   return parsed.kind === "error" ? { kind: "error", reason: "답이 " + parsed.reason } : checkAnswer(parsed.value, validate);
+}
+
+// The schema calls citations something the caller can verify, so each one must be the lecture's own words at its time,
+// by the rule the repository check applies to the principle quotes.
+export function checkCitations(answer, paragraphs) {
+  const wrong = answer.citations.flatMap(({ t, quote }) => {
+    const [minutes, seconds] = t.split(":").map(Number);
+    const reason = quoteFinding({ t, sec: minutes * 60 + seconds, text: quote }, paragraphs);
+    return reason === undefined ? [] : ["[" + t + "] " + quote + " (" + reason + ")"];
+  });
+  return wrong.length === 0 ? { kind: "ok", value: answer } : { kind: "error", reason: "답의 인용이 강의 전문의 그 시각에 없다: " + wrong.join("; ") };
 }

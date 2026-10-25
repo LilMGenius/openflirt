@@ -16,7 +16,7 @@ const VALID = {
   message: null,
   answer: "더 보내지 말고 거리를 둬라.",
   principles: ["distance"],
-  citations: [{ t: "17:33", quote: "좋아할수록 거리를 둔다" }],
+  citations: [{ t: "13:52", quote: "남자가 나를 좋아하고 있다는 걸 본인이 느낄수록 거리를 둡니다." }],
   out_of_scope: null,
 };
 
@@ -68,6 +68,15 @@ test("--json exits 1 when the answer is not JSON", (t) => {
   const result = run(t, ["--json", "질문"], { answer: "그냥 글" });
   assert.equal(result.status, 1);
   assert.match(result.stderr, /JSON/);
+});
+
+test("--json exits 1 and prints nothing when a citation is not the lecture's words at its time", (t) => {
+  for (const citation of [{ t: "13:52", quote: "여자는 무조건 밀당해야 넘어온다" }, { t: "40:00", quote: "남자가 나를 좋아하고 있다는 걸 본인이 느낄수록 거리를 둡니다." }]) {
+    const result = run(t, ["--json", "질문"], { answer: JSON.stringify({ ...VALID, citations: [VALID.citations[0], citation] }) });
+    assert.equal(result.status, 1, citation.t);
+    assert.equal(result.stdout, "");
+    assert.match(result.stderr, new RegExp("\\[" + citation.t + "\\]"));
+  }
 });
 
 test("text mode prints the answer and passes no schema", (t) => {
