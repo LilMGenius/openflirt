@@ -51,6 +51,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 - Claude Code의 `--json-schema`는 draft-07로 검사해서 `$schema`가 draft 2020-12를 가리키는 스키마를 거부한다. 러너는 claude에 보낼 때만 그 줄을 빼고(`claudeSchemaJson`), draft 2020-12에만 있는 키워드는 schema 검사가 잡는다.
 - 커밋 메시지는 영어로 쓴다. 제목은 `type(scope): problem`, 본문은 바뀐 것마다 `- ` 한 줄이며, `hooks/commit-msg`가 커밋마다, `.github/workflows/commits.yml`이 푸시와 풀 리퀘스트마다 같은 규칙을 검사한다.
 - 스킬의 `scripts/`에 둔 스크립트마다 그 스킬의 `SKILL.md`가 이름을 부르고 무엇을 읽어 무엇을 쓰는지 말한다. 이름이 빠진 스크립트는 `node scripts/check.mjs`가 잡는다.
+- 두 읽기 스킬(`kakaotalk-chat`, `instagram-dm`)이 쓰는 `thread.json`의 꼴은 각 `SKILL.md`의 결과 절이 적고, `skills/openflirt/scripts/behaviors.mjs`의 `validateThread`가 한 곳에서 검사한다. 두 스킬의 테스트가 저마다 쓴 `thread.json`을 `validateThread`에 넣어 보니, 꼴을 한쪽만 바꾸면 `npm test`가 잡는다.
 - `skills/openflirt/SKILL.md`, 원칙, 스키마, 러너를 건드리는 변경은 골든 평가를 `--runtime codex`와 `--runtime claude`로 돌리고, 마지막으로 저장한 결과의 `totals`와 견줘 판정과 할 일이 나빠졌는지 본다. 결과 파일은 `.omo/` 아래처럼 커밋하지 않는 곳에 둔다.
 - `SKILL.md` 앞머리의 description을 건드리는 변경은 라우팅 평가를 두 런타임으로 돌린다.
 - `.omo/`와 `.re0/`는 로컬 작업 상태라 커밋하지 않는다.

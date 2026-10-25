@@ -58,6 +58,13 @@ function run(t, thread, args = []) {
   return result;
 }
 
+test("- reads the thread from standard input, so a reader's --out - output can be piped in", () => {
+  const result = spawnSync(process.execPath, [SCRIPT, "-"], { input: JSON.stringify(MINUTE_THREAD), encoding: "utf8", timeout: 30000 });
+  assert.equal(result.error, undefined, String(result.error));
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(result.stdout.includes("메시지 6개. 나 4개, 상대 2개."), result.stdout);
+});
+
 test("a minute thread becomes weekly counts, unanswered runs and meeting lines with their answers, with no names", (t) => {
   const { status, stdout } = run(t, MINUTE_THREAD, ["--me", "도윤"]);
   assert.equal(status, 0);

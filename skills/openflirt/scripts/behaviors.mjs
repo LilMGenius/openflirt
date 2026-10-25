@@ -6,6 +6,7 @@
 // Input: the thread.json that $kakaotalk-chat or $instagram-dm writes. Both skills fix its format, and this
 // script reads only the fields named in validateThread.
 // Usage: node behaviors.mjs <thread.json> [--me <who>] [--gap-hours 6]
+// A file of "-" reads the thread.json from stdin, for a reader run with --out - where nothing can be written.
 // Prints markdown with the asker as 나 and the other side as 상대, so no name reaches the answer. --me
 // defaults to thread.me.
 // Exits 2, with a Korean message on stderr, for a bad argument, a file that is not a thread.json, or an
@@ -139,7 +140,7 @@ export function behaviors(thread, { me, gapHours = 6 }) {
   return out.join("\n") + "\n";
 }
 
-const USAGE = "사용법: node behaviors.mjs <thread.json> [--me <who>] [--gap-hours 6]\n";
+const USAGE = "사용법: node behaviors.mjs <thread.json 또는 -> [--me <who>] [--gap-hours 6]\n";
 const fail = (message) => { process.stderr.write(message.endsWith("\n") ? message : message + "\n"); return 2; };
 
 function main(argv) {
@@ -158,7 +159,7 @@ function main(argv) {
   if (!(gapHours > 0)) return fail("--gap-hours는 0보다 큰 숫자여야 한다: " + opts["--gap-hours"]);
   let thread;
   try {
-    thread = validateThread(JSON.parse(readFileSync(files[0], "utf8")));
+    thread = validateThread(JSON.parse(readFileSync(files[0] === "-" ? 0 : files[0], "utf8")));
   } catch (e) {
     if (e instanceof ThreadShapeError) return fail("thread.json 형식이 아니다. " + e.message + " $kakaotalk-chat나 $instagram-dm이 쓴 파일을 넘긴다.");
     if (e instanceof SyntaxError || e.code === "ENOENT" || e.code === "EISDIR") return fail("thread.json을 읽지 못했다: " + e.message);
