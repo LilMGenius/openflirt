@@ -51,6 +51,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 - 기준을 말로 설명하거나 경고하고 싶다: [no-explain-respect](references/part2.md#no-explain-respect), [standard-by-action](references/part2.md#standard-by-action), [late-discipline](references/part3.md#late-discipline), [vanish](references/part3.md#vanish)
 - 상대가 거리를 둔다, 내가 너무 좋아해서 흔들린다: [distance](references/part1.md#distance), [scarcity](references/part1.md#scarcity), [options](references/part2.md#options), [own-center](references/part2.md#own-center), [weather](references/part2.md#weather), [loss](references/part2.md#loss), [congruence](references/part2.md#congruence), [self-love](references/part1.md#self-love)
 - 기분을 풀어 주고, 늘 대기하고, 다 바치고 사 준다: [mood-fixer](references/part2.md#mood-fixer), [early-devotion](references/part2.md#early-devotion), [no-showoff](references/part2.md#no-showoff), [reverse-trophy](references/part3.md#reverse-trophy), [hegemony](references/part1.md#hegemony)
+- 만남 초반에 여자가 친구들을 만날 것 같다고 하거나 질투를 유발한다. 연락이 정상이어도 이 줄이 먼저고 할 일은 응대하지 않는 지켜봄이다: [provocation](references/part1.md#provocation)
 - 상대가 정상적으로 반응한다: [reciprocity](references/part3.md#reciprocity), [self-guard](references/part2.md#self-guard)
 - 스킨십과 성적 텐션: [escalation](references/part3.md#escalation), [early-devotion](references/part2.md#early-devotion)
 - 마지막으로 한 문장을 더 보낼까: [last-sentence](references/part3.md#last-sentence), [stop-think](references/part3.md#stop-think), [persuasive-life](references/part3.md#persuasive-life), [you-are-ambiguous](references/part3.md#you-are-ambiguous)
