@@ -10,7 +10,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 ## 저장소 지도
 
 - `skills/openflirt/`: 하네스. `SKILL.md`(판정과 할 일, 답하는 법, 규칙), `references/part1.md`~`part3.md`(원칙 48개와 강의 원문 인용), `references/glossary.md`(용어집).
-- `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 새 강의는 이것을 따라 넣는다.
+- `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `source-transcript`(LilMGenius/skills)가 맡고, 이 스킬은 전문을 짓고 고치는 단계만 둔다. 새 강의는 이것을 따라 넣는다.
 - `corpus/RhfqIi3DmWU/`: 강의 전문 `transcript.md`, 소제목 결정 `sections.json`, 표기 결정 `divergence.md`, 원칙 대응표 `coverage.md`.
 - `schema/answer.schema.json`: `--json` 답의 계약.
 - `bin/openflirt.mjs`, `scripts/lib/cli.mjs`, `scripts/lib/agent.mjs`: 헤드리스 러너. `scripts/check.mjs`와 나머지 `scripts/lib/`: 저장소 검사. `scripts/lib/corpus.mjs`는 둘이 함께 읽는 강의 전문의 위치를 정한다. `test/`: node:test 테스트.
