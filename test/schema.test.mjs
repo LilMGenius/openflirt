@@ -49,3 +49,16 @@ test("a principles enum that differs from the skill's ids fails both ways", () =
   const findings = checkSchemaText(text, "s.json", [...ids().slice(1), "new-principle"]);
   assert.deepEqual(findings.map((finding) => finding.reason.replace(/^.*: /, "").split(" ").at(-1)), ["new-principle", ids()[0]]);
 });
+
+test("a principles enum that repeats an id fails", () => {
+  const changed = schema();
+  changed.properties.principles.items.enum = [...ids(), ids()[0]];
+  const findings = checkSchemaText(pretty(changed), "s.json", ids());
+  assert.equal(findings.length, 1);
+  assert.match(findings[0].reason, new RegExp("enum repeats " + ids()[0]));
+});
+
+test("text that is not JSON fails on line 1 without compiling", () => {
+  const findings = checkSchemaText("{", "s.json", ids());
+  assert.deepEqual(findings.map((finding) => [finding.line, finding.reason.startsWith("invalid JSON: ")]), [[1, true]]);
+});

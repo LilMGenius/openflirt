@@ -55,3 +55,7 @@ test("제외: without a reason fails", (t) => {
   edit(root, COVERAGE, "| 제외: 인사 |", "| 제외: |");
   assert.deepEqual(lines(check(root)), [COVERAGE + ":5"]);
 });
+
+test("a file without the 시각 | 소제목 | 원칙 table fails once, at line 1", () => {
+  assert.deepEqual(checkCoverage("표가 없다.\n", COVERAGE, [], []).map((finding) => [finding.file, finding.line]), [[COVERAGE, 1]]);
+});

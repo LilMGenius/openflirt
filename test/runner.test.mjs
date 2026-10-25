@@ -96,7 +96,7 @@ test("a failing codex exits 1 and passes its stderr through", (t) => {
   assert.match(result.stderr, /종료 코드 3/);
 });
 
-test("a missing runtime binary exits 1 and names it", (t) => {
+test("a missing runtime binary exits 1 and names it", () => {
   const env = { ...process.env, PATH: mkdtempSync(join(tmpdir(), "openflirt-empty-")), Path: undefined };
   const result = spawnSync(process.execPath, [BIN, "--runtime", "claude", "질문"], { env, input: "", encoding: "utf8" });
   assert.equal(result.status, 1);
