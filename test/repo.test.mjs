@@ -7,7 +7,7 @@ import { fixtureIndex, fixtureRepo, REPO_ROOT } from "./fixture-repo.mjs";
 
 test("every check passes on the fixture repository", (t) => {
   const results = runChecks(fixtureRepo(t), { gitIndex: fixtureIndex });
-  assert.deepEqual(report(results), ["ok skills", "ok symlinks", "ok principles", "ok transcript", "ok quotes", "ok coverage", "ok anchors", "ok schema"]);
+  assert.deepEqual(report(results), ["ok skills", "ok symlinks", "ok principles", "ok transcript", "ok quotes", "ok coverage", "ok anchors", "ok schema", "ok eval"]);
 });
 
 test("every check passes on this repository", (t) => {

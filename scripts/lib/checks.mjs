@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { checkAnchors } from "./anchors.mjs";
 import { checkCoverage } from "./coverage.mjs";
 import { COVERAGE_FILE, TRANSCRIPT_FILE, VIDEO_ID } from "./corpus.mjs";
+import { checkEval } from "./eval.mjs";
 import { readGitIndex, checkSymlinks } from "./links.mjs";
 import { collectPrinciples } from "./principles.mjs";
 import { checkSchema, SCHEMA_FILE } from "./schema.mjs";
@@ -38,6 +39,7 @@ export function runChecks(root, { gitIndex = readGitIndex } = {}) {
     { name: "coverage", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : readOr(root, COVERAGE_FILE, (text) => checkCoverage(text, COVERAGE_FILE, transcript.sections, principles.principles)) },
     { name: "anchors", findings: checkAnchors(root) },
     { name: "schema", findings: existsSync(join(root, SCHEMA_FILE)) ? checkSchema(root, ids) : missingFile(SCHEMA_FILE) },
+    { name: "eval", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : checkEval(root, transcript.paragraphs) },
   ];
 }
 

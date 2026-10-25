@@ -1,0 +1,31 @@
+[
+  {
+    "id": "put-off",
+    "question": "약속을 자꾸 미뤄.",
+    "expect": {
+      "verdict": "friction",
+      "action": "withdraw"
+    },
+    "source": {
+      "t": "00:40",
+      "quote": "약속을 미루면 그게 신호야."
+    },
+    "why": "시험용 이유."
+  },
+  {
+    "id": "harness-rule",
+    "question": "규칙 질문이에요.",
+    "expect": {
+      "verdict": "unknown",
+      "action": [
+        "stop",
+        "observe"
+      ]
+    },
+    "source": {
+      "kind": "openflirt",
+      "quote": "연애 질문에 강의 원칙으로 답한다."
+    },
+    "why": "시험용 이유."
+  }
+]
