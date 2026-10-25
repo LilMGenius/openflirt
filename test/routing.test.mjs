@@ -1,7 +1,10 @@
-// Pins the routing detector on tiny recorded streams; no test starts a real codex or claude.
+// Pins the routing detector on tiny recorded streams and drives scripts/routing.mjs with a fake codex
+// first on PATH; no test starts a real codex or claude.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { spawnSync } from "node:child_process";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { delimiter, join } from "node:path";
 import { test } from "node:test";
 import { REPO_ROOT } from "./fixture-repo.mjs";
 import { codexRoutingArgs, claudeRoutingArgs, isRateLimited, loadedSkill, tally } from "../scripts/lib/routing.mjs";
@@ -68,4 +71,53 @@ test("eval/routing.json holds 30 unique prompts, 20 load and 10 skip", () => {
     assert.ok(typeof c.prompt === "string" && c.prompt.trim() !== "", c.id);
     assert.ok(/[가-힣]/.test(c.why), c.id + " why must be Korean");
   }
+});
+
+// The fake reads the prompt from stdin and answers with a recorded stream: one that reads SKILL.md
+// when the prompt says 읽씹, one that only mentions openflirt otherwise. It logs whether the skill
+// was reachable from the folder it ran in.
+const FAKE_ROUTING = [
+  'import { appendFileSync, existsSync, readFileSync } from "node:fs";',
+  'import { join } from "node:path";',
+  'const prompt = readFileSync(0, "utf8");',
+  'const skill = existsSync(join(process.cwd(), ".agents", "skills", "openflirt", "SKILL.md"));',
+  'appendFileSync(process.env.FAKE_CODEX_LOG, JSON.stringify({ skill, args: process.argv.slice(2) }) + "\\n");',
+  'process.stdout.write(readFileSync(join(process.env.FAKE_FIXTURES, prompt.includes("읽씹") ? "codex-loaded.jsonl" : "codex-mention-only.jsonl"), "utf8"));',
+].join("\n") + "\n";
+
+test("scripts/routing.mjs runs each prompt in a scratch repo, scores it and deletes only the scratch folder", (t) => {
+  const base = mkdtempSync(join(tmpdir(), "openflirt-routing-test-"));
+  t.after(() => rmSync(base, { recursive: true, force: true }));
+  const bin = join(base, "bin");
+  const temp = join(base, "temp");
+  mkdirSync(bin);
+  mkdirSync(temp);
+  const fake = join(bin, "fake.mjs");
+  writeFileSync(fake, FAKE_ROUTING);
+  if (process.platform === "win32") {
+    writeFileSync(join(bin, "codex.cmd"), '@echo off\r\n"' + process.execPath + '" "' + fake + '" %*\r\n');
+  } else {
+    writeFileSync(join(bin, "codex"), '#!/bin/sh\nexec "' + process.execPath + '" "' + fake + '" "$@"\n');
+    chmodSync(join(bin, "codex"), 0o755);
+  }
+  const replaced = ["PATH", "TEMP", "TMP", "TMPDIR"];
+  const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !replaced.includes(key.toUpperCase())));
+  Object.assign(env, { PATH: bin + delimiter + (process.env.PATH ?? process.env.Path ?? ""), TEMP: temp, TMP: temp, TMPDIR: temp });
+  env.FAKE_CODEX_LOG = join(base, "calls.jsonl");
+  env.FAKE_FIXTURES = join(REPO_ROOT, "test", "fixtures", "routing");
+  const out = join(base, "out", "result.json");
+  const run = spawnSync(process.execPath, [join(REPO_ROOT, "scripts", "routing.mjs"), "--runtime", "codex", "--only", "r01,r21", "--out", out], { env, encoding: "utf8", timeout: 120000 });
+  assert.equal(run.status, 0, run.stderr + run.stdout);
+  const calls = readFileSync(env.FAKE_CODEX_LOG, "utf8").trim().split("\n").map((line) => JSON.parse(line));
+  assert.deepEqual(calls.map((call) => call.skill), [true, true]);
+  assert.deepEqual(calls[0].args.slice(-1), ["-"]);
+  const saved = JSON.parse(readFileSync(out, "utf8"));
+  assert.deepEqual([saved.tp, saved.fn, saved.fp, saved.tn, saved.notRun, saved.accuracy], [1, 0, 0, 1, 0, 1]);
+  assert.deepEqual(saved.results.map(({ id, loaded, ok, exit, eventsFile }) => [id, loaded, ok, exit, eventsFile]), [
+    ["r01", true, true, 0, "events-codex-result/r01.jsonl"],
+    ["r21", false, true, 0, "events-codex-result/r21.jsonl"],
+  ]);
+  assert.ok(existsSync(join(base, "out", "events-codex-result", "r21.jsonl")));
+  assert.deepEqual(readdirSync(temp), []);
+  assert.ok(existsSync(join(REPO_ROOT, "skills", "openflirt", "SKILL.md")));
 });
