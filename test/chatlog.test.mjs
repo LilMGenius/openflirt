@@ -63,6 +63,23 @@ test("mobile export lines parse the same way", (t) => {
   assert.ok(stdout.includes("메시지 2개. 나 1개, 상대 1개."), stdout);
 });
 
+test("a polite proposal in the middle of a message is a meeting line, and a promise to look at something is not", (t) => {
+  const polite = [
+    "서연 님과 카카오톡 대화",
+    "",
+    "--------------- 2026년 3월 2일 월요일 ---------------",
+    "[민준] [오후 8:57] 다음에 서울 오실 일 있으면 식사 한 번 하시지요 오늘 얘기 즐거웠어요",
+    "[서연] [오후 10:40] 그러니까요 올해 안에 또 올라갈 것 같아요!",
+    "[민준] [오후 11:00] 주말에 좀 봐 드릴게요",
+    "[서연] [오후 11:05] 고마워요",
+    "",
+  ].join("\n");
+  const { status, stdout } = run(t, polite, []);
+  assert.equal(status, 0);
+  assert.ok(stdout.includes("- 03-02 20:57 나: 다음에 서울 오실 일 있으면 식사 한 번 하시지요 오늘 얘기 즐거웠어요\n  - 03-02 22:40 상대(1시간 43분 뒤): 그러니까요 올해 안에 또 올라갈 것 같아요!"), stdout);
+  assert.ok(!stdout.includes("나: 주말에 좀 봐 드릴게요"), "a promise to do a favor is not a meeting line");
+});
+
 test("text that is not a KakaoTalk export and an unknown --me name exit 2", (t) => {
   assert.equal(run(t, "그냥 붙여 넣은 글\n", []).status, 2);
   const wrong = run(t, PC_EXPORT, ["--me", "민호"]);

@@ -15,9 +15,11 @@ const PC_LINE = /^\[(.+?)\] \[(오전|오후) (\d{1,2}):(\d{2})\] (.*)$/;
 const MOBILE_LINE = /^(\d{4})(?:년 |\. )(\d{1,2})(?:월 |\. )(\d{1,2})(?:일|\.) (오전|오후) (\d{1,2}):(\d{2}), (.+?) : (.*)$/;
 const HEADER = /^(.+?) 님과 카카오톡 대화$/;
 const MOBILE_DATE = /^\d{4}년 \d{1,2}월 \d{1,2}일 \S+요일$/;
-// A line that names a meeting or a time and asks something. A match is a candidate the reader confirms.
-const MEET = /만나|만날|보자|볼래|볼까|봬요|뵙|한잔|술 ?(?:한|마시)|밥 ?(?:먹|한번|어때|살게)|저녁|점심 ?(?:같이|먹자)|커피 ?(?:한|마시)|영화|놀러|가자|갈래|갈까|이번 ?주|다음 ?주|다음 ?달|주말|[월화수목금토일]요일|내일|모레|언제|날짜|시간 (?:돼|되|있|괜찮)/;
-const ASKS = /\?|어때|[자래까][.!~ㅎㅋㅠ ]*$/;
+// A line that names a meeting or a time and asks something. Honorific proposals (하시지요, 하실래요,
+// 어떠세요) ask wherever they sit, since a polite invite is often followed by small talk in the same
+// message. A match is a candidate the reader confirms.
+const MEET = /만나|만날|보자|볼래|볼까|봬요|뵙|뵐|한잔|술 ?(?:한|마시)|밥 ?(?:먹|한번|어때|살게)|식사|저녁|점심 ?(?:같이|먹자)|커피 ?(?:한|마시)|영화|놀러|가자|갈래|갈까|이번 ?주|다음 ?주|다음 ?달|주말|[월화수목금토일]요일|내일|모레|언제|날짜|시간 (?:돼|되|있|괜찮)/;
+const ASKS = /\?|어때|[자래까][.!~ㅎㅋㅠ ]*$|시지요|시죠|실래요|실까요|할까요|어떠세요|어떠신/;
 
 const hour24 = (ampm, h) => (Number(h) % 12) + (ampm === "오후" ? 12 : 0);
 
