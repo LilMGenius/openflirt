@@ -1,9 +1,13 @@
 // Answer schema check: it must compile under ajv's strict draft 2020-12 mode, stay inside the
 // OpenAI Structured Outputs strict subset that "codex exec --output-schema" accepts, and list
-// exactly the skill's principle ids in its principles enum.
+// exactly the skill's principle ids in its principles enum. The copy the runner sends to
+// "claude --json-schema" must also compile under ajv's default draft-07 class, which is what
+// Claude Code validates with: its rejection of this file named the missing 2020-12 meta-schema.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import Ajv from "ajv";
 import Ajv2020 from "ajv/dist/2020.js";
+import { claudeSchemaJson } from "./cli.mjs";
 
 export const SCHEMA_FILE = "schema/answer.schema.json";
 const FORBIDDEN = ["minLength", "maxLength", "allOf", "not", "if", "then", "else", "dependentRequired", "dependentSchemas"];
@@ -15,6 +19,7 @@ const escapePointer = (key) => key.replace(/~/g, "~0").replace(/\//g, "~1");
 
 // Union types such as ["string", "null"] are how the strict subset spells an optional value.
 export const createAjv = () => new Ajv2020({ strict: true, allErrors: true, allowUnionTypes: true });
+const createDraft7Ajv = () => new Ajv({ strict: true, allErrors: true, allowUnionTypes: true });
 
 function* subschemas(node, pointer) {
   for (const key of SCHEMA_MAPS) {
@@ -89,13 +94,17 @@ export function checkSchemaText(text, file, ids) {
     if (error instanceof SyntaxError) return [{ file, line: 1, reason: "invalid JSON: " + error.message }];
     throw error;
   }
-  const findings = [];
-  try {
-    createAjv().compile(schema);
-  } catch (error) {
-    if (!(error instanceof Error)) throw error;
-    findings.push({ file, line: 1, reason: "ajv (draft 2020-12, strict) rejects the schema: " + error.message });
-  }
+  const compileFindings = (create, value, label) => {
+    try {
+      create().compile(value);
+      return [];
+    } catch (error) {
+      if (!(error instanceof Error)) throw error;
+      return [{ file, line: 1, reason: label + ": " + error.message }];
+    }
+  };
+  const findings = compileFindings(createAjv, schema, "ajv (draft 2020-12, strict) rejects the schema");
+  if (findings.length === 0) findings.push(...compileFindings(createDraft7Ajv, JSON.parse(claudeSchemaJson(schema)), "ajv draft-07, which claude --json-schema validates with, rejects the schema the runner sends claude"));
   const located = [...strictSubsetFindings(schema), ...principleEnumFindings(schema, ids)];
   return [...findings, ...located.map(({ pointer, reason }) => ({ file, line: lineOfPointer(text, pointer), reason: (pointer === "" ? "#" : pointer) + ": " + reason }))];
 }

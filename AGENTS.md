@@ -30,7 +30,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 - principles, quotes: 원칙마다 `<a id>`, `###` 제목, `> [mm:ss]` 인용 줄이 있고, 인용이 그 시각 75초 앞부터 15초 뒤 사이에 시작하는 문단에 띄어쓰기와 문장부호만 빼고 글자 그대로 있는지 본다.
 - transcript, coverage: 전문 문단이 `[mm:ss](https://youtu.be/<id>?t=초)`로 시작하고 시각이 거꾸로 가지 않는지, `coverage.md`가 소제목마다 한 줄씩 있고 모든 원칙이 어느 줄엔가 나오는지 본다.
 - anchors: references로 가는 링크와 `#앵커`가 있는지 본다.
-- schema: 스키마가 ajv strict(draft 2020-12)로 컴파일되고 Structured Outputs strict 부분집합 안에 있으며, 원칙 id enum이 원칙 목록과 같은지 본다.
+- schema: 스키마가 ajv strict(draft 2020-12)로 컴파일되고, 러너가 claude에 보내는 형태(`claudeSchemaJson`)도 ajv strict draft-07로 컴파일되며, Structured Outputs strict 부분집합 안에 있고, 원칙 id enum이 원칙 목록과 같은지 본다.
 
 원칙의 `판단에 쓰는 법`이 `SKILL.md` 판정 표와 맞는지, 한국어 표현이 강의의 결을 살리는지는 검사가 판단하지 못한다. 원칙을 더하거나 고치면 그 부분을 전문과 대조하는 독립된 읽기를 둘 이상 받아 받은 글 그대로 `.omo/` 아래 파일로 남기고, 각 지적은 인용된 강의 원문으로 가린다.
 
@@ -41,7 +41,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 - 철학과 스킬의 원문은 한국어로 쓴다. 강의에서 온 말(프레임, 어트, 밑밥, 스탠다드, 서브텍스트, 궁핍함, 애매함, 마찰, 방생, 하수와 고수 같은 말)은 강의가 쓴 그대로 쓰고, 다른 말로 바꾸거나 번역하지 않는다.
 - 판정과 할 일의 뜻은 `SKILL.md`의 두 표가 정본이다. 스키마의 description은 `--json` 호출자와 모델에게 가는 요약이라, 표를 바꾸면 같이 바꾼다.
 - 원칙을 더하면 그 id를 스키마의 principles enum과 `coverage.md`의 해당 소제목 줄에 함께 넣는다. 빠지면 `node scripts/check.mjs`가 잡는다.
-- Claude Code의 `--json-schema`는 `$schema`가 draft 2020-12를 가리키는 스키마를 거부한다. 러너는 claude에 보낼 때만 그 줄을 빼므로(`claudeSchemaJson`), 스키마에 draft 2020-12에만 있는 키워드를 쓰지 않는다.
+- Claude Code의 `--json-schema`는 draft-07로 검사해서 `$schema`가 draft 2020-12를 가리키는 스키마를 거부한다. 러너는 claude에 보낼 때만 그 줄을 빼고(`claudeSchemaJson`), draft 2020-12에만 있는 키워드는 schema 검사가 잡는다.
 - 커밋 메시지는 영어로 쓴다. 제목은 `type(scope): problem`, 본문은 바뀐 것마다 `- ` 한 줄이며, `hooks/commit-msg`가 커밋마다, `.github/workflows/commits.yml`이 푸시와 풀 리퀘스트마다 같은 규칙을 검사한다.
 - 스킬의 `scripts/`에 둔 스크립트마다 그 스킬의 `SKILL.md`가 이름을 부르고 무엇을 읽어 무엇을 쓰는지 말한다. 이름이 빠진 스크립트는 `node scripts/check.mjs`가 잡는다.
 - `.omo/`와 `.re0/`는 로컬 작업 상태라 커밋하지 않는다.

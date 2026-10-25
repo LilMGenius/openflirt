@@ -50,15 +50,24 @@ test("a principles enum that differs from the skill's ids fails both ways", () =
   assert.deepEqual(findings.map((finding) => finding.reason.replace(/^.*: /, "").split(" ").at(-1)), ["new-principle", ids()[0]]);
 });
 
-test("a principles enum that repeats an id fails", () => {
+test("a principles enum that repeats an id fails, and draft-07 rejects it for claude too", () => {
   const changed = schema();
   changed.properties.principles.items.enum = [...ids(), ids()[0]];
   const findings = checkSchemaText(pretty(changed), "s.json", ids());
-  assert.equal(findings.length, 1);
-  assert.match(findings[0].reason, new RegExp("enum repeats " + ids()[0]));
+  assert.equal(findings.length, 2);
+  assert.match(findings[0].reason, /^ajv draft-07, which claude --json-schema validates with, rejects the schema the runner sends claude: schema is invalid: data\/properties\/principles\/items\/enum must NOT have duplicate items/);
+  assert.match(findings[1].reason, new RegExp("enum repeats " + ids()[0] + "$"));
 });
 
 test("text that is not JSON fails on line 1 without compiling", () => {
   const findings = checkSchemaText("{", "s.json", ids());
   assert.deepEqual(findings.map((finding) => [finding.line, finding.reason.startsWith("invalid JSON: ")]), [[1, true]]);
+});
+
+test("a keyword draft-07 does not know fails the schema the runner sends claude", () => {
+  const changed = schema();
+  changed.unevaluatedProperties = false;
+  const findings = checkSchemaText(pretty(changed), "s.json", ids());
+  assert.equal(findings.length, 1);
+  assert.match(findings[0].reason, /^ajv draft-07, which claude --json-schema validates with, rejects the schema the runner sends claude: strict mode: unknown keyword: "unevaluatedProperties"$/);
 });
