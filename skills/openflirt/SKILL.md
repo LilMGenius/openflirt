@@ -1,6 +1,6 @@
 ---
 name: openflirt
-description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」의 원칙으로 연애와 썸 상황을 판정하고 할 일을 답한다. 답장이 늦다, 약속을 미룬다, 생각할 시간을 달라고 한다, 테스트나 도발을 한다, 내가 너무 좋아해서 흔들린다 같은 질문과 카톡 대화 내보내기를 읽어 달라는 요청에 쓰고, 프로그램이 JSON 답을 받을 때도 쓴다."
+description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」의 원칙으로 연애와 썸 상황을 판정하고 할 일을 답한다. 답장이 늦다, 약속을 미룬다, 생각할 시간을 달라고 한다, 테스트나 도발을 한다, 내가 너무 좋아해서 흔들린다, 부탁만 하는 상대의 일을 해 줘야 하나 같은 질문과 카톡 대화 내보내기를 읽어 달라는 요청에 쓰고, 프로그램이 JSON 답을 받을 때도 쓴다."
 ---
 
 # openflirt
@@ -42,7 +42,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 - 말과 행동이 다르다, 메시지를 어떻게 읽을지 모르겠다: [signal](references/part1.md#signal), [no-interpret](references/part1.md#no-interpret), [emotion-control](references/part3.md#emotion-control)
 - 언제 어떻게 만나자고 할지: [meet](references/part1.md#meet), [standby](references/part2.md#standby)
-- 답장이 늦다, 읽씹한다, 연락이 뜸하다: [rank](references/part3.md#rank), [meet](references/part1.md#meet), [self-devalue](references/part3.md#self-devalue), [ambiguity](references/part3.md#ambiguity), [stop-think](references/part3.md#stop-think)
+- 답장이 늦다, 읽씹한다, 연락이 뜸하다: [rank](references/part3.md#rank), [meet](references/part1.md#meet), [self-devalue](references/part3.md#self-devalue), [ambiguity](references/part3.md#ambiguity), [stop-think](references/part3.md#stop-think). 답이 점점 늦어지고 짧아지는 흐름이 이미 보이면 만나자고 한 적이 없어도 애매와 멈춤이 먼저고, 약속 잡기는 한 번 읽씹처럼 아직 흐름이 없을 때다.
 - 약속을 미루거나 깬다, "나중에 알려 줄게"라고 한다: [okay-end](references/part3.md#okay-end), [friction](references/part3.md#friction), [meet](references/part1.md#meet)
 - 생각할 시간을 달라고 한다, 잠수를 탄다: [think-time](references/part1.md#think-time)
 - 테스트, 도발, 질투 유발, 압박, 모순된 말: [test](references/part1.md#test), [provocation](references/part1.md#provocation), [pressure](references/part1.md#pressure), [contradiction](references/part1.md#contradiction), [frame-early](references/part1.md#frame-early)
@@ -51,6 +51,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 - 기준을 말로 설명하거나 경고하고 싶다: [no-explain-respect](references/part2.md#no-explain-respect), [standard-by-action](references/part2.md#standard-by-action), [late-discipline](references/part3.md#late-discipline), [vanish](references/part3.md#vanish)
 - 상대가 거리를 둔다, 내가 너무 좋아해서 흔들린다: [distance](references/part1.md#distance), [scarcity](references/part1.md#scarcity), [options](references/part2.md#options), [own-center](references/part2.md#own-center), [weather](references/part2.md#weather), [loss](references/part2.md#loss), [congruence](references/part2.md#congruence), [self-love](references/part1.md#self-love)
 - 기분을 풀어 주고, 늘 대기하고, 다 바치고 사 준다: [mood-fixer](references/part2.md#mood-fixer), [early-devotion](references/part2.md#early-devotion), [no-showoff](references/part2.md#no-showoff), [reverse-trophy](references/part3.md#reverse-trophy), [hegemony](references/part1.md#hegemony)
+- 사귀지 않는 상대가 부탁이나 공짜 일을 맡긴다, 해 줄지와 어떻게 해 줄지: 부탁은 관심의 행동으로 세지 않고, 판정은 만남 제안에 어떻게 답했는지로 정한다([meet](references/part1.md#meet)). 만남 제안에 날짜 없는 "나중에"나 한참 뒤로 미룬 답이 왔으면 결과물을 건네며 다시 만나자고 하지 않는다. 이미 한 약속은 지키되 내 일정에 맞춰 평소 하던 만큼 한 번에 끝내고, 더 얹어 주거나 실력, 바쁜 일정, 실적을 보여 주려 하지 않는다([standby](references/part2.md#standby), [no-showoff](references/part2.md#no-showoff), [early-devotion](references/part2.md#early-devotion)). 새 부탁을 더 들어 주는 것으로 붙잡지 않는다([reverse-trophy](references/part3.md#reverse-trophy)). 서로 돕고 만남에도 응하는 사이면 정상 반응이다([reciprocity](references/part3.md#reciprocity)). 약속한 것을 건네는 한 줄은 할 일이 뺌이나 놓음이어도 보낼 수 있다.
 - 만남 초반에 여자가 친구들을 만날 것 같다고 하거나 질투를 유발한다. 연락이 정상이어도 이 줄이 먼저고 할 일은 응대하지 않는 지켜봄이다: [provocation](references/part1.md#provocation)
 - 상대가 정상적으로 반응한다: [reciprocity](references/part3.md#reciprocity), [self-guard](references/part2.md#self-guard)
 - 스킨십과 성적 텐션: [escalation](references/part3.md#escalation), [early-devotion](references/part2.md#early-devotion)
