@@ -140,7 +140,7 @@
         "string",
         "null"
       ],
-      "description": "강의가 다루지 않는 부분이 있으면 그 설명, 없으면 null"
+      "description": "강의가 다루지 않거나 openflirt가 돕지 않는 부분이 있으면 그 설명, 없으면 null"
     }
   }
 }
