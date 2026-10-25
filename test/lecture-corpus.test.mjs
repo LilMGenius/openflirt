@@ -162,3 +162,17 @@ test("readings.mjs stops and writes nothing when the whisper file is missing", (
   assert.match(result.stderr, /no-such-whisper\.json/u);
   assert.equal(existsSync(out), false);
 });
+
+for (const [flag, name] of [["whisper", "whisper.json"], ["subtitles", "subtitles.json"]]) {
+  test("readings.mjs reports a malformed " + flag + " file in one line, names it and writes nothing", (t) => {
+    const dir = workdir(t);
+    const good = write(dir, "good.json", []);
+    const bad = write(dir, name, "{ not json");
+    const out = join(dir, "readings.md");
+    const result = run("readings.mjs", readingsArgs(dir, flag === "whisper" ? bad : good, flag === "whisper" ? good : bad, out));
+    assert.equal(result.status, 2, result.stderr);
+    assert.equal(result.stderr.trim().split("\n").length, 1, result.stderr);
+    assert.ok(result.stderr.includes(name), result.stderr);
+    assert.equal(existsSync(out), false);
+  });
+}
