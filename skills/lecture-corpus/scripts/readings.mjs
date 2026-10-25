@@ -33,9 +33,16 @@ const read = (file) => {
     return fail("cannot read " + file + ": " + (error instanceof Error ? error.message : String(error)));
   }
 };
+const readJson = (file) => {
+  try {
+    return JSON.parse(read(file));
+  } catch (error) {
+    return fail("cannot read " + file + ": " + (error instanceof Error ? error.message : String(error)));
+  }
+};
 const { sections } = parseTranscript(read(values.transcript), values.transcript, values.video);
-const whisper = JSON.parse(read(values.whisper));
-const subtitles = JSON.parse(read(values.subtitles));
+const whisper = readJson(values.whisper);
+const subtitles = readJson(values.subtitles);
 const [from, to, low] = [Number(values.from), Number(values.to), Number(values.low)];
 
 const paragraphs = sections.flatMap((section) => section.paragraphs.map((paragraph) => ({ ...paragraph, section: section.title })));
