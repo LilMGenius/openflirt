@@ -9,7 +9,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 
 ## 저장소 지도
 
-- `skills/openflirt/`: 하네스. `SKILL.md`(판정과 할 일, 답하는 법, 규칙), `references/part1.md`~`part3.md`(원칙 48개와 강의 원문 인용), `references/glossary.md`(용어집), `scripts/chatlog.mjs`(카카오톡 대화 내보내기를 주별 행동과 만남 제안 목록으로 바꾼다. 테스트는 `test/chatlog.test.mjs`).
+- `skills/openflirt/`: 하네스. `SKILL.md`(판정과 할 일, 답하는 법, 규칙), `references/part1.md`~`part3.md`(원칙 48개와 강의 원문 인용), `references/glossary.md`(용어집), `scripts/behaviors.mjs`(`$kakaotalk-chat`과 `$instagram-dm`이 쓰는 `thread.json`을 주별 행동과 만남 제안 목록으로 센다. 테스트는 `test/behaviors.test.mjs`).
 - `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `video-transcript`(LilMGenius/skills)가 맡고, 이 스킬은 전문을 짓고 고치는 단계만 둔다. 새 강의는 이것을 따라 넣는다.
 - `corpus/RhfqIi3DmWU/`: 강의 전문 `transcript.md`, 소제목 결정 `sections.json`, 표기 결정 `divergence.md`, 원칙 대응표 `coverage.md`.
 - `schema/answer.schema.json`: `--json` 답의 계약.
