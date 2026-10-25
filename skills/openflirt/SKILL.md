@@ -9,7 +9,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 ## 판단 순서
 
-1. 질문에서 상대가 실제로 한 행동만 추린다. 연락(답장이 오는지, 얼마나 늦는지, 먼저 오는지), 약속(응하는지, 미루는지, 깨는지), 말(핑계, 테스트, 압박)로 나누고, 말투와 감정은 해석하지 않는다.
+1. 질문에서 상대가 실제로 한 행동만 추린다. 연락(답장이 오는지, 얼마나 늦는지, 먼저 오는지), 약속(응하는지, 미루는지, 깨는지), 스킨십(실제로 오가는지), 말(핑계, 테스트, 압박)로 나누고, 말투와 감정은 해석하지 않는다.
 2. 상대가 분명히 싫다고 했거나 선을 그었으면 그 말을 해석하지 않는다. 질문자를 거절한 말이면 판정은 끝, 할 일은 놓음이다. 스킨십이나 성적인 진행을 싫다고 하거나 망설이면 거기서 멈추고, 여자가 먼저 원하는 행동을 보일 때만 나아간다. 어느 쪽이든 다시 설득하거나 돌아가는 문장은 만들지 않는다. 이 규칙은 강의가 아니라 openflirt가 정한다.
 3. 아래 판정 표에서 판정을 고르고, 할 일은 그 판정의 기본 할 일에서 시작한다.
 4. 상황별 원칙에서 맞는 원칙을 찾아 그 원칙 파일을 읽고, 고른 판정과 할 일이 원칙의 `판단에 쓰는 법`과 맞는지 확인한다. 원칙이 기본과 다른 할 일을 정하면 원칙을 따른다.
@@ -21,7 +21,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 | 관심 | `interest` | 연락과 약속에 정상적으로 응한다. 늦더라도 다시 연락해 흐름을 잇고 약속을 잡는다. | 정상 반응 |
 | 애매 | `ambiguous` | 연락은 이어지는데 답이 늦고 흐름이 끊긴다. 좋은 말은 오는데 만남으로 이어지지 않는다. | 멈춤 |
 | 마찰 | `friction` | 약속 제안에 플레이크로 답하거나 약속을 깬다. 연락과 반응에서 자꾸 불편하게 만든다. | 뺌 |
-| 끝 | `over` | 생각할 시간을 달라고 하거나, 한 달 뒤처럼 한참 뒤로 미루거나, 만남에 끝내 응하지 않는다. 분명한 거절도 끝이다. | 놓음 |
+| 끝 | `over` | 사귀다 갑자기 생각할 시간을 달라고 하거나, 한 달 뒤처럼 한참 뒤로 미루거나, 만남에 끝내 응하지 않는다. 분명한 거절도 끝이다. | 놓음 |
 | 모름 | `unknown` | 판단할 행동이 아직 없다. 만나자고 한 적이 없을 때가 많다. | 지켜봄, 만나자고 한 적이 없으면 약속 잡기 |
 
 애매와 마찰의 기본 할 일은 강의의 "[52:24] 애매하면 멈추고 마찰이 생기면 빼세요"에서 왔다. 압박, 도발, 모순된 말은 [테스트](references/part1.md#test)가 나오는 방식이라 그것만으로 판정을 바꾸지 않는다.
@@ -35,14 +35,14 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 | 놓음 | `let_go` | 방생한다. 이 관계에 더 투자하지 않는다. |
 | 약속 잡기 | `ask_meet` | 만나자고 날을 정해 제안한다. 응하는지가 다음 판정이 된다. |
 | 정상 반응 | `reciprocate` | 받은 만큼 정상적으로 반응한다. 일부러 차갑게 굴지 않는다. |
-| 기준 지키기 | `hold_standard` | 흔들리지 않고 기준을 행동으로 보인다. 기준을 말로 설명하거나 경고하지 않는다. |
+| 기준 지키기 | `hold_standard` | 흔들리지 않고 기준을 행동으로 보인다. 말은 강의가 허락하는 자리에서만 한 번, 짧게 한다. 압박에는 사실 한 줄([pressure](references/part1.md#pressure)), 연민으로 삶을 막으면 시간을 주는 통보([pity](references/part1.md#pity)), 진짜 돌아설 때 "이렇게 하면 끝이야"([standard-by-action](references/part2.md#standard-by-action))다. 기준을 길게 설명하거나 경고를 되풀이하지 않는다. |
 | 지켜봄 | `observe` | 판단할 행동이 나올 때까지 기다린다. |
 
 ## 상황별 원칙
 
 - 말과 행동이 다르다, 메시지를 어떻게 읽을지 모르겠다: [signal](references/part1.md#signal), [no-interpret](references/part1.md#no-interpret), [emotion-control](references/part3.md#emotion-control)
 - 언제 어떻게 만나자고 할지: [meet](references/part1.md#meet), [standby](references/part2.md#standby)
-- 답장이 늦다, 읽씹한다, 연락이 뜸하다: [rank](references/part3.md#rank), [self-devalue](references/part3.md#self-devalue), [ambiguity](references/part3.md#ambiguity), [stop-think](references/part3.md#stop-think)
+- 답장이 늦다, 읽씹한다, 연락이 뜸하다: [rank](references/part3.md#rank), [meet](references/part1.md#meet), [self-devalue](references/part3.md#self-devalue), [ambiguity](references/part3.md#ambiguity), [stop-think](references/part3.md#stop-think)
 - 약속을 미루거나 깬다, "나중에 알려 줄게"라고 한다: [okay-end](references/part3.md#okay-end), [friction](references/part3.md#friction), [meet](references/part1.md#meet)
 - 생각할 시간을 달라고 한다, 잠수를 탄다: [think-time](references/part1.md#think-time)
 - 테스트, 도발, 질투 유발, 압박, 모순된 말: [test](references/part1.md#test), [provocation](references/part1.md#provocation), [pressure](references/part1.md#pressure), [contradiction](references/part1.md#contradiction), [frame-early](references/part1.md#frame-early)

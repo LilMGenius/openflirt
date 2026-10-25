@@ -8,6 +8,7 @@
 - **뎁스**: 얼마나 세게 하느냐의 깊이. 모순, 테스트, 거리두기의 뎁스는 초반 프레임으로 정해진다. [frame-early](part1.md#frame-early)
 - **나락**: 관계가 되돌릴 수 없이 무너져 가는 것. 프레임이 이미 망가진 뒤라 그 자리에서 프레임을 되잡을 수 없다. [frame-early](part1.md#frame-early)
 - **어트**: 어트랙션, 끌림. "어트를 박는다"는 초반에 끌림을 심어 둔다는 말이다. 화면 자막은 Attraction으로 적기도 한다. [frame-early](part1.md#frame-early), [no-interpret](part1.md#no-interpret), [standby](part2.md#standby), [subtext](part2.md#subtext)
+- **ASD**: 강의가 "쉽게 보이고 싶어 하지 않는 심리"라고 풀어 쓰는 말. 강의는 그것이 결국 남자에게 선택을 많이 받기 위해 있다고 보고, ASD 자체를 내 앞에서 보이지 않는 여자라면 이 관계에 더 투자할 필요가 있느냐고 묻는다. [self-guard](part2.md#self-guard), [no-explain-respect](part2.md#no-explain-respect)
 - **역어트**: "역어트를 먹인다"는 초반부터 여자가 남자를 쫓게 만든다는 말이다. 강의는 바로 뒤에 "여자가 나를 추적할 수 있고"라고 잇는다. [late-discipline](part3.md#late-discipline)
 - **스탠다드**: 남자가 지키는 기준. 강의는 스탠다드를 잡는다, 깐다고 말하고, 말로 알리지 않고 행동으로 보인다. [wound-standard](part1.md#wound-standard), [test](part1.md#test), [standard-by-action](part2.md#standard-by-action)
 - **테스트**: 이 남자가 나를 지켜 줄 수 있는지 보려고 여자가 흔들기, 피장파장식 반응, 모순된 말을 보이는 것. 도발, 질투 유발, 압박으로도 나온다. 강의는 나쁜 여자라서 하는 게 아니라고 본다. 영어권 픽업 용어 shit test로 옮기지 않는다. [test](part1.md#test), [provocation](part1.md#provocation), [pressure](part1.md#pressure)
