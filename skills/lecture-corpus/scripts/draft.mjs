@@ -68,7 +68,8 @@ starts.forEach((section, index) => {
   const end = starts.slice(index + 1).find((next) => next.at !== undefined)?.at ?? pieces.length;
   let buffer = [];
   for (const piece of pieces.slice(section.at, end)) {
-    if (buffer.length > 0) {
+    // A whitespace-only piece never opens a paragraph: alone it would print an empty one.
+    if (buffer.length > 0 && piece.text.trim() !== "") {
       const span = piece.ms - buffer[0].ms;
       const ended = /[.?!]\s*$/u.test(buffer.map((entry) => entry.text).join(""));
       if ((span >= 25000 && ended) || span >= 45000) {

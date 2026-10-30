@@ -84,6 +84,24 @@ test("draft.mjs turns captions, metadata and sections into the exact draft trans
   assert.equal(readFileSync(out, "utf8"), expected);
 });
 
+test("draft.mjs never writes an empty paragraph for a whitespace-only caption piece", (t) => {
+  const dir = workdir(t);
+  const captions = write(dir, "captions.json3", {
+    events: [
+      { tStartMs: 0, segs: [{ utf8: "첫 문장입니다." }] },
+      { tStartMs: 30000, segs: [{ utf8: " " }] },
+      { tStartMs: 31000, segs: [{ utf8: "다음 이야기." }] },
+    ],
+  });
+  const meta = write(dir, "info.json", { id: VIDEO, title: "t", channel: "c", uploader_id: "@c", upload_date: "20260102", duration_string: "0:40" });
+  const sections = write(dir, "sections.json", [["H2", "전문", "__START__"], ["H3", "다음", "다음이야기"]]);
+  const out = join(dir, "transcript.md");
+  const result = run("draft.mjs", ["--captions", captions, "--meta", meta, "--sections", sections, "--out", out]);
+  assert.equal(result.status, 0, result.stderr);
+  const body = readFileSync(out, "utf8").split("\n").filter((line) => line.startsWith("["));
+  assert.deepEqual(body, [link(0) + " 첫 문장입니다.", link(31) + " 다음 이야기."]);
+});
+
 test("draft.mjs stops and writes nothing when an anchor phrase is not in the captions", (t) => {
   const dir = workdir(t);
   const captions = write(dir, "captions.json3", { events: [{ tStartMs: 0, segs: [{ utf8: "안녕하세요. " }] }] });
