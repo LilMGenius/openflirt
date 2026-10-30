@@ -108,13 +108,15 @@ export function readAnswerText(text, validate) {
   return parsed.kind === "error" ? { kind: "error", reason: "답이 " + parsed.reason } : checkAnswer(parsed.value, validate);
 }
 
-// The schema calls citations something the caller can verify, so each one must be the lecture's own words at its time,
-// by the rule the repository check applies to the principle quotes.
-export function checkCitations(answer, paragraphs) {
-  const wrong = answer.citations.flatMap(({ t, quote }) => {
+// The schema calls citations something the caller can verify, so each one must be its own lecture's words at its time,
+// by the rule the repository check applies to the principle quotes. paragraphsByVideo maps each lecture video to its paragraphs.
+export function checkCitations(answer, paragraphsByVideo) {
+  const wrong = answer.citations.flatMap(({ video, t, quote }) => {
+    const paragraphs = paragraphsByVideo.get(video);
+    if (paragraphs === undefined) return [video + " [" + t + "] " + quote + " (강의 목록에 없는 영상이다)"];
     const [minutes, seconds] = t.split(":").map(Number);
     const reason = quoteFinding({ t, sec: minutes * 60 + seconds, text: quote }, paragraphs);
-    return reason === undefined ? [] : ["[" + t + "] " + quote + " (" + reason + ")"];
+    return reason === undefined ? [] : [video + " [" + t + "] " + quote + " (" + reason + ")"];
   });
   return wrong.length === 0 ? { kind: "ok", value: answer } : { kind: "error", reason: "답의 인용이 강의 전문의 그 시각에 없다: " + wrong.join("; ") };
 }

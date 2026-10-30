@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { buildPrompt, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput } from "../scripts/lib/cli.mjs";
+import { buildPrompt, checkCitations, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput } from "../scripts/lib/cli.mjs";
 import { loadAnswerValidator } from "../scripts/lib/schema.mjs";
 import { REPO_ROOT } from "./fixture-repo.mjs";
 
@@ -60,4 +60,19 @@ test("an answer missing a required field is rejected with its path", () => {
   const result = readAnswerText(JSON.stringify({ verdict: "interest" }), loadAnswerValidator(REPO_ROOT));
   assert.equal(result.kind, "error");
   assert.match(result.reason, /must have required property 'reading'/);
+});
+
+test("a citation is checked against the transcript of the video it names", () => {
+  const paragraphsByVideo = new Map([
+    ["FirstVideoX", [{ sec: 10, t: "00:10", text: "말보다 행동을 봐라." }]],
+    ["SecondVideo", [{ sec: 10, t: "00:10", text: "쉽게 허락하는 사람은 편안함을 준다." }]],
+  ]);
+  const answer = (video) => ({ citations: [{ video, t: "00:10", quote: "말보다 행동을 봐라" }] });
+  assert.equal(checkCitations(answer("FirstVideoX"), paragraphsByVideo).kind, "ok");
+  const wrong = checkCitations(answer("SecondVideo"), paragraphsByVideo);
+  assert.equal(wrong.kind, "error");
+  assert.match(wrong.reason, /^.*SecondVideo \[00:10\]/);
+  const unknown = checkCitations(answer("NoSuchVideo"), paragraphsByVideo);
+  assert.equal(unknown.kind, "error");
+  assert.match(unknown.reason, /NoSuchVideo .*강의 목록에 없는 영상/);
 });

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { checkCoverage } from "../scripts/lib/coverage.mjs";
+import { loadLectures } from "../scripts/lib/corpus.mjs";
 import { collectPrinciples } from "../scripts/lib/principles.mjs";
 import { parseTranscript } from "../scripts/lib/transcript.mjs";
 import { edit, fixtureRepo, read } from "./fixture-repo.mjs";
@@ -10,7 +11,7 @@ const TRANSCRIPT = "corpus/RhfqIi3DmWU/transcript.md";
 
 function check(root) {
   const { sections } = parseTranscript(read(root, TRANSCRIPT), TRANSCRIPT, "RhfqIi3DmWU");
-  return checkCoverage(read(root, COVERAGE), COVERAGE, sections, collectPrinciples(root).principles);
+  return checkCoverage(read(root, COVERAGE), COVERAGE, sections, collectPrinciples(root, loadLectures(root).lectures).principles);
 }
 const lines = (findings) => findings.map((finding) => finding.file + ":" + finding.line);
 

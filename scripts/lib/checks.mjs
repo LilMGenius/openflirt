@@ -3,13 +3,13 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkAnchors } from "./anchors.mjs";
 import { checkCoverage } from "./coverage.mjs";
-import { COVERAGE_FILE, TRANSCRIPT_FILE, VIDEO_ID } from "./corpus.mjs";
+import { coverageFile, loadLectures, readTranscripts } from "./corpus.mjs";
 import { checkEval } from "./eval.mjs";
 import { readGitIndex, checkSymlinks } from "./links.mjs";
 import { collectPrinciples } from "./principles.mjs";
 import { checkSchema, SCHEMA_FILE } from "./schema.mjs";
 import { checkSkills } from "./skills.mjs";
-import { checkQuotes, parseTranscript } from "./transcript.mjs";
+import { checkQuotes } from "./transcript.mjs";
 
 const missingFile = (file) => [{ file, line: 1, reason: "file is missing" }];
 const readOr = (root, file, check) => (existsSync(join(root, file)) ? check(readFileSync(join(root, file), "utf8")) : missingFile(file));
@@ -27,19 +27,25 @@ function symlinkFindings(root, gitIndex, skillNames) {
 
 export function runChecks(root, { gitIndex = readGitIndex } = {}) {
   const skills = checkSkills(root);
-  const principles = collectPrinciples(root);
+  const registry = loadLectures(root);
+  const principles = collectPrinciples(root, registry.lectures);
   const ids = principles.principles.map((principle) => principle.id);
-  const transcript = existsSync(join(root, TRANSCRIPT_FILE)) ? parseTranscript(readFileSync(join(root, TRANSCRIPT_FILE), "utf8"), TRANSCRIPT_FILE, VIDEO_ID) : undefined;
+  const transcripts = readTranscripts(root, registry.lectures);
+  // Each lecture is checked on its own: its transcript, and only the principles from its own part files.
+  const perLecture = (check) => transcripts.flatMap((entry) => (entry.parsed === undefined ? missingFile(entry.file) : check(entry)));
+  const principlesOf = (video) => principles.principles.filter((principle) => principle.video === video);
+  const coverage = ({ lecture, parsed }) => readOr(root, coverageFile(lecture.video), (text) => checkCoverage(text, coverageFile(lecture.video), parsed.sections, principlesOf(lecture.video)));
+  const paragraphsByVideo = new Map(transcripts.map(({ lecture, parsed }) => [lecture.video, parsed?.paragraphs]));
   return [
     { name: "skills", findings: skills.findings },
     { name: "symlinks", findings: symlinkFindings(root, gitIndex, skills.names) },
-    { name: "principles", findings: principles.findings },
-    { name: "transcript", findings: transcript?.findings ?? missingFile(TRANSCRIPT_FILE) },
-    { name: "quotes", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : checkQuotes(principles.principles, transcript.paragraphs) },
-    { name: "coverage", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : readOr(root, COVERAGE_FILE, (text) => checkCoverage(text, COVERAGE_FILE, transcript.sections, principles.principles)) },
+    { name: "principles", findings: [...registry.findings, ...principles.findings] },
+    { name: "transcript", findings: perLecture(({ parsed }) => parsed.findings) },
+    { name: "quotes", findings: perLecture(({ lecture, parsed }) => checkQuotes(principlesOf(lecture.video), parsed.paragraphs)) },
+    { name: "coverage", findings: perLecture(coverage) },
     { name: "anchors", findings: checkAnchors(root) },
-    { name: "schema", findings: existsSync(join(root, SCHEMA_FILE)) ? checkSchema(root, ids) : missingFile(SCHEMA_FILE) },
-    { name: "eval", findings: transcript === undefined ? missingFile(TRANSCRIPT_FILE) : checkEval(root, transcript.paragraphs) },
+    { name: "schema", findings: existsSync(join(root, SCHEMA_FILE)) ? checkSchema(root, ids, registry.lectures.map((lecture) => lecture.video)) : missingFile(SCHEMA_FILE) },
+    { name: "eval", findings: checkEval(root, paragraphsByVideo) },
   ];
 }
 

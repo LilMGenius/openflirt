@@ -1,12 +1,15 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { loadLectures } from "../scripts/lib/corpus.mjs";
 import { collectPrinciples, parsePrincipleFile } from "../scripts/lib/principles.mjs";
-import { FIXTURE_IDS, fixtureRepo } from "./fixture-repo.mjs";
+import { FIXTURE_IDS, FIXTURE_VIDEOS, fixtureRepo } from "./fixture-repo.mjs";
 
-test("principles come from part*.md only, with their quotes", (t) => {
-  const { principles, findings } = collectPrinciples(fixtureRepo(t));
+test("principles come from part*.md only, with their quotes and their lecture", (t) => {
+  const root = fixtureRepo(t);
+  const { principles, findings } = collectPrinciples(root, loadLectures(root).lectures);
   assert.deepEqual(findings, []);
   assert.deepEqual(principles.map((principle) => principle.id), FIXTURE_IDS);
+  assert.deepEqual([...new Set(principles.map((principle) => principle.video))], FIXTURE_VIDEOS);
   assert.deepEqual(principles[0].quotes.map((quote) => [quote.line, quote.sec]), [[8, 12], [9, 41]]);
 });
 

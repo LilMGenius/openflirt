@@ -1,16 +1,18 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { loadLectures } from "../scripts/lib/corpus.mjs";
 import { collectPrinciples } from "../scripts/lib/principles.mjs";
 import { checkQuotes, normalize, parseTranscript, quoteFinding } from "../scripts/lib/transcript.mjs";
 import { edit, fixtureRepo, read } from "./fixture-repo.mjs";
 
 const TRANSCRIPT = "corpus/RhfqIi3DmWU/transcript.md";
 const paragraphsOf = (root) => parseTranscript(read(root, TRANSCRIPT), TRANSCRIPT, "RhfqIi3DmWU").paragraphs;
+const principlesOf = (root) => collectPrinciples(root, loadLectures(root).lectures).principles;
 const at = (t, text) => ({ t, sec: Number(t.slice(0, 2)) * 60 + Number(t.slice(3)), text });
 
 test("quotes found in their time window pass, elisions and punctuation included", (t) => {
   const root = fixtureRepo(t);
-  assert.deepEqual(checkQuotes(collectPrinciples(root).principles, paragraphsOf(root)), []);
+  assert.deepEqual(checkQuotes(principlesOf(root), paragraphsOf(root)), []);
 });
 
 test("normalize drops whitespace and the listed punctuation and lowercases ASCII", () => {
@@ -20,7 +22,7 @@ test("normalize drops whitespace and the listed punctuation and lowercases ASCII
 test("a quote absent from the transcript fails at its line", (t) => {
   const root = fixtureRepo(t);
   edit(root, "skills/openflirt/references/part1.md", "말보다 행동을 봐라", "말보다 마음을 봐라");
-  const findings = checkQuotes(collectPrinciples(root).principles, paragraphsOf(root));
+  const findings = checkQuotes(principlesOf(root), paragraphsOf(root));
   assert.deepEqual(findings.map((finding) => [finding.file, finding.line]), [["skills/openflirt/references/part1.md", 8]]);
 });
 

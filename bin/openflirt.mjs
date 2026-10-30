@@ -2,7 +2,7 @@
 // Headless openflirt: hands one question to an installed agent CLI (Codex by default, or Claude
 // Code) running in this repository, so AGENTS.md and the openflirt skill load whatever the
 // caller's cwd, and prints the answer as text or, with --json, as JSON whose shape the schema
-// checks and whose citations the transcript checks.
+// checks and whose citations the transcript of each cited lecture checks.
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -10,9 +10,8 @@ import { text } from "node:stream/consumers";
 import { fileURLToPath } from "node:url";
 import { runAgent } from "../scripts/lib/agent.mjs";
 import { buildPrompt, checkAnswer, checkCitations, claudeArgs, claudeSchemaJson, codexArgs, parseCli, readAnswerText, readClaudeOutput, USAGE } from "../scripts/lib/cli.mjs";
-import { TRANSCRIPT_FILE, VIDEO_ID } from "../scripts/lib/corpus.mjs";
+import { loadParagraphs } from "../scripts/lib/corpus.mjs";
 import { loadAnswerValidator, SCHEMA_FILE } from "../scripts/lib/schema.mjs";
-import { parseTranscript } from "../scripts/lib/transcript.mjs";
 
 const repoRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const schemaPath = join(repoRoot, SCHEMA_FILE);
@@ -70,8 +69,9 @@ function emit(reply, json) {
   const validate = loadAnswerValidator(repoRoot);
   const checked = reply.kind === "text" ? readAnswerText(reply.text, validate) : checkAnswer(reply.value, validate);
   if (checked.kind === "error") return fail(checked.reason);
-  const { paragraphs } = parseTranscript(readFileSync(join(repoRoot, TRANSCRIPT_FILE), "utf8"), TRANSCRIPT_FILE, VIDEO_ID);
-  const cited = checkCitations(checked.value, paragraphs);
+  const corpus = loadParagraphs(repoRoot);
+  if (corpus.kind === "error") return fail("강의 전문을 읽지 못했다: " + corpus.findings.map(({ file, reason }) => file + " " + reason).join("; "));
+  const cited = checkCitations(checked.value, corpus.paragraphsByVideo);
   if (cited.kind === "error") return fail(cited.reason);
   process.stdout.write(JSON.stringify(cited.value, null, 2) + "\n");
   return { kind: "done" };

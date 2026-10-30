@@ -114,15 +114,23 @@
     },
     "citations": {
       "type": "array",
-      "description": "강의 원문 인용과 그 시각(mm:ss)",
+      "description": "강의 원문 인용과 그 강의, 그 시각(mm:ss)",
       "items": {
         "type": "object",
         "additionalProperties": false,
         "required": [
+          "video",
           "t",
           "quote"
         ],
         "properties": {
+          "video": {
+            "type": "string",
+            "enum": [
+              "RhfqIi3DmWU"
+            ],
+            "description": "인용한 강의의 YouTube 영상 id"
+          },
           "t": {
             "type": "string",
             "pattern": "^[0-5][0-9]:[0-5][0-9]$",

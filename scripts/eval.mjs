@@ -8,9 +8,8 @@ import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { formatFinding } from "./lib/checks.mjs";
-import { TRANSCRIPT_FILE, VIDEO_ID } from "./lib/corpus.mjs";
+import { loadParagraphs } from "./lib/corpus.mjs";
 import { CASES_FILE, caseFindings, isLimitError, notRun, rescore, schemaEnums, scoreRun, SKILL_FILE, totals } from "./lib/eval.mjs";
-import { parseTranscript } from "./lib/transcript.mjs";
 
 const repoRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const BIN = join(repoRoot, "bin", "openflirt.mjs");
@@ -26,8 +25,9 @@ function loadCases(file) {
   const text = readFileSync(file, "utf8");
   const rel = relative(repoRoot, file);
   const name = rel.startsWith("..") ? file : rel.replace(/\\/g, "/");
-  const { paragraphs } = parseTranscript(readFileSync(join(repoRoot, TRANSCRIPT_FILE), "utf8"), TRANSCRIPT_FILE, VIDEO_ID);
-  const findings = caseFindings(text, name, { ...schemaEnums(repoRoot), paragraphs, skillText: readFileSync(join(repoRoot, SKILL_FILE), "utf8") });
+  const corpus = loadParagraphs(repoRoot);
+  if (corpus.kind === "error") return { findings: corpus.findings };
+  const findings = caseFindings(text, name, { ...schemaEnums(repoRoot), paragraphsByVideo: corpus.paragraphsByVideo, skillText: readFileSync(join(repoRoot, SKILL_FILE), "utf8") });
   return findings.length === 0 ? { cases: JSON.parse(text), name } : { findings };
 }
 

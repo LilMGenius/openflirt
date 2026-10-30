@@ -1,8 +1,11 @@
 // Golden eval: the case file's check and the scorer. A case's labels come from the lecture's own
 // worked example (or an openflirt rule in SKILL.md), never from a model's answer, so the check
 // holds every source quote to the words it cites and the scorer compares verdict and action only.
+// A lecture quote names its lecture in source.video; a case without it quotes the first lecture
+// in corpus/lectures.json.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { LECTURES_FILE } from "./corpus.mjs";
 import { SCHEMA_FILE } from "./schema.mjs";
 import { normalize, quoteFinding } from "./transcript.mjs";
 
@@ -36,7 +39,8 @@ function locator(text, count) {
   };
 }
 
-export function caseFindings(text, file, { verdicts, actions, paragraphs, skillText }) {
+// paragraphsByVideo maps every registry video, in registry order, to its transcript paragraphs (undefined when the transcript is missing).
+export function caseFindings(text, file, { verdicts, actions, paragraphsByVideo, skillText }) {
   let cases;
   try {
     cases = JSON.parse(text);
@@ -50,6 +54,7 @@ export function caseFindings(text, file, { verdicts, actions, paragraphs, skillT
   const add = (index, keys, reason, value) => findings.push({ file, line: at(index, keys, value), reason: "case " + (index + 1) + ": " + reason });
   const seen = new Map();
   const skill = normalize(skillText);
+  const firstVideo = paragraphsByVideo.keys().next().value;
   for (const [index, kase] of cases.entries()) {
     if (!isMapping(kase)) {
       add(index, [], "must be an object");
@@ -75,8 +80,12 @@ export function caseFindings(text, file, { verdicts, actions, paragraphs, skillT
     } else if (source.kind !== undefined) {
       add(index, ["source", "kind"], 'source.kind must be "openflirt" or absent for a lecture quote');
     } else {
+      const video = source.video ?? firstVideo;
+      const paragraphs = paragraphsByVideo.get(video);
       const time = TIME.exec(source.t ?? "");
-      if (time === null) add(index, ["source", "t"], "source.t must be mm:ss");
+      if (!paragraphsByVideo.has(video)) add(index, ["source", "video"], "source.video " + JSON.stringify(video) + " is not a lecture in " + LECTURES_FILE);
+      else if (paragraphs === undefined) add(index, ["source"], "the transcript of lecture " + video + " is missing");
+      else if (time === null) add(index, ["source", "t"], "source.t must be mm:ss");
       else {
         const reason = quoteFinding({ t: source.t, sec: Number(time[1]) * 60 + Number(time[2]), text: source.quote }, paragraphs);
         if (reason !== undefined) add(index, ["source", "quote"], reason);
@@ -91,9 +100,9 @@ export function schemaEnums(root) {
   return { verdicts: schema.properties?.verdict?.enum ?? [], actions: schema.properties?.action?.enum ?? [] };
 }
 
-export function checkEval(root, paragraphs) {
+export function checkEval(root, paragraphsByVideo) {
   for (const file of [CASES_FILE, SCHEMA_FILE, SKILL_FILE]) if (!existsSync(join(root, file))) return [{ file, line: 1, reason: "file is missing" }];
-  return caseFindings(readFileSync(join(root, CASES_FILE), "utf8"), CASES_FILE, { ...schemaEnums(root), paragraphs, skillText: readFileSync(join(root, SKILL_FILE), "utf8") });
+  return caseFindings(readFileSync(join(root, CASES_FILE), "utf8"), CASES_FILE, { ...schemaEnums(root), paragraphsByVideo, skillText: readFileSync(join(root, SKILL_FILE), "utf8") });
 }
 
 export const isLimitError = (stderr) => LIMIT.test(stderr);

@@ -1,6 +1,7 @@
 // Answer schema check: it must compile under ajv's strict draft 2020-12 mode, stay inside the
 // OpenAI Structured Outputs strict subset that "codex exec --output-schema" accepts, and list
-// exactly the skill's principle ids in its principles enum. The copy the runner sends to
+// exactly the skill's principle ids in its principles enum and the registry's lecture videos in
+// its citation video enum. The copy the runner sends to
 // "claude --json-schema" must also compile under ajv's default draft-07 class, which is what
 // Claude Code validates with: its rejection of this file named the missing 2020-12 meta-schema.
 import { readFileSync } from "node:fs";
@@ -60,19 +61,23 @@ export function strictSubsetFindings(schema) {
   return findings;
 }
 
-export function principleEnumFindings(schema, ids) {
-  const pointer = "/properties/principles/items/enum";
-  const values = schema?.properties?.principles?.items?.enum;
-  if (!Array.isArray(values)) return [{ pointer, reason: "principles.items.enum must be an array of principle ids" }];
+function enumFindings(values, expected, pointer, { path, kind, plural }) {
+  if (!Array.isArray(values)) return [{ pointer, reason: path + " must be an array of " + kind + " ids" }];
   const findings = [];
   const duplicates = values.filter((value, index) => values.indexOf(value) !== index);
-  const missing = ids.filter((id) => !values.includes(id));
-  const extra = values.filter((value) => !ids.includes(value));
+  const missing = expected.filter((id) => !values.includes(id));
+  const extra = values.filter((value) => !expected.includes(value));
   if (duplicates.length > 0) findings.push({ pointer, reason: "enum repeats " + duplicates.join(", ") });
-  if (missing.length > 0) findings.push({ pointer, reason: "enum lacks principle ids " + missing.join(", ") });
-  if (extra.length > 0) findings.push({ pointer, reason: "enum holds ids that are not principles: " + extra.join(", ") });
+  if (missing.length > 0) findings.push({ pointer, reason: "enum lacks " + kind + " ids " + missing.join(", ") });
+  if (extra.length > 0) findings.push({ pointer, reason: "enum holds ids that are not " + plural + ": " + extra.join(", ") });
   return findings;
 }
+
+export const principleEnumFindings = (schema, ids) =>
+  enumFindings(schema?.properties?.principles?.items?.enum, ids, "/properties/principles/items/enum", { path: "principles.items.enum", kind: "principle", plural: "principles" });
+
+export const videoEnumFindings = (schema, videos) =>
+  enumFindings(schema?.properties?.citations?.items?.properties?.video?.enum, videos, "/properties/citations/items/properties/video/enum", { path: "citations.items.properties.video.enum", kind: "lecture video", plural: "lectures in corpus/lectures.json" });
 
 // Line of a JSON pointer in pretty-printed JSON: find each key in turn after the previous one.
 export function lineOfPointer(text, pointer) {
@@ -86,7 +91,7 @@ export function lineOfPointer(text, pointer) {
   return text.slice(0, at).split("\n").length;
 }
 
-export function checkSchemaText(text, file, ids) {
+export function checkSchemaText(text, file, ids, videos) {
   let schema;
   try {
     schema = JSON.parse(text);
@@ -105,11 +110,11 @@ export function checkSchemaText(text, file, ids) {
   };
   const findings = compileFindings(createAjv, schema, "ajv (draft 2020-12, strict) rejects the schema");
   if (findings.length === 0) findings.push(...compileFindings(createDraft7Ajv, JSON.parse(claudeSchemaJson(schema)), "ajv draft-07, which claude --json-schema validates with, rejects the schema the runner sends claude"));
-  const located = [...strictSubsetFindings(schema), ...principleEnumFindings(schema, ids)];
+  const located = [...strictSubsetFindings(schema), ...principleEnumFindings(schema, ids), ...videoEnumFindings(schema, videos)];
   return [...findings, ...located.map(({ pointer, reason }) => ({ file, line: lineOfPointer(text, pointer), reason: (pointer === "" ? "#" : pointer) + ": " + reason }))];
 }
 
-export const checkSchema = (root, ids) => checkSchemaText(readFileSync(join(root, SCHEMA_FILE), "utf8"), SCHEMA_FILE, ids);
+export const checkSchema = (root, ids, videos) => checkSchemaText(readFileSync(join(root, SCHEMA_FILE), "utf8"), SCHEMA_FILE, ids, videos);
 
 export function loadAnswerValidator(root) {
   return createAjv().compile(JSON.parse(readFileSync(join(root, SCHEMA_FILE), "utf8")));

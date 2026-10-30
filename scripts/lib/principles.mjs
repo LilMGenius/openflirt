@@ -1,7 +1,9 @@
 // Principle parse: each principle in skills/openflirt/references/part*.md opens with an HTML
 // anchor line, then a ### heading, and carries one or more "> [mm:ss] quote" lines.
+// Each principle takes the video of the lecture whose registry entry lists its file.
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { LECTURES_FILE } from "./corpus.mjs";
 import { markdownLines } from "./markdown.mjs";
 
 export const PRINCIPLE_DIR = "skills/openflirt/references";
@@ -43,11 +45,21 @@ export function parsePrincipleFile(text, file) {
   return { principles: principles.map(({ titled, ...principle }) => principle), findings };
 }
 
-export function collectPrinciples(root) {
+export function collectPrinciples(root, lectures) {
   const dir = join(root, PRINCIPLE_DIR);
   if (!existsSync(dir)) return { principles: [], findings: [{ file: PRINCIPLE_DIR, line: 1, reason: "principle folder is missing" }] };
   const names = readdirSync(dir).filter((name) => PRINCIPLE_FILE.test(name)).sort();
   if (names.length === 0) return { principles: [], findings: [{ file: PRINCIPLE_DIR, line: 1, reason: "no part*.md principle file" }] };
-  const parsed = names.map((name) => parsePrincipleFile(readFileSync(join(dir, name), "utf8"), PRINCIPLE_DIR + "/" + name));
-  return { principles: parsed.flatMap((file) => file.principles), findings: parsed.flatMap((file) => file.findings) };
+  const videoOf = new Map(lectures.flatMap((lecture) => lecture.parts.map((part) => [part, lecture.video])));
+  const findings = lectures.flatMap((lecture) =>
+    lecture.parts.filter((part) => !names.includes(part)).map((part) => ({ file: LECTURES_FILE, line: 1, reason: "lecture " + lecture.video + " lists " + part + ", which is not in " + PRINCIPLE_DIR })),
+  );
+  const parsed = names.map((name) => {
+    const file = PRINCIPLE_DIR + "/" + name;
+    const video = videoOf.get(name);
+    if (video === undefined) findings.push({ file, line: 1, reason: name + " is listed under no lecture in " + LECTURES_FILE });
+    const result = parsePrincipleFile(readFileSync(join(dir, name), "utf8"), file);
+    return { principles: result.principles.map((principle) => ({ ...principle, video })), findings: result.findings };
+  });
+  return { principles: parsed.flatMap((file) => file.principles), findings: [...findings, ...parsed.flatMap((file) => file.findings)] };
 }

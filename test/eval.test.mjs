@@ -22,7 +22,7 @@ const ANSWER = {
   message: null,
   answer: "더 보내지 말고 거리를 둬라.",
   principles: ["distance"],
-  citations: [{ t: "13:52", quote: "남자가 나를 좋아하고 있다는 걸 본인이 느낄수록 거리를 둡니다." }],
+  citations: [{ video: "RhfqIi3DmWU", t: "13:52", quote: "남자가 나를 좋아하고 있다는 걸 본인이 느낄수록 거리를 둡니다." }],
   out_of_scope: null,
 };
 const lectureCase = (id, action) => ({
