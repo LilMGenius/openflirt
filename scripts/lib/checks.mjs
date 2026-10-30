@@ -6,6 +6,7 @@ import { checkCoverage } from "./coverage.mjs";
 import { coverageFile, loadLectures, readTranscripts } from "./corpus.mjs";
 import { checkEval } from "./eval.mjs";
 import { readGitIndex, checkSymlinks } from "./links.mjs";
+import { checkLlms } from "./llms.mjs";
 import { collectPrinciples } from "./principles.mjs";
 import { checkSchema, SCHEMA_FILE } from "./schema.mjs";
 import { checkSkills } from "./skills.mjs";
@@ -46,6 +47,7 @@ export function runChecks(root, { gitIndex = readGitIndex } = {}) {
     { name: "anchors", findings: checkAnchors(root) },
     { name: "schema", findings: existsSync(join(root, SCHEMA_FILE)) ? checkSchema(root, ids, registry.lectures.map((lecture) => lecture.video)) : missingFile(SCHEMA_FILE) },
     { name: "eval", findings: checkEval(root, paragraphsByVideo) },
+    { name: "llms", findings: checkLlms(root) },
   ];
 }
 

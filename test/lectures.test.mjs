@@ -7,7 +7,8 @@ import { parseLectures } from "../scripts/lib/corpus.mjs";
 import { addSecondLecture, edit, fixtureIndex, fixtureRepo, read, SECOND_VIDEO, write } from "./fixture-repo.mjs";
 
 const PART2 = "skills/openflirt/references/part2.md";
-const failures = (root) => report(runChecks(root, { gitIndex: fixtureIndex })).filter((line) => line.startsWith("FAIL"));
+// Editing a carried file after the fixture is built also makes llms-full.txt stale; test/llms.test.mjs owns that.
+const failures = (root) => report(runChecks(root, { gitIndex: fixtureIndex })).filter((line) => line.startsWith("FAIL") && !line.startsWith("FAIL llms"));
 
 test("two lectures pass every check, each against its own transcript and coverage", (t) => {
   assert.deepEqual(failures(addSecondLecture(fixtureRepo(t))), []);

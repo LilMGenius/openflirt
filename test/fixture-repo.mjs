@@ -1,8 +1,10 @@
 // Fresh copy of test/fixtures/repo per test, so a test can break one file without touching others.
+// The copy gets llms.txt and llms-full.txt built from its own files, as node scripts/llms.mjs would.
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildLlms } from "../scripts/lib/llms.mjs";
 
 export const FIXTURE = join(dirname(fileURLToPath(import.meta.url)), "fixtures", "repo");
 export const REPO_ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -17,8 +19,13 @@ export function fixtureRepo(t) {
   schema.properties.principles.items.enum = FIXTURE_IDS;
   schema.properties.citations.items.properties.video.enum = FIXTURE_VIDEOS;
   write(root, "schema/answer.schema.json", JSON.stringify(schema, null, 2) + "\n");
+  writeLlms(root);
   return root;
 }
+
+const writeLlms = (root) => {
+  for (const [file, text] of Object.entries(buildLlms(root))) write(root, file, text);
+};
 
 // A second lecture beside the fixture's first: its own transcript, coverage and part2.md, whose one
 // quote is in this transcript only, and the registry and schema enums that list it.
@@ -35,6 +42,7 @@ export function addSecondLecture(root) {
   schema.properties.principles.items.enum = [...FIXTURE_IDS, "comfort"];
   schema.properties.citations.items.properties.video.enum = [...FIXTURE_VIDEOS, SECOND_VIDEO];
   write(root, "schema/answer.schema.json", JSON.stringify(schema, null, 2) + "\n");
+  writeLlms(root);
   return root;
 }
 
