@@ -13,7 +13,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 # openflirt
 
-연애 질문에 마픽스(마튜브) 강의 두 편의 원칙으로 답한다. 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)의 원칙은 [1부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md), [2부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md), [3부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md)에, 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 원칙은 [4부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md)에 있다. 원칙마다 그 강의의 원문 인용과 시각이 붙어 있다. 강의가 쓰는 말은 [용어집](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/glossary.md)에서 찾는다.
+연애 질문에 마픽스(마튜브) 강의 두 편의 원칙으로 답한다. 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)의 원칙은 [1부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md), [2부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md), [3부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md)에, 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 원칙은 [4부](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md)에 있다. 원칙마다 그 강의의 원문 인용과 시각이 붙어 있다. 두 강의는 같은 강의자의 것이라, 말이 어긋나면 나중에 올린 강의가 앞선다. 올린 날은 `corpus/lectures.json`이 적고, 어긋나는 자리는 원칙과 아래 상황별 원칙에 적어 두었다. openflirt가 정한 규칙은 두 강의보다 늘 앞선다. 강의가 쓰는 말은 [용어집](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/glossary.md)에서 찾는다.
 
 ## 판단 순서
 
@@ -43,7 +43,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 | 놓음 | `let_go` | 방생한다. 이 관계에 더 투자하지 않는다. |
 | 약속 잡기 | `ask_meet` | 만나자고 날을 정해 제안한다. 응하는지가 다음 판정이 된다. |
 | 정상 반응 | `reciprocate` | 받은 만큼 정상적으로 반응한다. 일부러 차갑게 굴지 않는다. |
-| 기준 지키기 | `hold_standard` | 흔들리지 않고 기준을 행동으로 보인다. 말은 강의가 허락하는 자리에서만 한 번, 짧게 한다. 압박에는 사실 한 줄([pressure](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pressure)), 연민으로 삶을 막으면 시간을 주는 통보([pity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pity)), 진짜 돌아설 때 "이렇게 하면 끝이야"([standard-by-action](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standard-by-action)), 다 받아 줄지 떠볼 때 불편한 것 하나([chooser](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#chooser))다. 기준을 길게 설명하거나 경고를 되풀이하지 않는다. |
+| 기준 지키기 | `hold_standard` | 흔들리지 않고 기준을 행동으로 보인다. 말은 강의가 허락하는 자리에서만 한 번, 짧게 한다. 압박에는 사실 한 줄([pressure](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pressure)), 연민으로 삶을 막으면 시간을 주는 통보([pity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pity)), 진짜 돌아설 때 "이렇게 하면 끝이야"([standard-by-action](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standard-by-action)), 다 받아 줄지 떠보거나, 상대가 정상적으로 반응하는데 불편한 행동이 있을 때 그것 하나([chooser](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#chooser))다. 기준을 길게 설명하거나 경고를 되풀이하지 않는다. |
 | 지켜봄 | `observe` | 판단할 행동이 나올 때까지 기다린다. |
 
 ## 상황별 원칙
@@ -56,18 +56,19 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 - 테스트, 도발, 질투 유발, 압박, 모순된 말: [test](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#test), [provocation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#provocation), [pressure](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pressure), [contradiction](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#contradiction), [frame-early](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#frame-early)
 - 남사친, 다른 남자, 술자리와 클럽: [male-friends](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#male-friends), [no-persuade](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-persuade), [self-guard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#self-guard), [subtext](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#subtext)
 - 불안이나 상처, 연민을 앞세운다: [wound-standard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#wound-standard), [pity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pity)
-- 기준을 말로 설명하거나 경고하고 싶다: [no-explain-respect](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-explain-respect), [standard-by-action](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standard-by-action), [late-discipline](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#late-discipline), [vanish](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#vanish)
-- 상대가 거리를 둔다, 내가 너무 좋아해서 흔들린다: [distance](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#distance), [scarcity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#scarcity), [options](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#options), [own-center](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#own-center), [weather](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#weather), [loss](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#loss), [congruence](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#congruence), [self-love](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#self-love)
+- 기준을 말로 설명하거나 경고하고 싶다, 불편한 걸 말해도 되나: [chooser](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#chooser), [no-explain-respect](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-explain-respect), [standard-by-action](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standard-by-action), [late-discipline](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#late-discipline), [vanish](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#vanish). 상대가 정상적으로 반응하는 관계면 불편한 것을 짧게 한 번 말해도 되고, 이때는 정상 반응 줄보다 이 줄이 먼저다(할 일은 기준 지키기). 답이 늦거나 애매한 상대에게 경고나 서운함을 보내려는 것이면 답장 줄과 [late-discipline](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#late-discipline), [vanish](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#vanish)가 먼저다(멈춤이나 뺌). 남사친과 단둘이 만나거나 스킨십을 하는 것처럼 남사친 줄이 마찰로 보는 행동이면 그 줄이 먼저다(뺌). 결혼이나 미래에 바라는 역할을 말할지는 역할 줄이 먼저다. 길게 설명하거나 설득하거나 경고를 되풀이하지 않는다.
+- 상대가 거리를 둔다, 내가 너무 좋아해서 흔들린다: [distance](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#distance), [scarcity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#scarcity), [options](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#options), [own-center](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#own-center), [weather](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#weather), [loss](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#loss), [congruence](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#congruence), [self-love](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#self-love). 상대가 관심을 행동으로 보이는데 좋아하는 티를 내도 되는지, 숨겨야 하는지 물으면 이 줄이 아니라 [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire), [no-proof](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-proof)가 먼저다. 티는 증명이나 고백이 아니라 욕망을 담담하게 드러내는 것이다.
 - 기분을 풀어 주고, 늘 대기하고, 다 바치고 사 준다: [mood-fixer](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#mood-fixer), [early-devotion](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#early-devotion), [no-showoff](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-showoff), [reverse-trophy](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#reverse-trophy), [hegemony](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#hegemony)
 - 사귀지 않는 상대가 부탁이나 공짜 일을 맡긴다, 해 줄지와 어떻게 해 줄지: 부탁과 "오빠밖에 없어" 같은 말은 관심의 행동으로 세지 않고([kindness](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#kindness), [want-me](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#want-me)), 판정은 만남 제안에 어떻게 답했는지로 정한다([meet](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#meet)). 만남 제안에 날짜 없는 "나중에"나 한참 뒤로 미룬 답이 왔으면 결과물을 건네며 다시 만나자고 하지 않는다. 이미 한 약속은 지키되 내 일정에 맞춰 평소 하던 만큼 한 번에 끝내고, 더 얹어 주거나 실력, 바쁜 일정, 실적을 보여 주려 하지 않는다([standby](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standby), [no-showoff](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-showoff), [early-devotion](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#early-devotion)). 새 부탁을 더 들어 주는 것으로 붙잡지 않는다([reverse-trophy](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#reverse-trophy)). 서로 돕고 만남에도 응하는 사이면 정상 반응이다([reciprocity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#reciprocity)). 약속한 것을 건네는 한 줄은 할 일이 뺌이나 놓음이어도 보낼 수 있다.
 - 만남 초반에 여자가 친구들을 만날 것 같다고 하거나 질투를 유발한다. 연락이 정상이어도 이 줄이 먼저고 할 일은 응대하지 않는 지켜봄이다: [provocation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#provocation)
 - 상대가 정상적으로 반응한다: [reciprocity](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#reciprocity), [self-guard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#self-guard)
-- 스킨십과 성적 텐션: [escalation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#escalation), [early-devotion](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#early-devotion)
+- 상대가 빨리 마음을 열어 오히려 가벼워 보인다, 의심스럽다: [her-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#her-first), [no-confirm](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-confirm), [calibrate](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#calibrate). 판정은 관심, 할 일은 정상 반응이고(다음 만남이 없으면 약속 잡기), 빨리 연 것만으로 [self-guard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#self-guard)의 ASD 줄로 빼지 않는다. 만남을 미루고 있으면 만남 제안에 대한 답으로 판정한다([meet](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#meet)).
+- 스킨십과 성적 텐션: 상대가 먼저 다가오거나 기대거나 손을 잡는 것처럼 당을 행동으로 보였으면 [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal)이 먼저고, 판정은 관심, 할 일은 놓치지 않는 정상 반응이다. 한 걸음은 말이면 피하지 않는 한마디, 자리면 "우리 좀 더 걷자" 같은 제안이고, 몸으로는 상대가 먼저 보인 스킨십만큼을 받는 데까지다. 그런 행동이 아직 없는데 진행하고 싶거나, 쩔쩔매며 허락을 구걸하는 말을 보내려 하면 [escalation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#escalation), [early-devotion](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#early-devotion)이고 할 일은 기준 지키기다. 어느 쪽이든 싫다거나 망설이면 거기서 멈춘다(판단 순서 2).
 - 마지막으로 한 문장을 더 보낼까: [last-sentence](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#last-sentence), [stop-think](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#stop-think), [persuasive-life](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#persuasive-life), [you-are-ambiguous](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#you-are-ambiguous)
 - 상대가 먼저 사겠다고 하거나 장소를 잡는다, 만남이 이어지는 상대가 먼저 좋아한다고 한다: [receive](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#receive), [her-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#her-first). 판정은 관심, 할 일은 정상 반응이고(다음 만남이 없으면 약속 잡기), 사양하거나 갚을 것을 서둘러 얹거나 긴 사과를 보내지 않는다. 좋다는 말이나 선물이 와도 만남을 미루고 있으면 이 줄이 아니라 만남 제안에 대한 답으로 판정하고, 부탁을 주고받는 상대면 부탁 줄이 먼저다.
-- 만났을 때 분위기를 어떻게 이어 갈지, 상대가 다가오고 웃고 다음 만남 얘기를 꺼낸다: [attraction-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#attraction-first), [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal), [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire). 상대가 먼저 보인 관심에만 한 걸음 나아가고, 멈추면 멈춘다(판단 순서 2). 스킨십을 묻는 질문이면 스킨십 줄이 먼저다.
+- 만났을 때 분위기를 어떻게 이어 갈지, 상대가 다가오고 웃고 다음 만남 얘기를 꺼낸다: [attraction-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#attraction-first), [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal), [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire). 상대가 먼저 보인 관심에만 한 걸음 나아가고, 싫다거나 망설이면 멈춘다(판단 순서 2). 스킨십을 묻는 질문은 스킨십 줄을 함께 보고, 상대가 먼저 보인 당이 있으면 [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal)이 [escalation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#escalation)보다 앞선다.
 - 가까워진 뒤 "나한테만 이래?" 하고 확인하고 싶다: [no-confirm](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-confirm). 확인은 보내지 않고, 관심이면 할 일은 평소대로 잇는 정상 반응이다.
-- 분위기 좋을 때 던진 말이나 눈빛을 해명하거나 취소하고 싶다: [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire). 할 일은 해명을 보내지 않는 멈춤이다.
+- 분위기 좋을 때 던진 말이나 눈빛을 해명하거나 취소하고 싶다, 상대가 "원래 이런 말 잘하지?"처럼 장난으로 떠본다: [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire). 이 줄이 테스트 줄과 도발 줄보다 먼저다. 그 자리에서 해명할지, 어떻게 받을지면 판정은 행동대로, 할 일은 정상 반응이고 보낼 말은 방어 없이 웃으며 받는 한 줄이다. 그 자리가 지난 뒤 해명이나 취소 문자를 보낼지면 할 일은 멈춤이다.
 - "나 성격 센데 괜찮겠어?"처럼 다 받아 줄지 떠본다: [chooser](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#chooser). 테스트 줄과 정상 반응 줄보다 이 줄이 먼저고, 연락과 만남이 정상이어도 할 일은 무조건 괜찮다고 약속하지 않는 기준 지키기다.
 - 결혼이나 미래에 바라는 역할이 서로 다르다: [role-question](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#role-question). 말로 확인했으면 끝과 놓음, 아직 얘기해 보지 않았으면 판정은 행동대로, 할 일은 그 질문을 보내는 정상 반응이다.
 - 내가 얼마나 성실한지 증명하고 싶다, 부족해서 더 해 줘야 할 것 같다, 해 준 게 얼만데 억울하다: [no-proof](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-proof), [no-condition-race](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-condition-race), [not-points](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#not-points), [want-me](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#want-me). 판정은 상대의 행동으로 정하고 할 일은 그 판정의 기본이며, 증명과 더 해 주는 것은 보낼 말에 넣지 않는다.
@@ -123,13 +124,13 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 - **뎁스**: 얼마나 세게 하느냐의 깊이. 모순, 테스트, 거리두기의 뎁스는 초반 프레임으로 정해진다. [frame-early](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#frame-early)
 - **나락**: 관계가 되돌릴 수 없이 무너져 가는 것. 프레임이 이미 망가진 뒤라 그 자리에서 프레임을 되잡을 수 없다. [frame-early](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#frame-early)
 - **어트**: 어트랙션, 끌림. "어트를 박는다"는 초반에 끌림을 심어 둔다는 말이다. 화면 자막은 Attraction으로 적기도 한다. 두 번째 강의는 어트(남성적 매력)와 시덕션(성적 긴장감)을 묶어 A와 S라 부르고, 여자 마음에 빨리 들어가는 데 가장 중요하다고 본다. 편안한 얘기로 쌓는 라포트와 맞서는 말이다. [frame-early](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#frame-early), [no-interpret](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#no-interpret), [standby](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standby), [subtext](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#subtext), [attraction-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#attraction-first)
-- **ASD**: 강의가 "쉽게 보이고 싶어 하지 않는 심리"라고 풀어 쓰는 말. 강의는 그것이 결국 남자에게 선택을 많이 받기 위해 있다고 보고, ASD 자체를 내 앞에서 보이지 않는 여자라면 이 관계에 더 투자할 필요가 있느냐고 묻는다. [self-guard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#self-guard), [no-explain-respect](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-explain-respect)
+- **ASD**: 강의가 "쉽게 보이고 싶어 하지 않는 심리"라고 풀어 쓰는 말. 강의는 그것이 결국 남자에게 선택을 많이 받기 위해 있다고 보고, ASD 자체를 내 앞에서 보이지 않는 여자라면 이 관계에 더 투자할 필요가 있느냐고 묻는다. 그 자리는 남자가 싫어할 걸 알면서 다른 남자와의 자리를 이어 가는 행동이다. 여자가 나에게 빨리 여는 것은 두 번째 강의대로 당으로 읽고([calibrate](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#calibrate)), 싫다거나 망설이는 것은 멈출 신호다(openflirt 규칙). [self-guard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#self-guard), [no-explain-respect](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#no-explain-respect)
 - **역어트**: "역어트를 먹인다"는 초반부터 여자가 남자를 쫓게 만든다는 말이다. 강의는 바로 뒤에 "여자가 나를 추적할 수 있고"라고 잇는다. [late-discipline](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#late-discipline)
 - **스탠다드**: 남자가 지키는 기준. 강의는 스탠다드를 잡는다, 깐다고 말하고, 말로 알리지 않고 행동으로 보인다. [wound-standard](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#wound-standard), [test](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#test), [standard-by-action](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md#standard-by-action)
 - **테스트**: 이 남자가 나를 지켜 줄 수 있는지 보려고 여자가 흔들기, 피장파장식 반응, 모순된 말을 보이는 것. 도발, 질투 유발, 압박으로도 나온다. 강의는 나쁜 여자라서 하는 게 아니라고 본다. 영어권 픽업 용어 shit test로 옮기지 않는다. [test](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#test), [provocation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#provocation), [pressure](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pressure)
 - **사일런스**: 말을 보태지 않고 가만히 있는 것. 압박이 오면 사일런스하고 차분하게 사실만 말한다. [pressure](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#pressure)
 - **모순**: 같은 일을 자기에게는 허용하고 남자에게는 막는 말. 여자 입장에서 좋은 핑곗거리다. [contradiction](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#contradiction)
-- **거리두기**: 남자가 자기를 좋아한다고 느낄수록 여자가 거리를 두는 것. 남자도 프레임 컨트롤로 살살 거리를 둘 수 있다. [distance](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#distance)
+- **거리두기**: 남자가 자기를 좋아한다고 느낄수록 여자가 거리를 두는 것. 남자도 프레임 컨트롤로 살살 거리를 둘 수 있다. 두 번째 강의는 호감을 숨기는 짝사랑을 푸시의 버릇으로 보므로, 상대가 관심을 보일 때 호감을 감추는 데는 쓰지 않는다. [distance](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#distance), [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire)
 - **헤게모니**: 연애와 결혼의 주도권. 강의는 우리나라에서 그것이 여자 쪽에 넘어가 있다고 본다. [hegemony](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#hegemony)
 - **필망**: 반드시 망한다. 너보다 남을 더 사랑하면 필망한다. [self-love](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#self-love)
 - **남사친**: 여자의 남자 사람 친구. [male-friends](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#male-friends)
@@ -187,7 +188,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자는 남자에게 모순, 테스트, 거리두기를 시전한다. 이걸 얼마나 세게 하는지, 약하게 하는지, 아예 안 하는지는 초반 관계에서 남자가 어떤 반응 프레임을 보였는지로 정해진다. 초반에 프레임 밑밥을 깔고 어트를 박아야 이런 것이 잘 안 나오고, 나와도 약하게, 납득 가능한 선에서 나온다. 강의는 우리나라 남자들이 이 초반 과정을 생각조차 하지 않는 까닭으로 자만추라는 개념과, "여자한테는 잘해 줘야 된다"는 거대 미디어의 메시지를 든다. 프레임이 이미 망가져 연인이 있는데도 혼성 만남이 하나, 둘, 셋 계속 나오면 그 상황에서 프레임을 다시 잡는 것은 불가능하다.
 
-판단에 쓰는 법: 관계 초반이면 할 일은 기준 지키기로 프레임 밑밥을 먼저 까는 것이다. 사귀는 사이인데도 혼성 만남이 하나, 둘, 셋 계속 나오면 판정은 마찰이고 할 일은 뺌이다. 강의는 그 상황에서 프레임을 다시 잡는 게 불가능하다고 할 뿐 관계가 끝났다고 하지는 않으므로, 말로 프레임을 되잡으려 하지 않고 조용히 거리를 둔다(「여자는 몰라서 나쁜 행동을 하는 게 아니다」와 같다).
+판단에 쓰는 법: 처음부터 프레임 밑밥과 어트를 깔아 둔다(두 번째 강의도 어트와 시덕션은 처음부터 돌아간다고 본다). 관계 초반에 테스트, 모순, 거리두기가 나오면 할 일은 기준 지키기다. 초반에 상대가 당을 행동으로 보이는 자리는 [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal)대로 받는다. 사귀는 사이인데도 혼성 만남이 하나, 둘, 셋 계속 나오면 판정은 마찰이고 할 일은 뺌이다. 강의는 그 상황에서 프레임을 다시 잡는 게 불가능하다고 할 뿐 관계가 끝났다고 하지는 않으므로, 말로 프레임을 되잡으려 하지 않고 조용히 거리를 둔다(「여자는 몰라서 나쁜 행동을 하는 게 아니다」와 같다).
 
 > [01:55] 모순, 테스트, 그리고 뭡니까? 어, 거리두기 등을 너한테 시전을 할 거예요.
 > [03:44] 처음부터 네가 뭐야? 프레임 밑밥 작업을 하고 그러면 뭐야? 이 어트, 어트를 박아낸 다음에 게임이 진행돼야 이런 거 자체가 잘 안 나오는데, 나오더라도 약하게 나오고 납득 가능한 선에서 나오는 건데
@@ -258,7 +259,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자에게는 약한 모습을 보이며 보호해 줄 수 있는지 보는 보호의 기저가 있다. 멘탈적으로 흔들어 대거나 피장파장식으로 나오거나 모순되는 말을 하는 것은 이 남자가 어떤 놈인지 보려는 의도와, 연애나 결혼을 유리하게 가져오려는 심리에서 나오며, 이것을 테스트라고 부른다. 테스트는 초반부터 약하게 나오고, 뒤로 갈수록 남자의 대응 프레임을 살펴 세게 할지, 아예 안 할지, 눈치 보며 조금만 할지 정한다. 나쁜 여자라서 하는 게 아니라 이 남자가 나를 지켜 줄 수 있는지 확인하려고 하는 것이니 나쁘게 생각할 것 없다. 다만 남자는 스탠다드를 잘 깔아야 한다.
 
-판단에 쓰는 법: 흔들기, 모순된 말, 피장파장식 반응만으로 끝이나 마찰로 단정하지 않고 테스트로 읽는다. 할 일은 기준 지키기다.
+판단에 쓰는 법: 흔들기, 모순된 말, 피장파장식 반응만으로 끝이나 마찰로 단정하지 않고 테스트로 읽는다. 할 일은 기준 지키기다. 분위기 좋을 때 "원래 이런 말 잘하지?"처럼 장난으로 떠보는 것은 [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire)가 앞서고(나중에 올린 강의가 앞선다), 할 일은 방어 없이 웃으며 받는 정상 반응이다.
 
 > [11:21] 테스트는 초반부터 약하게 나오고 뒤로 갈수록 뭐야? 이 남자의 대응 프레임을 살피고 뭐 세게 만들지 아니면 아예 안 할지, 눈치 보면서 조금만 할지 결정하게 되는 거예요.
 > [11:21] 나쁜 여자라서 하는 게 아니라 뭐라고? 이 남자 과연 나를 지켜 줄 수 있을까?
@@ -306,7 +307,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자는 남자가 자기를 좋아하고 있다고 느낄수록, 더 상향의 남자를 만날 수 있는데 하향 선택을 하는 게 아닌가 하는 마음과 남자의 반응 정도를 체크하려는 마음으로 거리를 둔다. 여자가 거리두기를 한다고 느낄 때 섣불리 따라가거나 물고 들어가지 않는다. 이런 걸 아예 보고 싶지 않으면 남자가 프레임 컨트롤로 살살 거리두기를 해서 여자가 따라올 수 있게 만든다. 가장 편한 방법은 꾸준히 다른 여자를 만나는 사회적 생활이고, 이것은 바람피라는 소리가 아니다. 여자 반응이 좋든 아니든 꾸준히 여자와 연락해야 내 감각을 유지할 수 있다.
 
-판단에 쓰는 법: 강의는 여자가 남자가 자기를 좋아한다고 느낄수록 거리를 둔다고 보므로, 거리두기만으로는 판정을 바꾸지 않는다. 할 일은 따라가지 않는 멈춤이다. 강의가 섣불리 따라가거나 물고 들어가지 말라고 하기 때문이다. 거리를 두면서 약속 제안에 플레이크로 답하면 「여자가 마찰을 주면 끝이다」대로 마찰이고 할 일은 뺌이다. 사귀다 갑자기 생각할 시간을 달라며 거리를 두면 「생각할 시간을 달라는 건 끝난 것이다」대로 끝이다. 평소에는 살살 거리를 두고, 다른 여자와도 꾸준히 연락하며 감각을 유지한다.
+판단에 쓰는 법: 강의는 여자가 남자가 자기를 좋아한다고 느낄수록 거리를 둔다고 보므로, 거리두기만으로는 판정을 바꾸지 않는다. 할 일은 따라가지 않는 멈춤이다. 강의가 섣불리 따라가거나 물고 들어가지 말라고 하기 때문이다. 거리를 두면서 약속 제안에 플레이크로 답하면 「여자가 마찰을 주면 끝이다」대로 마찰이고 할 일은 뺌이다. 사귀다 갑자기 생각할 시간을 달라며 거리를 두면 「생각할 시간을 달라는 건 끝난 것이다」대로 끝이다. 평소에는 살살 거리를 두어 여자가 따라올 수 있게 하고, 다른 여자와도 꾸준히 연락하며 감각을 유지한다. 다만 살살 거리를 두는 것이 호감과 욕망을 숨기는 것은 아니다. 상대가 관심을 행동으로 보이는 자리에서 호감을 숨기는 것은 두 번째 강의가 짝사랑이라 부르는 푸시의 버릇이고, 그 자리에서는 [show-desire](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#show-desire)와 [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal)이 앞선다(나중에 올린 강의가 앞선다).
 
 > [13:52] 남자가 나를 좋아하고 있다는 걸 본인이 느낄수록 거리를 둡니다.
 > [14:18] 여자가 거리두기 한다는 감정을 받을 때 섣불리 따라가지 마세요. 섣불리 물고 들어가지 말라고. … 가장 편한 방법은 내가 꾸준히 다른 여자 만나고, 이게 바람피라는 소리도 아닙니다. 사회적 생활을 하라고.
@@ -419,7 +420,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자는 좋아하는 남자를 만나면 현모양처 모드에 들어가 결혼하기에 적합한 여자로 보이려 한다. 남자도 이걸 본다. 밤에 친구 만나 술 먹고, 남자 섞인 자리에 가고, 핫플 다니는 건 장기적 관계로 가기에 안 좋은 여자라는 느낌을 줄 수 있고, 강의는 남자가 본능적으로 여자의 정조관념을 깊게 본다고 말한다. 강의는 ASD, 곧 쉽게 보이고 싶어 하지 않는 심리도 결국 남자에게 선택을 많이 받기 위해 있다고 본다. 평소에 자유분방하던 여자도, 남사친이 많던 여자도 진짜 놓치기 싫은 남자 앞에서는 오해 살 수 있는 행동 자체를 줄인다. 남자가 가르쳐서가 아니라, 이 남자를 놓칠 수 있다고 여자가 스스로 계산해서 바뀐다. 거꾸로 ASD 자체를 내 앞에서 보이지 않는 여자라면, 강의는 이 관계에 내가 더 투자할 필요가 있느냐고 묻는다(「여자한테 존중을 설명하지 마라」). 그래서 관계는 쫓아다니며 설득해서 만들지 않고 여자가 스스로 그렇게 되게 만들어서 만들며, 설득 작업은 needy해 보이고 쫓는 느낌을 줘서 여자를 더 날뛰게 만든다.
 
-판단에 쓰는 법: 여자가 남자를 의식해 밤 술자리나 남자 섞인 자리를 스스로 줄이면 판정은 관심이고 할 일은 정상 반응이다. 그런 선이 보이지 않는데 "밤에는 좀 안 만나면 안 돼?" 같은 말로 바꾸려 하면 할 일은 멈춤이다. 내 앞에서 ASD 자체를 보이지 않으면 강의는 이 관계에 더 투자할 필요가 있느냐고 묻고 조용히 돌아서니, 할 일은 더 넣지 않고 돌아서는 뺌이다.
+판단에 쓰는 법: 여자가 남자를 의식해 밤 술자리나 남자 섞인 자리를 스스로 줄이면 판정은 관심이고 할 일은 정상 반응이다. 그런 선이 보이지 않는데 "밤에는 좀 안 만나면 안 돼?" 같은 말로 바꾸려 하면 할 일은 멈춤이다. 내 앞에서 ASD 자체를 보이지 않는다는 것은 강의의 자리대로, 남자가 싫어할 걸 알면서 클럽, 남자 섞인 술자리, 다른 남자와의 연락을 이어 가는 것을 말하고, 그때 할 일은 더 넣지 않고 돌아서는 뺌이다. 첫 강의의 "ASD 자체를 내 앞에서 보이지 않는" 여자는 다른 남자와의 자리를 두고 한 말이고, 여자가 나에게 빨리 마음을 열거나 먼저 좋다고 하는 것은 두 번째 강의가 말하는 초반의 큰 당이다. 그때는 의심하거나 확인하지 않고 [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal), [her-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#her-first), [no-confirm](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-confirm), [calibrate](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#calibrate)대로 받는다(나중에 올린 강의가 앞선다).
 
 > [23:36] 장기적 관계로 가기에는 안 좋은 여자라는 느낌을 줄 수 있으니까 … 남자는 본능적으로 여자의 정조관념을 되게 깊게 보는데
 > [24:07] ASD가 왜 있는 거야? 쉽게 보이고 싶어 하지 않는 심리가 왜 있는 거냐고 … 평소에 남사친 많던 여자도 진짜 높은 가치의 남자를 만나면 오해 살 수 있는 행동 자체를 줄여 버립니다
@@ -431,7 +432,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 관계가 망하는 순간은 여자한테 존중을 설명하기 시작할 때다. "나는 그런 거 싫어", "그건 내 바운더리야", "내 마음도 좀 이해해 줘" 같은 말 자체는 맞는 말이지만 이 말을 할 때는 대부분 이미 늦은 상황이고, 아직 꼬시는 단계일 때도 마찬가지다. 강의는 이런 말을 하면 안 된다고 하고, 해 봤자 예민하다, 통제하려 한다, 자신감 없어 보인다는 싸움으로 흐른다고 본다. 여자는 남자가 싫어할 걸 이미 알고 하기 때문에, 설명은 여자에게 새로운 정보가 아니고 하고 싶은 걸 막는 장애물일 뿐이라 쓸데없이 길게 말할 필요가 없다. 그걸 20분, 30분, 하루 종일 설명하려 드는 남자는 여자의 SNS와 술자리를 감시하는 아빠, 대디가 되고, 여자는 그런 남자에게 설렐 수도 존중할 수도 무서워할 수도 없다. 여자가 긴장하는 남자는 말로 설득하는 시끄러운 남자가 아니라 조용히 행동하는 남자, 오히려 침묵하는 남자다. 결이 안 맞고 ASD 자체를 내 앞에서 보이지 않는다고 보면 이 관계에 더 투자할 필요가 있느냐고 묻고 조용히 돌아선다. 말을 한다면 "이렇게 하면 끝이야"라고 한 번 하고 진짜 돌아설 때만 무게가 있다(「기준은 말로 하지 않고 행동으로 증명한다」).
 
-판단에 쓰는 법: 여자가 클럽, 술자리, 다른 남자와의 DM처럼 남자가 싫어할 걸 아는 행동을 할 때 존중을 설명하거나 설득하려 들면 할 일은 그 말을 보내지 않는 멈춤이다. 강의가 설명하기 시작하는 순간을 관계가 망하는 순간으로 보기 때문이다. 여자가 알면서 그 행동을 이어 가면 판정은 「여자는 몰라서 나쁜 행동을 하는 게 아니다」대로 마찰이고, 할 일은 설명 없이 조용히 돌아서는 뺌이다. 기준을 말해도 되느냐는 질문이면 강의의 순서대로 답한다. 먼저 조용히 행동하고 조용히 돌아서며, 말을 한다면 한 번만 하고 그 뒤에 진짜 그대로 행동할 때만 한다.
+판단에 쓰는 법: 여자가 클럽, 술자리, 다른 남자와의 DM처럼 남자가 싫어할 걸 아는 행동을 할 때 존중을 설명하거나 설득하려 들면 할 일은 그 말을 보내지 않는 멈춤이다. 강의가 설명하기 시작하는 순간을 관계가 망하는 순간으로 보기 때문이다. 여자가 알면서 그 행동을 이어 가면 판정은 「여자는 몰라서 나쁜 행동을 하는 게 아니다」대로 마찰이고, 할 일은 설명 없이 조용히 돌아서는 뺌이다. 첫 강의는 "나는 그런 거 싫어" 같은 한마디도 하지 말라고 하지만, 두 번째 강의는 불편한 게 있으면 말할 줄 알아야 한다고 한다. 나중에 올린 강의가 앞서므로, 관계가 정상이고 아직 말한 적 없는 행동이면 불편한 것을 짧게 한 번 말하는 것은 된다([chooser](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#chooser)). 그 한마디가 기준 지키기다. 멈춤은 존중을 길게 설명하고 설득하고 되풀이하는 말에만 쓴다. 돌아서겠다는 말은 진짜 돌아설 때만 한 번 한다(「기준은 말로 하지 않고 행동으로 증명한다」). 한 번 말한 뒤에도 여자가 알면서 그 행동을 이어 가면 마찰이고, 할 일은 더 말하지 않는 뺌이다.
 
 > [25:28] 관계에서 망하는 순간이 여자한테 이 존중이라는 걸 설명하기 시작할 때야
 > [26:19] 애초에 여자는 네가 이거 싫어할 걸 알고 있어요 … 너는 쓸데없이 길게 말할 필요가 없는 거예요. 여자한테 이건 싫어. 이건 내 기준이야
@@ -491,7 +492,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 푸시들이 여자를 만났을 때 가장 많이 하는 실수는 결혼하기에 적합한 남자처럼 보이는 것이다. 자기 헌신과 모든 자원을 다 줄 수 있다는 의미로 행동하고, "처음부터 이런 말 너무 빠를지 모르겠지만 너다라고 생각했어요"처럼 관계를 이미 확정 짓는 말을 한다. 극초반부터 바치고 바치고, 여자가 험한 말을 해도 다 들어 주면서 달래고 설득하려 든다. 그렇게 바쳐서 겨우 관계를 이어 가면 100일, 200일, 300일이 지나 텔을 잡아도 정자세로 쩔쩔맨다. 강의는 성적 텐션을 태우는 상황에서 허락받으려 쩔쩔매는 푸시도 같은 정자세로 그린다(「여자가 먼저 원하게 만든다」).
 
-판단에 쓰는 법: 알게 된 지 얼마 안 된 극초반에 "너다라고 생각했어요" 같은 관계를 확정 짓는 말을 보내려 하거나, 모든 걸 바치고 여자의 험한 말까지 다 들어 주며 달래려는 질문이면 할 일은 멈춤이다.
+판단에 쓰는 법: 알게 된 지 얼마 안 된 극초반에 "너다라고 생각했어요" 같은 관계를 확정 짓는 말을 보내려 하거나, 모든 걸 바치고 여자의 험한 말까지 다 들어 주며 달래려는 질문이면 할 일은 멈춤이다. 상대가 먼저 "언제 고백할 건데?"처럼 마음을 보였다면 확정 짓는 말을 막는 이 원칙보다 [her-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#her-first)가 앞서고, 의심하거나 밀어내지 않는다(나중에 올린 강의가 앞선다). 바치는 것은 상대가 마음을 보인 뒤에도 하지 않는다([receive](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#receive), [check-talk](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#check-talk)).
 
 > [23:11] 푸시들이 여자를 딱 만났을 때 가장 실수하는 게 뭐예요? 결혼하기에 적합한 남자처럼 보이는 거 … 관계를 이미 확정 짓는 말
 > [33:37] 바쳐서 여자한테 겨우 해 가지고, 어, 100일 200일 300일 텔 잡아서도 정자세로
@@ -627,7 +628,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 초장부터 어트와 프레임을 깔아 놓으면 어트, 프레임 잡는 상황뿐 아니라 성적 텐션을 태우는 상황에서도 여자의 반응도가 달라진다. 강의는 이때 남자가 허락받을 필요도 없고, 여자가 먼저 원하게 만든다고 본다. 강의가 비웃는 것은 정자세로 쩔쩔매며 허락을 구걸하는 푸시의 말투다. 여자의 뜻을 확인하지 말라는 말은 아니다.
 
-판단에 쓰는 법: 성적 텐션에서도 할 일은 기준 지키기다. 쩔쩔매며 허락을 구걸하는 말을 보내지 않고, 초반부터 깔아 둔 어트와 프레임으로 여자가 먼저 원하게 만든다. 이것은 여자의 뜻을 묻지 말라는 규칙이 아니다. 스킨십과 성적인 진행은 여자가 먼저 원하는 행동을 보일 때만 나아가고, 여자에게 묻고 싫다는 말이나 망설임이 나오면 거기서 멈추며, 이 규칙이 강의의 말보다 먼저다(openflirt 규칙, SKILL.md 판단 순서 2).
+판단에 쓰는 법: 성적 텐션에서 할 일은 상대가 먼저 원하는 행동을 보였는지로 갈린다. 보였으면 그 당을 놓치지 않는 정상 반응이되 몸으로는 상대가 먼저 보인 만큼까지이고([seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal)), 아직 보이지 않았으면 기준 지키기다. 쩔쩔매며 허락을 구걸하는 말을 보내지 않고, 초반부터 깔아 둔 어트와 프레임으로 여자가 먼저 원하게 만든다. 이것은 여자의 뜻을 묻지 말라는 규칙이 아니다. 스킨십과 성적인 진행은 여자가 먼저 원하는 행동을 보일 때만 나아가고, 여자에게 묻고 싫다는 말이나 망설임이 나오면 거기서 멈추며, 이 규칙이 강의의 말보다 먼저다(openflirt 규칙, SKILL.md 판단 순서 2).
 
 > [43:36] 비단 이런 뭐야, 어트, 프레임 잡는 상황뿐만 아니라 성적 텐션 태우는 상황에서도 여자의 반응도가 달라집니다.
 > [43:36] 허락받을 필요도 없고 여자가 먼저 원하게 만든다고.
@@ -686,7 +687,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자가 좋아하는 성격은 감정적으로 안 매달리고, 애매함에 오래 머물지 않고, 자기 삶의 중심을 절대 넘겨주지 않는 성격이다. 이건 일부러 차갑게 굴거나 무시하거나 허세를 부리라는 게 아니라 기준이 있다는 걸 제대로 행하라는 것이다. 여자가 정상적으로 반응하면 정상적으로 대화하고, 따뜻하게 나오면 따뜻하게 남성성을 보이고, 시간을 내면 시간을 내고, 도시락을 싸 주면 맛있게 먹어 준다. 여자가 계속 애매하게 굴 때만 거기 더 넣지 않는다.
 
-판단에 쓰는 법: 판정이 관심이면 할 일은 정상 반응이고, 일부러 차갑게 빼는 건 할 일이 아니다. 여자가 계속 애매하면 그때 멈춤이다.
+판단에 쓰는 법: 판정이 관심이면 할 일은 정상 반응이고, 일부러 차갑게 빼는 건 할 일이 아니다. 여자가 계속 애매하면 그때 멈춤이다. 따뜻하게 받는다는 것이 상대의 말을 같은 말로 매번 되돌려 주라는 뜻은 아니다. 두 번째 강의는 한 번은 보고 싶다는 말을 그냥 듣기만 해 보라고 하므로, 덤덤하게 받기만 하는 것도 정상 반응이다([receive](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#receive)). 답을 끊거나 일부러 차갑게 구는 것은 여전히 할 일이 아니다.
 
 > [48:32] 일부러 차갑게 굴라, 일부러 무시하라, 허세 부리라 이런 게 아니라 그냥 기준이 있다는 걸 제대로 행하라고.
 > [48:32] 여자가 정상적으로 반응하면 너도 정상적으로 대화하면 됩니다.
@@ -710,7 +711,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자가 애매한 게 아니라 네가 그 여자한테 애매한 위치를 차지하고 있는 것이다. 하수들, 푸시들은 여기서 "요즘 여자들은 간만 본다", "나쁜 남자만 좋아한다"며 여자를 원망한다. 고수는 자기 자신을 보고, 내가 아직 이 정도 여자를 자연스럽게 끌어당길 레벨은 아니구나 인정한 뒤 하나하나 올라간다. 다시는 그런 대우를 받지 않기 위해 성장한다.
 
-판단에 쓰는 법: 판정이 애매일 때 여자를 원망하거나 따지는 말을 보내려 하면 할 일은 멈춤이고, 원인은 여자가 아니라 자기 위치에서 찾는다.
+판단에 쓰는 법: 판정이 애매일 때 여자를 원망하거나 따지는 말을 보내려 하면 할 일은 멈춤이고, 원인은 여자가 아니라 자기 위치에서 찾는다. 자기 삶으로 돌린다는 것은 그 여자를 얻으려 조건과 클래스를 키우라는 말이 아니다. 두 번째 강의는 자기 개발을 클래스의 문제로 보고 비슷한 바운더리의 상대면 끌림(A와 S)이 먼저라고 하므로, 올라간다는 것은 끌림의 레벨이다([no-condition-race](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-condition-race), [attraction-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#attraction-first), 나중에 올린 강의가 앞선다).
 
 > [50:06] 여자가 애매한 게 아니야. 너가 그 여자한테 애매한 거야.
 > [50:06] 하수들은 여기서, 푸시들은 여기서 여자를 원망합니다.
@@ -722,7 +723,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자를 설득하려 하지 않고 너라는 남자 자체를 여자한테 설득력 있게 만든다. 운동하고, 능력을 키우고, 스타일을 바꾸고, 핫플에서 경험을 쌓고, 여자를 만나고 실패하고 다시 일어난다. 지금 할 일은 관심 없는 여자한테 한 문장 더 보내는 게 아니라 새로운 상대한테 부딪혀 보는 것이고, 그 여자가 아니어도 되는 남자가 되는 것이다. 부족함에서 나오는 친절이 아니라 풍요에서 나오는 여유, 잃을까 봐 떠는 다정함이 아니라 있으면 좋고 아니면 마는 단단함이 여자한테 꽂힌다. 여자를 예쁘게 볼 수는 있어도 애매한 태도까지 떠받들지 않는다.
 
-판단에 쓰는 법: 한 문장 더 보내려 할 때 판정이 애매면 멈춤, 끝이면 놓음이고, 시간과 에너지는 자기 삶과 새로운 상대로 돌린다.
+판단에 쓰는 법: 한 문장 더 보내려 할 때 판정이 애매면 멈춤, 끝이면 놓음이고, 시간과 에너지는 자기 삶과 새로운 상대로 돌린다. 자기 삶으로 돌린다는 것은 그 여자를 얻으려 조건과 클래스를 키우라는 말이 아니다. 두 번째 강의는 자기 개발을 클래스의 문제로 보고 비슷한 바운더리의 상대면 끌림(A와 S)이 먼저라고 하므로, 올라간다는 것은 끌림의 레벨이다([no-condition-race](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#no-condition-race), [attraction-first](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#attraction-first), 나중에 올린 강의가 앞선다).
 
 > [51:05] 여자를 설득하려고 하지 마세요. 네 인생을 여자한테 설득력 있게 만드세요.
 > [51:05] 네가 지금 할 일은 관심 없는 여자한테 한 문장 더 보내는 게 아니라 다시 새로운 상대한테 부딪혀 보는 겁니다.
@@ -774,14 +775,15 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 ### 당이 나올 때 놓치지 마라
 
-여자가 관심을 표현할 때, 강의의 말로 당이 나올 때 그걸 놓치지 않는 게 굉장히 중요하다. 그때 포착해서 한 단계 더 나가지 못하면 낮은 가치의 증명(DLV)이 되고, 여자는 너를 남자로 보는 대상에서 뺀다. 그 한 단계는 고백이 아니라, 피하지 않고 시의적절하게 툭 던지는 한마디다. 여자가 당을 보이면 "우리 좀 더 걷자", "좀 더 다른 데로 옮겨 볼까" 하고 말하라고 한다.
+여자가 관심을 표현할 때, 강의의 말로 당이 나올 때 그걸 놓치지 않는 게 굉장히 중요하다. 그때 포착해서 한 단계 더 나가지 못하면 낮은 가치의 증명(DLV)이 되고, 여자는 너를 남자로 보는 대상에서 뺀다. 그 한 단계는 고백이 아니라, 피하지 않고 시의적절하게 툭 던지는 한마디다. 강의는 관계가 한 단계 올라가는 건 분위기가 주도할 때가 많고, 고수와 푸시의 차이는 그 분위기를 만들어 내고 바로 받아먹느냐에 있다고 본다. 푸시는 만들어진 것도 날려 먹거나, 만들어진 것조차 모른다. 여자가 당을 보이면 "우리 좀 더 걷자", "좀 더 다른 데로 옮겨 볼까" 하고 말하라고 한다.
 
-판단에 쓰는 법: 상대가 만나서 먼저 다가오고, 웃고, 다음 만남 얘기를 꺼내는 등 관심을 행동으로 보이면 판정은 관심이고 할 일은 정상 반응이다. 여기서 정상 반응은 상대가 보인 만큼에서 한 걸음, 자리를 옮기거나 더 함께 있자고 제안하는 정도까지다. 당은 여자가 먼저 보이는 행동이고, 그 행동이 없거나 상대가 멈추면 나아가지 않는다(openflirt 규칙). 스킨십을 묻는 질문이면 SKILL.md의 스킨십 줄이 먼저다.
+판단에 쓰는 법: 상대가 만나서 먼저 다가오고, 웃고, 다음 만남 얘기를 꺼내는 등 관심을 행동으로 보이면 판정은 관심이고 할 일은 정상 반응이다. 여기서 정상 반응은 상대가 보인 만큼에서 한 걸음이다. 말이면 피하지 않는 한마디, 자리면 "우리 좀 더 걷자"처럼 옮기거나 더 함께 있자는 제안이고, 몸이면 상대가 먼저 보인 스킨십만큼을 받는 데까지다. 당은 여자가 먼저 보이는 행동이고, 그 행동이 없거나, 상대가 싫다고 하거나 망설이면 거기서 멈춘다(openflirt 규칙, SKILL.md 판단 순서 2). 스킨십을 묻는 질문에서도 상대가 먼저 보인 당이 있으면 이 원칙이 [escalation](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md#escalation)보다 앞선다(나중에 올린 강의가 앞선다). 말과 자리에서 당을 보고도 기준 지키기라며 물러서는 것을 강의는 DLV로 본다. 싫다거나 망설여서 멈추는 것은 DLV가 아니다.
 
 > [02:03] 즉 당을 표현하고 있을 때, 당을 표현할 때 절대로 그걸 놓치지 않는 겁니다.
 > [02:03] 더 높은 단계로 나가지 못하면 해야 될 걸 하지 못하는 꼴이 되기 때문에 DLV, 즉 낮은 가치의 증명이 돼버립니다.
 > [19:50] 그럴 때 피하지 않고 남자답게 쓱 넣어 주는 거.
 > [19:50] '지연 씨, 사실 이렇게 된 거 나 이전부터 지연 씨 좋아했어요.'라고 고백하라는 소리가 아니라 그냥 그렇게 쓱 들어가 줘야 되는, 그런 한마디 툭 던져 줘야 되는 순간이 있다고.
+> [20:16] 한 단계 업이 분위기가 주도하는 경우가 굉장히 많거든.
 > [23:27] 여자가 당이 막 나오는 것 같으면 얘기하세요. '우리 좀 더 걷자.'
 
 <a id="no-proof"></a>
@@ -864,7 +866,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 여자가 "나 성격 좀 센데, 걸걸한데, 괜찮겠어?" 하고 물을 때, 네가 못 받는 것까지 다 받아 줄 수 있다고 말하지 않는다. 여자는 네가 어떻게 반응하는지 보고 있다. 네가 마음에 든다는 사실과 여자가 어떻게 행동해도 좋다는 것은 완전히 다른 얘기다. 여자가 아무리 예뻐도 네 판단은 남아 있어야 한다. 그렇다고 일부러 단점을 찾아 지적하거나 칭찬을 아끼며 반응을 살피라는 말은 아니다. 그것도 결국 여자 반응에 매달리는 것이다. 마음에 드는 건 좋아하고, 불편한 게 있으면 말할 줄 안다.
 
-판단에 쓰는 법: 상대가 "이런 나도 괜찮아?"처럼 다 받아 줄지를 떠보면 판정은 행동으로 정하고, 할 일은 기준 지키기다. 연락과 만남이 정상이어도 그렇다. 무조건 괜찮다는 약속을 보내지 않고, 불편한 행동이 있으면 짧게 한 번 말한다. 일부러 깎아내리거나 칭찬을 숨기는 것도 할 일이 아니다.
+판단에 쓰는 법: 상대가 "이런 나도 괜찮아?"처럼 다 받아 줄지를 떠보면 판정은 행동으로 정하고, 할 일은 기준 지키기다. 연락과 만남이 정상이어도 그렇다. 무조건 괜찮다는 약속을 보내지 않고, 불편한 행동이 있으면 짧게 한 번 말한다. 일부러 깎아내리거나 칭찬을 숨기는 것도 할 일이 아니다. 불편한 게 있으면 말한다는 것은 떠보는 질문에만 쓰지 않는다. 관계가 정상일 때 불편한 행동이 있으면 짧게 한 번 말하는 것이 기준 지키기다.
 
 > [13:47] 절대 여기서 그럼 받아 줄 수 있지, 어, 그런 건 괜찮아라고 말하지 말라고. 네가 못 받는데 뭘 다 받아 줘?
 > [14:14] 네가 마음에 든다는 사실하고 여자가 어떻게 행동해도 좋다는 거는 완전 다른 얘기입니다.
@@ -874,13 +876,14 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 ### 여자의 투자를 받아라
 
-여자가 너한테 뭔가 해 주려고 하면 그냥 둔다. 여자가 투자할수록 더 쉽게, 더 깊게 빠진다. 다음에 자기가 아는 데 가서 쏘겠다는데 부담 주기 싫다며 다 해 주지 않는다. 여자가 한 발 움직이려는데 네가 다 해 버리는 것이다. 두 줄 안부에 500글자 사과로 답하지 말고, "좋아, 이번에 쏜다는데 기대하고 있겠다"처럼 덤덤하게 받는다. 여자가 네 얘기를 기억해 준비하고, 네 일정에 시간을 맞추고, 보고 싶다고 하는 것을 편하게 놔둔다. 미안해하거나 받는 데 굶주린 사람처럼 굴지 말고, 원래 늘 받아 온 것처럼 자연스럽게 받는다. 무례하게 굴라는 말은 아니다.
+여자가 너한테 뭔가 해 주려고 하면 그냥 둔다. 여자가 투자할수록 더 쉽게, 더 깊게 빠진다. 다음에 자기가 아는 데 가서 쏘겠다는데 부담 주기 싫다며 다 해 주지 않는다. 여자가 한 발 움직이려는데 네가 다 해 버리는 것이다. 두 줄 안부에 500글자 사과로 답하지 말고, "좋아, 이번에 쏜다는데 기대하고 있겠다"처럼 덤덤하게 받는다. 여자가 네 얘기를 기억해 준비하고, 네 일정에 시간을 맞추고, 보고 싶다고 하는 것을 편하게 놔둔다. 강의는 한 번쯤은 여자가 좋다, 보고 싶다고 할 때 같은 말로 바로 갚지 말고 그냥 들어 보라고 한다. 그러면 여자가 "치, 오빠 난 안 보고 싶나 봐" 하고 더 다가온다고 본다. 미안해하거나 받는 데 굶주린 사람처럼 굴지 말고, 원래 늘 받아 온 것처럼 자연스럽게 받는다. 무례하게 굴라는 말은 아니다.
 
-판단에 쓰는 법: 상대가 먼저 사겠다고 하거나 장소를 잡고, 먼저 연락하고, 시간을 맞추고, 만남에도 응하면 판정은 관심이고 할 일은 정상 반응이다. 보낼 말은 강의의 예처럼 덤덤하게 받는 한 줄이고, 거절하거나 갚을 것을 서둘러 얹거나 긴 사과를 보내지 않는다. 사겠다는 말만 하고 만남은 미루면 판정은 만남 제안에 대한 답으로 정한다([meet](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#meet)).
+판단에 쓰는 법: 상대가 먼저 사겠다고 하거나 장소를 잡고, 먼저 연락하고, 시간을 맞추고, 만남에도 응하면 판정은 관심이고 할 일은 정상 반응이다. 보낼 말은 강의의 예처럼 덤덤하게 받는 한 줄이고, 거절하거나 갚을 것을 서둘러 얹거나 긴 사과를 보내지 않는다. 사겠다는 말만 하고 만남은 미루면 판정은 만남 제안에 대한 답으로 정한다([meet](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md#meet)). 상대가 보고 싶다, 좋다고 할 때 같은 말로 매번 갚을 필요는 없고, 한 번쯤 덤덤하게 받기만 하는 것도 정상 반응이다. 답을 끊거나 일부러 차갑게 구는 것은 아니다.
 
 > [14:50] 여자가 투자할수록 너한테 쉽게 빠지고 쉽게 허락합니다.
 > [14:50] 여자가 내 쪽으로 한 발 움직이려고 했는데, 투자하려고 했는데 네가 뭘 또 다 해 줍니까? 그냥 받으시라고.
 > [15:18] 여자가 뭘 산대, 좋아, 이번에 지원이가 쏜다는데 기대하고 있겠다고.
+> [15:47] 한번은 여자가 너 좋아한다, 너 보고 싶다면 그냥 듣기만 해 봐.
 > [16:39] 너무 받아본 적이 없어서 받는 거에 굶주려 있는 사람처럼 보이지만 말고, 그냥 원래 늘 받아 온 것처럼 자연스럽게 받으세요.
 
 <a id="kindness"></a>
@@ -913,7 +916,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 푸시는 친구들 앞에서는 장난치고 의견도 말하면서, 여자 앞에서는 자기 모습을 지운다. 편한 동생으로 생각하라, 부담 갖지 마라, 그냥 잘해 주고 싶어서라고 말한다. 남녀로서 욕망이 있어서 가까워지는 건데 입으로 욕망이 없다고 설명하지 않는다. 욕망을 표현하는 연습을 하라고 한다. 눈이 마주쳐 왜 그렇게 보냐고 물으면 변명하며 피하지 말고 씩 웃으며 "그냥"이라고 할 수 있어야 한다. 던진 말을 농담이었다고 취소하고 오해하지 말라며 해명하면 분위기는 싹 식는다. "원래 이런 말 잘하지"에도 방어하지 말고, 좋은 분위기면 그 감정을 같이 느끼며 웃으면서 즐긴다. 강의는 정리에서 네 감정을 뻥치지 말라고 한다.
 
-판단에 쓰는 법: 판정은 상대의 행동으로 정한다. 질문자가 편한 친구로 지내자거나 부담 갖지 말라는 말을 보내려 하면 보내지 않는다. 이미 한 말이나 눈빛을 해명하거나 취소하는 문자를 보낼지 물으면 할 일은 멈춤이다. 판정 표의 멈춤이 해명을 보내지 않는 것이고, 강의도 해명이 분위기를 식힌다고 본다. 스킨십을 묻는 질문이면 SKILL.md의 스킨십 줄이 먼저다.
+판단에 쓰는 법: 판정은 상대의 행동으로 정한다. 분위기 좋을 때 "원래 이런 말 잘하지?"처럼 장난으로 떠보면 테스트로 기준을 세우지 않고, 방어나 해명 없이 웃으며 받는 정상 반응이다. 질문자가 편한 친구로 지내자거나 부담 갖지 말라는 말을 보내려 하면 보내지 않는다. 이미 한 말이나 눈빛을 해명하거나 취소하는 문자를 보낼지 물으면 할 일은 멈춤이다. 판정 표의 멈춤이 해명을 보내지 않는 것이고, 강의도 해명이 분위기를 식힌다고 본다. 스킨십을 묻는 질문이면 SKILL.md 스킨십 줄대로 보고, 상대가 먼저 보인 당이 있으면 [seize-signal](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md#seize-signal)이 앞선다.
 
 > [18:29] 우리가 여자로서, 남자로서 욕망이 있어서 가까워지는 건데 입으로 계속 욕망이 없다고 설명하지 마시라고.
 > [19:22] 그럴수록 담담하게 여유 있게, 어, 씩 웃으면서 '그냥'이라고 할 수 있어야 되는 거라고.
