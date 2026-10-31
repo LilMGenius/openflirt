@@ -1,5 +1,6 @@
-// The lecture registry: corpus/lectures.json lists every lecture the openflirt skill quotes, in
-// order, with the principle files (skills/openflirt/references/part*.md) that quote it. The
+// The lecture registry: corpus/lectures.json lists every lecture the openflirt skill quotes, oldest
+// upload first, with the principle files (skills/openflirt/references/part*.md) that quote it. When
+// two lectures conflict the later upload wins, so the order is checked, not left to the writer. The
 // repository check, the runner and the golden eval all find each lecture's transcript from here.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -11,7 +12,8 @@ export const coverageFile = (video) => "corpus/" + video + "/coverage.md";
 
 const VIDEO = /^[A-Za-z0-9_-]{11}$/;
 const PART = /^part[^/\\]*\.md$/;
-const KEYS = ["video", "title", "parts"];
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+const KEYS = ["video", "title", "uploaded", "parts"];
 const isText = (value) => typeof value === "string" && value.trim() !== "";
 
 // Shape check of the registry text; a lecture that fails it is left out of the list it returns.
@@ -41,6 +43,8 @@ export function parseLectures(text, file) {
     else if (videos.has(lecture.video)) add("video " + lecture.video + " is listed twice");
     else videos.add(lecture.video);
     if (!isText(lecture.title)) add("title must be a non-empty string");
+    if (typeof lecture.uploaded !== "string" || !DATE.test(lecture.uploaded)) add("uploaded must be the upload date as YYYY-MM-DD");
+    else if (lectures.length > 0 && lecture.uploaded <= lectures.at(-1).uploaded) add("uploaded " + lecture.uploaded + " must be later than the lecture above it (" + lectures.at(-1).uploaded + "); list lectures oldest first");
     if (!Array.isArray(lecture.parts) || lecture.parts.length === 0) add("parts must be a non-empty array of part*.md file names");
     else {
       for (const part of lecture.parts) {
@@ -49,9 +53,18 @@ export function parseLectures(text, file) {
         else parts.set(part, index + 1);
       }
     }
-    if (findings.length === before) lectures.push({ video: lecture.video, title: lecture.title, parts: lecture.parts });
+    if (findings.length === before) lectures.push({ video: lecture.video, title: lecture.title, uploaded: lecture.uploaded, parts: lecture.parts });
   }
   return { lectures, findings };
+}
+
+// The upload date a transcript header records ("- 올린 날: YYYY-MM-DD"), which the registry must repeat.
+export function uploadDateFinding(text, file, lecture) {
+  const lines = text.split("\n");
+  const index = lines.findIndex((line) => line.startsWith("- 올린 날: "));
+  if (index === -1) return [];
+  const date = lines[index].slice("- 올린 날: ".length).trim();
+  return date === lecture.uploaded ? [] : [{ file, line: index + 1, reason: "올린 날 " + date + " differs from uploaded " + lecture.uploaded + " in " + LECTURES_FILE }];
 }
 
 export function loadLectures(root) {

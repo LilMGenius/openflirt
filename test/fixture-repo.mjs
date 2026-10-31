@@ -32,8 +32,8 @@ const writeLlms = (root) => {
 export const SECOND_VIDEO = "SecondVideo";
 export function addSecondLecture(root) {
   write(root, "corpus/lectures.json", JSON.stringify([
-    { video: FIXTURE_VIDEOS[0], title: "픽스처 강의", parts: ["part1.md"] },
-    { video: SECOND_VIDEO, title: "둘째 픽스처 강의", parts: ["part2.md"] },
+    { video: FIXTURE_VIDEOS[0], title: "픽스처 강의", uploaded: "2026-01-01", parts: ["part1.md"] },
+    { video: SECOND_VIDEO, title: "둘째 픽스처 강의", uploaded: "2026-02-01", parts: ["part2.md"] },
   ], null, 2) + "\n");
   write(root, "corpus/" + SECOND_VIDEO + "/transcript.md", "# 둘째 픽스처 강의\n\n## 편안함\n\n[00:05](https://youtu.be/" + SECOND_VIDEO + "?t=5) 쉽게 허락하는 사람은 편안함을 준다.\n");
   write(root, "corpus/" + SECOND_VIDEO + "/coverage.md", "# 범위 지도\n\n| 시각 | 소제목 | 원칙 |\n| --- | --- | --- |\n| 00:05 | 편안함 | comfort |\n");

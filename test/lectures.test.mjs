@@ -54,9 +54,9 @@ test("a case quoting the second lecture passes with source.video and fails witho
 
 test("a registry entry with a bad id, a repeated part or a missing title fails", () => {
   const text = JSON.stringify([
-    { video: "RhfqIi3DmWU", title: "첫째", parts: ["part1.md"] },
-    { video: "short", title: "둘째", parts: ["part2.md"] },
-    { video: "SecondVideo", title: "", parts: ["part1.md"] },
+    { video: "RhfqIi3DmWU", title: "첫째", uploaded: "2026-01-01", parts: ["part1.md"] },
+    { video: "short", title: "둘째", uploaded: "2026-02-01", parts: ["part2.md"] },
+    { video: "SecondVideo", title: "", uploaded: "2026-03-01", parts: ["part1.md"] },
   ]);
   const { lectures, findings } = parseLectures(text, "l.json");
   assert.deepEqual(lectures.map((lecture) => lecture.video), ["RhfqIi3DmWU"]);
@@ -65,4 +65,23 @@ test("a registry entry with a bad id, a repeated part or a missing title fails",
     "lecture 3: title must be a non-empty string",
     "lecture 3: part1.md is already listed under lecture 1",
   ]);
+});
+
+test("a registry that is not oldest upload first, or that has no upload date, fails", () => {
+  const text = JSON.stringify([
+    { video: "RhfqIi3DmWU", title: "첫째", uploaded: "2026-06-14", parts: ["part1.md"] },
+    { video: "F05nX3MKCD0", title: "둘째", uploaded: "2026-01-01", parts: ["part2.md"] },
+    { video: "SecondVideo", title: "셋째", parts: ["part3.md"] },
+  ]);
+  assert.deepEqual(parseLectures(text, "l.json").findings.map((finding) => finding.reason), [
+    "lecture 2: uploaded 2026-01-01 must be later than the lecture above it (2026-06-14); list lectures oldest first",
+    "lecture 3: uploaded must be the upload date as YYYY-MM-DD",
+  ]);
+});
+
+test("a transcript whose header upload date differs from the registry fails under transcript", (t) => {
+  const root = addSecondLecture(fixtureRepo(t));
+  const file = "corpus/" + SECOND_VIDEO + "/transcript.md";
+  edit(root, file, "# 둘째 픽스처 강의\n", "# 둘째 픽스처 강의\n\n- 올린 날: 2026-03-03\n");
+  assert.deepEqual(failures(root), ["FAIL " + file + ":3 올린 날 2026-03-03 differs from uploaded 2026-02-01 in corpus/lectures.json"]);
 });

@@ -13,7 +13,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 - `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `video-transcript`(LilMGenius/skills)가 맡고, 이 스킬은 전문을 짓고 고치는 단계만 둔다. 새 강의는 이것을 따라 넣는다.
 - `skills/kakaotalk-chat/`: 카카오톡 대화 내보내기(.txt)를 `thread.json`과 `transcript.md`로 바꾸는 스킬. `scripts/parse.mjs`가 파일을 받아 쓰고 `scripts/lib/export.mjs`가 줄을 푼다. 테스트는 `test/kakaotalk-chat.test.mjs`.
 - `skills/instagram-dm/`: 인스타그램 DM 대화방 하나를 BrowserSkill(`bsk`)로 읽어 같은 두 파일로 바꾸는 스킬. `scripts/read.mjs`가 브라우저에서 줄을 읽고 `scripts/lib/rows.mjs`가 정리한다. 테스트는 `test/instagram-dm.test.mjs`.
-- `corpus/lectures.json`: 강의 목록. 강의마다 영상 id(`video`), 제목(`title`), 그 강의를 인용하는 원칙 파일(`parts`, 예: `part1.md`)을 차례로 둔다. 검사, 러너, 골든 평가가 모두 이 목록으로 강의를 찾는다.
+- `corpus/lectures.json`: 강의 목록. 강의마다 영상 id(`video`), 제목(`title`), 올린 날(`uploaded`), 그 강의를 인용하는 원칙 파일(`parts`, 예: `part1.md`)을 먼저 올린 강의부터 둔다. 검사, 러너, 골든 평가가 모두 이 목록으로 강의를 찾는다.
 - `corpus/<영상 id>/`: 강의마다 전문 `transcript.md`, 소제목 결정 `sections.json`, 표기 결정 `divergence.md`, 원칙 대응표 `coverage.md`.
 - `schema/answer.schema.json`: `--json` 답의 계약.
 - `llms.txt`, `llms-full.txt`: claude.ai나 chatgpt.com처럼 웹에서 이 저장소를 읽는 도구가 들어오는 곳(llmstxt.org 관례). 웹 도구는 받은 파일이 가리키는 다른 파일까지 따라가 읽지 않아서, `llms.txt`는 주요 파일을 raw 절대 주소로 모으고 `llms-full.txt`는 `SKILL.md`, 용어집, 강의 목록의 원칙 파일 전부를 상대 링크만 절대 주소로 바꿔 한 파일에 담는다. 둘 다 `scripts/lib/llms.mjs`가 짓는다.
@@ -50,6 +50,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 
 - 철학과 스킬의 원문은 한국어로 쓴다. 강의에서 온 말(프레임, 어트, 밑밥, 스탠다드, 서브텍스트, 궁핍함, 애매함, 마찰, 방생, 하수와 고수 같은 말)은 강의가 쓴 그대로 쓰고, 다른 말로 바꾸거나 번역하지 않는다.
 - 판정과 할 일의 뜻은 `SKILL.md`의 두 표가 정본이다. 스키마의 description은 `--json` 호출자와 모델에게 가는 요약이라, 표를 바꾸면 같이 바꾼다.
+- 같은 강의자의 두 강의가 서로 다르게 말하면 나중에 올린 강의가 이긴다. 앞선 강의의 원칙은 그 자리의 `판단에 쓰는 법`에 나중 강의 원칙이 앞선다고 쓰고, `SKILL.md` 상황별 원칙의 순서도 그렇게 두며, 앞선 강의와 어긋난다는 이유로 나중 강의의 구간을 `coverage.md`에서 빼지 않는다. 빼는 이유는 openflirt가 정한 규칙(동의, 홍보와 기법 이름)과 주제 밖 여담뿐이다. `corpus/lectures.json`이 올린 날 순서인지와 `uploaded`가 전문 머리의 올린 날과 같은지는 `node scripts/check.mjs`가 잡는다.
 - 원칙을 더하면 그 id를 스키마의 principles enum과 그 강의 `coverage.md`의 해당 소제목 줄에 함께 넣는다. 새 `part*.md`는 `corpus/lectures.json`에서 그 원칙이 인용하는 강의의 `parts`에 올리고, 새 강의는 목록과 스키마의 `video` enum에 함께 넣는다. 빠지면 `node scripts/check.mjs`가 잡는다.
 - 원칙의 `판단에 쓰는 법`이 판정 표의 기본 할 일과 다른 할 일을 정하면, `SKILL.md` 상황별 원칙에 질문자가 말할 행동으로 그 원칙을 부르는 줄을 두고, 같은 질문에 함께 맞는 줄이 있으면 어느 줄이 먼저인지 쓴다. 테스트나 도발 같은 분류 이름에만 걸린 원칙은 모델이 찾지 못하고 기본 할 일로 답한다. 강의가 그 행동을 사례로 풀어 주면 `eval/cases.json`에도 넣어 골든 평가가 재게 한다.
 - Claude Code의 `--json-schema`는 draft-07로 검사해서 `$schema`가 draft 2020-12를 가리키는 스키마를 거부한다. 러너는 claude에 보낼 때만 그 줄을 빼고(`claudeSchemaJson`), draft 2020-12에만 있는 키워드는 schema 검사가 잡는다.

@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkAnchors } from "./anchors.mjs";
 import { checkCoverage } from "./coverage.mjs";
-import { coverageFile, loadLectures, readTranscripts } from "./corpus.mjs";
+import { coverageFile, loadLectures, readTranscripts, uploadDateFinding } from "./corpus.mjs";
 import { checkEval } from "./eval.mjs";
 import { readGitIndex, checkSymlinks } from "./links.mjs";
 import { checkLlms } from "./llms.mjs";
@@ -41,7 +41,7 @@ export function runChecks(root, { gitIndex = readGitIndex } = {}) {
     { name: "skills", findings: skills.findings },
     { name: "symlinks", findings: symlinkFindings(root, gitIndex, skills.names) },
     { name: "principles", findings: [...registry.findings, ...principles.findings] },
-    { name: "transcript", findings: perLecture(({ parsed }) => parsed.findings) },
+    { name: "transcript", findings: perLecture(({ lecture, file, parsed }) => [...parsed.findings, ...uploadDateFinding(readFileSync(join(root, file), "utf8"), file, lecture)]) },
     { name: "quotes", findings: perLecture(({ lecture, parsed }) => checkQuotes(principlesOf(lecture.video), parsed.paragraphs)) },
     { name: "coverage", findings: perLecture(coverage) },
     { name: "anchors", findings: checkAnchors(root) },
