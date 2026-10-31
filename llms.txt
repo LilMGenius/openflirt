@@ -28,3 +28,5 @@
 - [schema/answer.schema.json](https://raw.githubusercontent.com/LilMGenius/openflirt/main/schema/answer.schema.json): `node bin/openflirt.mjs --json`이 내는 답의 JSON 스키마
 - [skills/kakaotalk-chat/SKILL.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/kakaotalk-chat/SKILL.md): 카카오톡 대화 내보내기(.txt)를 `thread.json`과 `transcript.md`로 바꾸는 스킬
 - [skills/instagram-dm/SKILL.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/instagram-dm/SKILL.md): 인스타그램 DM 대화방 하나를 같은 두 파일로 읽어 내는 스킬
+- [skills/crush/SKILL.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/crush/SKILL.md): 썸 상대마다 대화와 스크린샷을 로컬 폴더에 모아 타임라인과 게이지를 만들고 다음 행동을 고르는 스킬
+- [docs/ROADMAP.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/docs/ROADMAP.md): MCP 서버와 봇 연동까지의 순서
