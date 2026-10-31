@@ -42,7 +42,7 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 - 말과 행동이 다르다, 메시지를 어떻게 읽을지 모르겠다: [signal](references/part1.md#signal), [no-interpret](references/part1.md#no-interpret), [emotion-control](references/part3.md#emotion-control)
 - 언제 어떻게 만나자고 할지: [meet](references/part1.md#meet), [standby](references/part2.md#standby)
-- 답장이 늦다, 읽씹한다, 연락이 뜸하다: [rank](references/part3.md#rank), [meet](references/part1.md#meet), [self-devalue](references/part3.md#self-devalue), [ambiguity](references/part3.md#ambiguity), [stop-think](references/part3.md#stop-think). 답이 점점 늦어지고 짧아지는 흐름이 이미 보이면 만나자고 한 적이 없어도 애매와 멈춤이 먼저고, 약속 잡기는 한 번 읽씹처럼 아직 흐름이 없을 때다.
+- 답장이 늦다, 읽씹한다, 연락이 뜸하다: [rank](references/part3.md#rank), [meet](references/part1.md#meet), [self-devalue](references/part3.md#self-devalue), [ambiguity](references/part3.md#ambiguity), [stop-think](references/part3.md#stop-think). 답이 점점 늦어지고 짧아지는 흐름이 이미 보이면 만나자고 한 적이 없어도 애매와 멈춤이 먼저고, 약속 잡기는 한 번 읽씹처럼 아직 흐름이 없을 때다. 그 흐름 속에서 날 없이 "다음에 또 보자"고 했는데 "그래 언제 한번"처럼 날 없이 받으면 그것도 애매와 멈춤이고(다음 달, 올해 안처럼 한참 뒤로 미루면 끝), 마찰은 날이나 자리를 정한 제안에 핑계로 미루거나 약속을 깰 때다.
 - 약속을 미루거나 깬다, "나중에 알려 줄게"라고 한다: [okay-end](references/part3.md#okay-end), [friction](references/part3.md#friction), [meet](references/part1.md#meet)
 - 생각할 시간을 달라고 한다, 잠수를 탄다: [think-time](references/part1.md#think-time)
 - 테스트, 도발, 질투 유발, 압박, 모순된 말: [test](references/part1.md#test), [provocation](references/part1.md#provocation), [pressure](references/part1.md#pressure), [contradiction](references/part1.md#contradiction), [frame-early](references/part1.md#frame-early)
