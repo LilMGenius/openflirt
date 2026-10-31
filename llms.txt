@@ -14,11 +14,14 @@
 - [skills/openflirt/references/part1.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part1.md): 1부. 여자의 머릿속. 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」의 원칙과 원문 인용
 - [skills/openflirt/references/part2.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part2.md): 2부. 여자가 남자한테 빠지게 만드는 원리. 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」의 원칙과 원문 인용
 - [skills/openflirt/references/part3.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part3.md): 3부. 여자가 진짜 꽂히는 남자 성격. 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」의 원칙과 원문 인용
+- [skills/openflirt/references/part4.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/skills/openflirt/references/part4.md): 4부. 여자가 쉽게 자신을 허락하는 남자 특징. 강의 「여자가 쉽게 자신을 허락하는 남자 특징」의 원칙과 원문 인용
 
 ## 강의 전문
 
 - [corpus/RhfqIi3DmWU/transcript.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/corpus/RhfqIi3DmWU/transcript.md): 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」 전문. 문단마다 영상의 그 시각으로 가는 링크가 있다
 - [corpus/RhfqIi3DmWU/coverage.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/corpus/RhfqIi3DmWU/coverage.md): 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」의 소제목마다 어느 원칙에 담겼는지, 뺐다면 왜 뺐는지
+- [corpus/F05nX3MKCD0/transcript.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/corpus/F05nX3MKCD0/transcript.md): 「여자가 쉽게 자신을 허락하는 남자 특징」 전문. 문단마다 영상의 그 시각으로 가는 링크가 있다
+- [corpus/F05nX3MKCD0/coverage.md](https://raw.githubusercontent.com/LilMGenius/openflirt/main/corpus/F05nX3MKCD0/coverage.md): 「여자가 쉽게 자신을 허락하는 남자 특징」의 소제목마다 어느 원칙에 담겼는지, 뺐다면 왜 뺐는지
 
 ## 선택
 

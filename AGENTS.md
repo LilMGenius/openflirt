@@ -1,6 +1,6 @@
 # openflirt
 
-openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)의 철학을 에이전트가 따르는 규칙과 스킬로 옮겨, 사람이 던진 질문에 답하고 다른 프로그램이 자동화의 바탕으로 부를 수 있게 한다. 사람이 쓰는 법은 README.md가, 에이전트가 지킬 규칙은 이 파일이 맡는다.
+openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)와 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 철학을 에이전트가 따르는 규칙과 스킬로 옮겨, 사람이 던진 질문에 답하고 다른 프로그램이 자동화의 바탕으로 부를 수 있게 한다. 사람이 쓰는 법은 README.md가, 에이전트가 지킬 규칙은 이 파일이 맡는다.
 
 ## 연애 질문에 답할 때
 
@@ -9,7 +9,7 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 
 ## 저장소 지도
 
-- `skills/openflirt/`: 하네스. `SKILL.md`(판정과 할 일, 답하는 법, 규칙), `references/part1.md`~`part3.md`(원칙 48개와 강의 원문 인용), `references/glossary.md`(용어집), `scripts/behaviors.mjs`(`$kakaotalk-chat`과 `$instagram-dm`이 쓰는 `thread.json`을 주별 행동과 만남 제안 목록으로 센다. 테스트는 `test/behaviors.test.mjs`).
+- `skills/openflirt/`: 하네스. `SKILL.md`(판정과 할 일, 답하는 법, 규칙), `references/part1.md`~`part3.md`(첫 강의의 원칙과 원문 인용), `references/part4.md`(두 번째 강의의 원칙과 원문 인용), `references/glossary.md`(용어집), `scripts/behaviors.mjs`(`$kakaotalk-chat`과 `$instagram-dm`이 쓰는 `thread.json`을 주별 행동과 만남 제안 목록으로 센다. 테스트는 `test/behaviors.test.mjs`).
 - `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `video-transcript`(LilMGenius/skills)가 맡고, 이 스킬은 전문을 짓고 고치는 단계만 둔다. 새 강의는 이것을 따라 넣는다.
 - `skills/kakaotalk-chat/`: 카카오톡 대화 내보내기(.txt)를 `thread.json`과 `transcript.md`로 바꾸는 스킬. `scripts/parse.mjs`가 파일을 받아 쓰고 `scripts/lib/export.mjs`가 줄을 푼다. 테스트는 `test/kakaotalk-chat.test.mjs`.
 - `skills/instagram-dm/`: 인스타그램 DM 대화방 하나를 BrowserSkill(`bsk`)로 읽어 같은 두 파일로 바꾸는 스킬. `scripts/read.mjs`가 브라우저에서 줄을 읽고 `scripts/lib/rows.mjs`가 정리한다. 테스트는 `test/instagram-dm.test.mjs`.

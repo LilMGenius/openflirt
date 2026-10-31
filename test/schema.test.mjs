@@ -53,7 +53,7 @@ test("a principles enum that differs from the skill's ids fails both ways", () =
 });
 
 test("a citation video enum that differs from the lecture registry fails both ways", () => {
-  const findings = checkSchemaText(text, "s.json", ids(), ["SecondVideo"]);
+  const findings = checkSchemaText(text, "s.json", ids(), ["SecondVideo", ...videos().slice(1)]);
   assert.deepEqual(findings.map((finding) => finding.reason.replace(/^.*: /, "").split(" ").at(-1)), ["SecondVideo", videos()[0]]);
   assert.ok(findings.every((finding) => finding.reason.startsWith("/properties/citations/items/properties/video/enum")));
 });
