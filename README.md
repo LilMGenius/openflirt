@@ -1,10 +1,10 @@
-<p align="center"><img src="studio/assets/icon.png" width="88" alt="openflirt"></p>
+<p align="center"><img src="studio/assets/icon.png" width="88" alt="OpenFlirt"></p>
 
-# openflirt
+# OpenFlirt
 
-openflirt는 오픈소스 연애·플러팅 하네스다. 마픽스(마튜브)의 연애 강의 두 편, 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」와 「여자가 쉽게 자신을 허락하는 남자 특징」의 원칙으로 연애와 썸 상황을 판정하고 다음 행동을 고른다. 썸 상대마다 카톡, 인스타 DM, 데이팅앱 스크린샷을 로컬 폴더에 모아 타임라인으로 엮고, 미연시처럼 생긴 로컬 화면에서 Next를 누를 때마다 다음 한 수를 받는다. 사람에게는 한국어로 답하고, 다른 프로그램에는 정해진 꼴의 JSON으로 답한다.
+OpenFlirt는 오픈소스 연애·플러팅 하네스다. 마픽스(마튜브)의 연애 강의 두 편, 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」와 「여자가 쉽게 자신을 허락하는 남자 특징」의 원칙으로 연애와 썸 상황을 판정하고 다음 행동을 고른다. 썸 상대마다 카톡, 인스타 DM, 데이팅앱 스크린샷을 로컬 폴더에 모아 타임라인으로 엮고, 미연시처럼 생긴 로컬 화면에서 Next를 누를 때마다 다음 한 수를 받는다. 사람에게는 한국어로 답하고, 다른 프로그램에는 정해진 꼴의 JSON으로 답한다.
 
-![openflirt studio: 상대 목록, 며칠째와 게이지, 마지막 대화, 판정과 세 가지 결의 보낼 말](docs/studio.jpg)
+![OpenFlirt studio: 상대 목록, 며칠째와 게이지, 마지막 대화, 판정과 세 가지 결의 보낼 말](docs/studio.jpg)
 
 위 화면의 지아, 하린, 수아와 대화는 만든 예시 데이터이고, 판정과 세 결의 보낼 말은 그 데이터로 실제 실행한 답이다. 그림은 생성한 일러스트다.
 
@@ -15,7 +15,7 @@ npm ci
 node bin/studio.mjs --open
 ```
 
-`http://127.0.0.1:4747/`이 열린다. 오른쪽 위 **+ 새 상대**로 등록하고, 그 상대와의 카톡 대화 내보내기(.txt), 어느 앱이든 대화나 프로필 스크린샷, 인스타그램 DM 주소를 넣은 뒤 **스크린샷 읽기**와 **Next ▸ 다음 행동**을 누른다. 화면에는 며칠째인지, 잡힌 약속, 행동을 센 게이지와 그 근거, 마지막 대화, 판정과 할 일, 담백·장난·티징 세 결의 보낼 말이 뜬다. 보낼 말을 누르면 복사되고, 하트는 마음에 든 추천을 표시해 다음 추천의 질문에 들어간다. 사진을 하나만 끌어 놓으면 프로필 사진으로 쓸지 묻는다.
+`http://127.0.0.1:4747/`이 열린다. 등록 폼은 없다. 아래 입력창 하나에 카톡 대화 내보내기(.txt), 어느 앱이든 대화나 프로필 스크린샷, 메모를 끌어다 놓거나, 왼쪽 **+**에서 카카오톡이나 인스타그램 DM을 골라 넣는다. 파일에 적힌 이름으로 기존 상대인지 새 상대인지 가려 그 상대 폴더에 넣고, 같은 창에 "뭐라고 보낼까?"처럼 물으면 판정과 할 일, 담백, 장난, 티징 세 결의 보낼 말이 온다. 여러 말풍선으로 끊어 보낼 말은 말풍선마다 복사 버튼이 따로 있고, 보내는 건 직접 한다. 오른쪽 아래에서 Codex와 Claude Code의 모델을 고르고, 오른쪽 타임라인은 위로 끝까지 올리면 이전 기록을 이어 불러온다.
 
 모든 기록은 저장소의 `crushes.local/` 아래 상대별 폴더에만 쌓이고 커밋되지 않는다(`OPENFLIRT_CRUSHES`로 위치를 바꾼다). 스크린샷 읽기와 다음 행동만 고른 런타임(codex, claude)의 모델 제공자에게 보내진다. 같은 일을 명령으로 하는 법과 폴더 구조, 게이지 계산은 [crush 스킬](skills/crush/SKILL.md)에 있고, 앞으로 붙일 MCP와 봇 연동은 [로드맵](docs/ROADMAP.md)에 있다.
 
@@ -108,7 +108,7 @@ node scripts/routing.mjs --runtime claude --out routing.json
 
 ## 알아 둘 것
 
-- openflirt는 판정과 조언만 한다. 메시지는 직접 보낸다.
+- OpenFlirt는 판정과 조언만 한다. 메시지는 직접 보낸다.
 - 상대가 분명히 싫다고 했으면 해석하지 않고 끝으로 본다. 스킨십과 성적인 진행은 싫다는 말이나 망설임에서 멈춘다. 이것과 아래 몇 줄 말고는 강의가 정한 대로 답한다.
 - 미성년자에 관한 일이나 상대 몰래 들여다보는 일은 돕지 않는다.
 - 질문 속 부탁에 불법이거나 남을 해치는 부분이 있으면 그 부분은 돕지 않고, 관계에 대해서만 답한다.
@@ -123,7 +123,7 @@ node scripts/routing.mjs --runtime claude --out routing.json
 - 원칙: 첫 강의는 [1부](skills/openflirt/references/part1.md), [2부](skills/openflirt/references/part2.md), [3부](skills/openflirt/references/part3.md), 두 번째 강의는 [4부](skills/openflirt/references/part4.md). 원칙마다 강의 원문 인용과 시각이 붙어 있고, 저장소 검사가 인용을 그 강의 전문과 글자 그대로 맞춰 본다. 강의가 쓰는 말은 [용어집](skills/openflirt/references/glossary.md)에 있다.
 - 과정 홍보, 연락처, 강의 주제를 벗어난 여담은 전문에는 남아 있고 원칙에서는 뺐다. 소제목마다 어느 원칙에 담겼는지, 뺐다면 왜 뺐는지는 강의마다의 coverage.md([첫 강의](corpus/RhfqIi3DmWU/coverage.md), [두 번째 강의](corpus/F05nX3MKCD0/coverage.md))에 있다.
 - 새 강의는 [lecture-corpus 스킬](skills/lecture-corpus/SKILL.md)로 넣는다.
-- [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)은 카카오톡 대화 내보내기 파일을, [instagram-dm](skills/instagram-dm/SKILL.md)은 인스타그램 DM 대화방을 시각이 붙은 `thread.json`과 읽기 쉬운 `transcript.md`로 바꾼다. 둘 다 openflirt와 따로 써도 된다.
+- [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)은 카카오톡 대화 내보내기 파일을, [instagram-dm](skills/instagram-dm/SKILL.md)은 인스타그램 DM 대화방을 시각이 붙은 `thread.json`과 읽기 쉬운 `transcript.md`로 바꾼다. 둘 다 OpenFlirt와 따로 써도 된다.
 
 저장소 규칙과 검사는 [AGENTS.md](AGENTS.md)에 있다.
 

@@ -2,71 +2,71 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="openflirt-token" content="__OPENFLIRT_TOKEN__">
-<title>openflirt studio</title>
+<meta name="theme-color" content="#ff007e">
+<title>OpenFlirt</title>
 <link rel="icon" href="assets/icon.png">
+<link rel="preload" href="fonts/suit-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="studio.css">
 </head>
 <body>
-<header class="bar">
-  <a class="mark" href="/"><img src="assets/icon.png" alt="" width="28" height="28"><span>openflirt</span></a>
-  <button class="ghost" id="add-open" type="button">+ 새 상대</button>
-</header>
-<main class="layout">
-  <aside class="roster" aria-label="상대 목록">
-    <h2>지금 썸</h2>
-    <ol id="roster"></ol>
-    <p class="empty" id="roster-empty" hidden>아직 아무도 없다. 오른쪽 위 <b>+ 새 상대</b>로 시작한다.</p>
+<div class="app" id="app">
+  <aside class="side" aria-label="상대 목록">
+    <div class="brandrow"><a class="brand" href="/"><img src="assets/icon.png" alt="" width="32" height="32"><span>OpenFlirt</span></a><button type="button" class="fold" id="fold" aria-controls="roster" aria-expanded="true" title="목록 접기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="visually-hidden">상대 목록 접기</span></button></div>
+    <p class="label">지금 썸</p>
+    <ol class="roster" id="roster"></ol>
+    <p class="hint" id="roster-empty" hidden>아직 아무도 없다. 입력창에 대화나 스크린샷을 던지면 상대별로 알아서 나뉜다.</p>
+    <a class="premium" href="https://github.com/LilMGenius/openflirt/blob/main/docs/ROADMAP.md">
+      <b>OpenFlirt Premium</b>
+      <span>ChatGPT, Claude 앱 연동과 데이팅앱 연동, 모바일 앱이 곧 나온다</span>
+    </a>
   </aside>
-  <section class="stage" id="stage" aria-live="polite">
-    <div class="scene">
+
+  <main class="main">
+    <header class="crumb"><span class="label">STUDIO</span><span id="crumb">상대를 고른다</span></header>
+    <section class="stage" id="stage" aria-label="장면">
       <img class="backdrop" src="assets/backdrop.jpg" alt="">
-      <figure class="portrait"><img id="portrait" alt="" hidden><span id="portrait-initial" aria-hidden="true"></span></figure>
-      <div class="hud">
-        <p class="day" id="day"></p>
-        <h1 id="name">상대를 고른다</h1>
+      <figure class="sprite" id="sprite"><img id="portrait" alt=""><span id="initial" aria-hidden="true"></span></figure>
+      <div class="hud px">
+        <p class="dday" id="dday"></p>
+        <h1 id="name">OpenFlirt</h1>
         <p class="chips" id="chips"></p>
-        <div class="meter" role="meter" aria-label="호감 게이지" aria-valuemin="0" aria-valuemax="100" id="meter"><span id="meter-fill"></span><b id="meter-score"></b></div>
-        <ul class="parts" id="parts"></ul>
+        <div class="hearts" id="hearts" role="meter" aria-label="호감 게이지" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
-      <div class="dialogue" id="dialogue">
-        <p class="speaker" id="speaker"></p>
-        <p class="line" id="line">상대를 고르면 마지막 대화와 다음 행동이 여기에 뜬다.</p>
+      <div class="box px" id="box">
+        <p class="plate" id="speaker">OpenFlirt</p>
+        <p class="say" id="line">카톡 내보내기, 데이팅앱 스크린샷, 인스타 DM 주소를 아래에 던지면 상대별로 정리하고 다음 한 수를 고른다.</p>
       </div>
-    </div>
-    <div class="choices" id="choices"></div>
-    <div class="actions">
-      <button class="heart" id="heart" type="button" aria-label="이 추천 좋아요" disabled>♥</button>
-      <button class="next" id="next" type="button" disabled>Next ▸ 다음 행동</button>
-      <select id="runtime" aria-label="모델 런타임"><option value="codex">codex</option><option value="claude">claude</option></select>
-    </div>
-    <details class="why" id="why"><summary>왜 이렇게 보나</summary><div id="answer"></div></details>
-  </section>
-  <aside class="feed" aria-label="기록 넣기와 타임라인">
-    <h2>기록 넣기</h2>
-    <label class="drop" id="drop">
-      <input type="file" id="file" multiple accept=".txt,.json,image/*">
-      <span>카톡 내보내기(.txt), 스크린샷, thread.json을 끌어다 놓는다</span>
-    </label>
-    <form id="ig-form" class="row"><input id="ig" placeholder="instagram.com/direct/t/… 주소" autocomplete="off"><button type="submit">읽기</button></form>
-    <button class="ghost wide" id="read" type="button" disabled>스크린샷 읽기</button>
-    <form id="note-form" class="row"><input id="note" placeholder="메모: 11/3 19:00 칼국수 약속" autocomplete="off"><button type="submit">더하기</button></form>
+    </section>
+    <details class="gauge" id="gauge"><summary>게이지 근거</summary><ul id="parts"></ul></details>
+
+    <section class="thread" id="thread" aria-live="polite" aria-label="OpenFlirt와의 대화"></section>
+
+    <form class="composer" id="composer">
+      <div class="source" id="source-chip" hidden><span class="srcicon" id="source-icon"></span><span id="source-name"></span><button type="button" id="source-clear" title="빼기" aria-label="연결 빼기">×</button></div>
+      <div class="attached" id="attached"></div>
+      <label class="visually-hidden" for="ask">OpenFlirt에게 보내기</label>
+      <textarea id="ask" rows="1"></textarea>
+      <div class="tools">
+        <button type="button" class="iconbtn plus" id="plus" aria-haspopup="menu" aria-expanded="false" title="파일, 카톡, DM 넣기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="visually-hidden">넣을 것 고르기</span></button>
+        <input type="file" id="file" multiple hidden>
+        <button type="button" class="iconbtn feedbtn" id="feed-btn" title="타임라인"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="visually-hidden">타임라인 보기</span></button>
+        <button type="button" class="modelbtn" id="model-btn" aria-haspopup="menu" aria-expanded="false"><img id="model-icon" src="assets/icons/openai.svg" alt=""><span id="model-name">Codex</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <button type="submit" class="send" id="send" aria-label="보내기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </form>
     <p class="status" id="status" role="status"></p>
-    <h2>타임라인</h2>
+  </main>
+
+  <aside class="feed" aria-label="타임라인">
+    <div class="feedhead"><p class="label">타임라인</p><span id="count"></span></div>
     <ol class="timeline" id="timeline"></ol>
   </aside>
-</main>
-<dialog id="add-dialog">
-  <form method="dialog" id="add-form">
-    <h2>새 상대 등록</h2>
-    <label>이름이나 별명 <input name="name" required maxlength="40"></label>
-    <label>어디서 만났나 <input name="app" placeholder="케밋, 소개팅, 인스타…"></label>
-    <label>처음 연락한 날 <input name="metOn" type="date"></label>
-    <label>메모 <textarea name="notes" rows="3"></textarea></label>
-    <menu><button value="cancel" formnovalidate class="ghost">취소</button><button value="ok">등록</button></menu>
-  </form>
-</dialog>
+</div>
+<ul class="menu" id="popover" role="menu" hidden></ul>
+<div class="drop" id="drop" hidden><p>놓으면 상대별로 알아서 나눠 넣는다</p></div>
 <script type="module" src="studio.js"></script>
 </body>
 </html>
+
