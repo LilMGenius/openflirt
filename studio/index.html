@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="openflirt-token" content="__OPENFLIRT_TOKEN__">
+<title>openflirt studio</title>
+<link rel="icon" href="assets/icon.png">
+<link rel="stylesheet" href="studio.css">
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="/"><img src="assets/icon.png" alt="" width="28" height="28"><span>openflirt</span></a>
+  <button class="ghost" id="add-open" type="button">+ 새 상대</button>
+</header>
+<main class="layout">
+  <aside class="roster" aria-label="상대 목록">
+    <h2>지금 썸</h2>
+    <ol id="roster"></ol>
+    <p class="empty" id="roster-empty" hidden>아직 아무도 없다. 오른쪽 위 <b>+ 새 상대</b>로 시작한다.</p>
+  </aside>
+  <section class="stage" id="stage" aria-live="polite">
+    <div class="scene">
+      <img class="backdrop" src="assets/backdrop.jpg" alt="">
+      <figure class="portrait"><img id="portrait" alt="" hidden><span id="portrait-initial" aria-hidden="true"></span></figure>
+      <div class="hud">
+        <p class="day" id="day"></p>
+        <h1 id="name">상대를 고른다</h1>
+        <p class="chips" id="chips"></p>
+        <div class="meter" role="meter" aria-label="호감 게이지" aria-valuemin="0" aria-valuemax="100" id="meter"><span id="meter-fill"></span><b id="meter-score"></b></div>
+        <ul class="parts" id="parts"></ul>
+      </div>
+      <div class="dialogue" id="dialogue">
+        <p class="speaker" id="speaker"></p>
+        <p class="line" id="line">상대를 고르면 마지막 대화와 다음 행동이 여기에 뜬다.</p>
+      </div>
+    </div>
+    <div class="choices" id="choices"></div>
+    <div class="actions">
+      <button class="heart" id="heart" type="button" aria-label="이 추천 좋아요" disabled>♥</button>
+      <button class="next" id="next" type="button" disabled>Next ▸ 다음 행동</button>
+      <select id="runtime" aria-label="모델 런타임"><option value="codex">codex</option><option value="claude">claude</option></select>
+    </div>
+    <details class="why" id="why"><summary>왜 이렇게 보나</summary><div id="answer"></div></details>
+  </section>
+  <aside class="feed" aria-label="기록 넣기와 타임라인">
+    <h2>기록 넣기</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" multiple accept=".txt,.json,image/*">
+      <span>카톡 내보내기(.txt), 스크린샷, thread.json을 끌어다 놓는다</span>
+    </label>
+    <form id="ig-form" class="row"><input id="ig" placeholder="instagram.com/direct/t/… 주소" autocomplete="off"><button type="submit">읽기</button></form>
+    <button class="ghost wide" id="read" type="button" disabled>스크린샷 읽기</button>
+    <form id="note-form" class="row"><input id="note" placeholder="메모: 11/3 19:00 칼국수 약속" autocomplete="off"><button type="submit">더하기</button></form>
+    <p class="status" id="status" role="status"></p>
+    <h2>타임라인</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </aside>
+</main>
+<dialog id="add-dialog">
+  <form method="dialog" id="add-form">
+    <h2>새 상대 등록</h2>
+    <label>이름이나 별명 <input name="name" required maxlength="40"></label>
+    <label>어디서 만났나 <input name="app" placeholder="케밋, 소개팅, 인스타…"></label>
+    <label>처음 연락한 날 <input name="metOn" type="date"></label>
+    <label>메모 <textarea name="notes" rows="3"></textarea></label>
+    <menu><button value="cancel" formnovalidate class="ghost">취소</button><button value="ok">등록</button></menu>
+  </form>
+</dialog>
+<script type="module" src="studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "썸 상대 관리"
+  short_description: "썸 상대마다 대화와 스크린샷을 모아 다음 행동을 고른다"
+  default_prompt: "$crush 로 새 썸 상대를 등록하고 이 대화와 스크린샷을 넣어 줘."

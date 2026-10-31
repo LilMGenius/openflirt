@@ -13,6 +13,9 @@ openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여�
 - `skills/lecture-corpus/`: 강의 영상 하나를 `corpus/<영상 id>/`로 만드는 스킬과 스크립트. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `video-transcript`(LilMGenius/skills)가 맡고, 이 스킬은 전문을 짓고 고치는 단계만 둔다. 새 강의는 이것을 따라 넣는다.
 - `skills/kakaotalk-chat/`: 카카오톡 대화 내보내기(.txt)를 `thread.json`과 `transcript.md`로 바꾸는 스킬. `scripts/parse.mjs`가 파일을 받아 쓰고 `scripts/lib/export.mjs`가 줄을 푼다. 테스트는 `test/kakaotalk-chat.test.mjs`.
 - `skills/instagram-dm/`: 인스타그램 DM 대화방 하나를 BrowserSkill(`bsk`)로 읽어 같은 두 파일로 바꾸는 스킬. `scripts/read.mjs`가 브라우저에서 줄을 읽고 `scripts/lib/rows.mjs`가 정리한다. 테스트는 `test/instagram-dm.test.mjs`.
+- `skills/crush/`: 썸 상대 한 명을 폴더 하나로 두고 증거, 타임라인, 게이지, 추천을 쌓는 스킬. `scripts/crush.mjs`가 명령, `scripts/lib/store.mjs`가 폴더와 계산, `scripts/lib/agents.mjs`가 스크린샷 읽기와 다음 행동 실행을 맡는다. 폴더 뿌리는 `crushes.local/`(커밋 안 됨). 테스트는 `test/crush.test.mjs`.
+- `bin/studio.mjs`, `studio/`: 같은 함수를 부르는 로컬 미연시 화면. 127.0.0.1에서만 듣고, 쓰기 요청은 페이지에 심은 토큰이 있어야 받는다. `studio/assets/`의 배경, 아이콘, 예시 캐릭터는 생성한 그림이다.
+- `docs/ROADMAP.md`: MCP와 봇 연동까지의 순서. `docs/studio.jpg`, `docs/social.jpg`: README와 저장소 미리보기에 쓰는, 예시 데이터로 찍은 화면.
 - `corpus/lectures.json`: 강의 목록. 강의마다 영상 id(`video`), 제목(`title`), 올린 날(`uploaded`), 그 강의를 인용하는 원칙 파일(`parts`, 예: `part1.md`)을 먼저 올린 강의부터 둔다. 검사, 러너, 골든 평가가 모두 이 목록으로 강의를 찾는다.
 - `corpus/<영상 id>/`: 강의마다 전문 `transcript.md`, 소제목 결정 `sections.json`, 표기 결정 `divergence.md`, 원칙 대응표 `coverage.md`.
 - `schema/answer.schema.json`: `--json` 답의 계약.
