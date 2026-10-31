@@ -1,10 +1,10 @@
-# openflirt
+# OpenFlirt
 
-openflirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)와 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 철학을 에이전트가 따르는 규칙과 스킬로 옮겨, 사람이 던진 질문에 답하고 다른 프로그램이 자동화의 바탕으로 부를 수 있게 한다. 사람이 쓰는 법은 README.md가, 에이전트가 지킬 규칙은 이 파일이 맡는다.
+OpenFlirt는 연애·플러팅 하네스다. 마픽스(마튜브) 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)와 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 철학을 에이전트가 따르는 규칙과 스킬로 옮겨, 사람이 던진 질문에 답하고 다른 프로그램이 자동화의 바탕으로 부를 수 있게 한다. 사람이 쓰는 법은 README.md가, 에이전트가 지킬 규칙은 이 파일이 맡는다.
 
 ## 연애 질문에 답할 때
 
-- 연애, 썸, 플러팅 질문이면 "걔가 읽씹했는데"처럼 가볍게 물어도 `$openflirt` 스킬([skills/openflirt/SKILL.md](skills/openflirt/SKILL.md))을 읽고, 그 판단 순서와 답하는 법과 openflirt가 정한 규칙대로 답한다. `bin/openflirt.mjs`가 띄우는 codex와 claude 세션도 이 저장소에서 돌아 이 줄을 읽는다.
+- 연애, 썸, 플러팅 질문이면 "걔가 읽씹했는데"처럼 가볍게 물어도 `$openflirt` 스킬([skills/openflirt/SKILL.md](skills/openflirt/SKILL.md))을 읽고, 그 판단 순서와 답하는 법과 OpenFlirt가 정한 규칙대로 답한다. `bin/openflirt.mjs`가 띄우는 codex와 claude 세션도 이 저장소에서 돌아 이 줄을 읽는다.
 - 호출한 쪽이 스키마를 주면 `schema/answer.schema.json`에 맞는 JSON 하나만 낸다.
 
 ## 저장소 지도

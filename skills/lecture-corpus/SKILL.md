@@ -1,11 +1,11 @@
 ---
 name: lecture-corpus
-description: "강의 영상 하나를 openflirt 말뭉치 항목으로 만든다. YouTube 자동 자막으로 시각 링크가 달린 초안 전문과 소제목을 만들고, Whisper 전사와 화면 자막 OCR로 고친다. 새 강의를 openflirt에 넣거나 전문을 다시 고칠 때 쓴다."
+description: "강의 영상 하나를 OpenFlirt 말뭉치 항목으로 만든다. YouTube 자동 자막으로 시각 링크가 달린 초안 전문과 소제목을 만들고, Whisper 전사와 화면 자막 OCR로 고친다. 새 강의를 OpenFlirt에 넣거나 전문을 다시 고칠 때 쓴다."
 ---
 
 # 강의 말뭉치
 
-강의 영상 하나를 `corpus/<영상 id>/`에 넣는다. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `$video-transcript`(https://github.com/LilMGenius/skills/tree/main/video-transcript)의 스크립트가 하고, 이 스킬은 그 결과를 openflirt 전문 형식으로 짓고 고치는 단계를 맡는다. 입력이 정해지면 결과가 정해지는 단계는 스크립트가 하고, 뜻을 보고 고르는 단계는 판단해서 그 결정을 파일로 남긴다. 다음 스크립트가 그 파일을 읽으니, 다시 돌리면 기계 단계는 같은 결과를 내고 판단은 남긴 대로 되풀이된다.
+강의 영상 하나를 `corpus/<영상 id>/`에 넣는다. 받기, Whisper 전사, 화면 자막 읽기는 공통 스킬 `$video-transcript`(https://github.com/LilMGenius/skills/tree/main/video-transcript)의 스크립트가 하고, 이 스킬은 그 결과를 OpenFlirt 전문 형식으로 짓고 고치는 단계를 맡는다. 입력이 정해지면 결과가 정해지는 단계는 스크립트가 하고, 뜻을 보고 고르는 단계는 판단해서 그 결정을 파일로 남긴다. 다음 스크립트가 그 파일을 읽으니, 다시 돌리면 기계 단계는 같은 결과를 내고 판단은 남긴 대로 되풀이된다.
 
 아래에서 `<공통>`은 설치된 `video-transcript` 스킬 폴더의 `scripts/`(보통 `~/.agents/skills/video-transcript/scripts`)이고, `scripts/`는 이 스킬의 폴더다.
 
@@ -14,7 +14,7 @@ description: "강의 영상 하나를 openflirt 말뭉치 항목으로 만든다
 - `transcript.md`: 강의 전문. 소제목(`##`, `###`) 아래 문단마다 한 줄이고, 문단은 `[mm:ss](https://youtu.be/<id>?t=초)`로 시작한다.
 - `sections.json`: 소제목 결정. `["H2" 또는 "H3", "소제목", "앵커 구절"]`을 강의 순서대로 적는다. 앵커 구절은 그 소제목이 시작하는 말을 자동 자막에 나온 대로 적은 몇 낱말이고, 첫 항목은 `"__START__"`, 문단 없이 아래 소제목만 묶는 항목은 `""`이다.
 - `divergence.md`: 출처가 갈린 철학어, 은어, 이름을 어떻게 적었는지의 기록.
-- `coverage.md`: 소제목마다 그 구간을 담은 openflirt 원칙 id, 또는 `제외: 사유`.
+- `coverage.md`: 소제목마다 그 구간을 담은 OpenFlirt 원칙 id, 또는 `제외: 사유`.
 
 ## 순서
 
@@ -27,7 +27,7 @@ description: "강의 영상 하나를 openflirt 말뭉치 항목으로 만든다
 7. `node scripts/readings.mjs --transcript corpus/<id>/transcript.md --video <id> --whisper <whisper.json> --subtitles <subtitles.json> --out <readings.md> [--from 초] [--to 초]`가 문단마다 세 출처를 나란히 놓은 대조표를 쓴다. 구간을 나눠 쓰면 여러 에이전트가 나눠 고칠 수 있다.
 8. 판단: [references/reconcile.md](references/reconcile.md)를 따라 문단마다 고친 한 줄을 쓰고, 갈린 표기를 `divergence.md`에 남긴다.
 9. `node scripts/apply.mjs --transcript corpus/<id>/transcript.md --video <id> --lines <고친 줄 파일> [--lines …] --out corpus/<id>/transcript.md`가 고친 줄을 전문에 넣는다. 문단과 고친 줄의 시각이 하나라도 어긋나면 쓰지 않고 멈추고, 한 구간만 먼저 확인할 때는 `--partial`을 준다. 전문 머리의 출처 줄을 고친 판에 맞게 바꾸고 커밋한다.
-10. 판단: openflirt 스킬의 원칙을 쓰고 `coverage.md`를 채운다. 원칙의 인용 한 줄이 강의에서 말한 그대로인지 따로 볼 때는 `node <공통>/quote.mjs --quote "<인용>" --source <whisper.json> --at <초>`가 그 시각의 말과 다른 낱말을 보여 준다. `npm test`와 `node scripts/check.mjs`가 인용, 소제목 대응, 링크를 검사한다.
+10. 판단: OpenFlirt 스킬의 원칙을 쓰고 `coverage.md`를 채운다. 원칙의 인용 한 줄이 강의에서 말한 그대로인지 따로 볼 때는 `node <공통>/quote.mjs --quote "<인용>" --source <whisper.json> --at <초>`가 그 시각의 말과 다른 낱말을 보여 준다. `npm test`와 `node scripts/check.mjs`가 인용, 소제목 대응, 링크를 검사한다.
 
 ## 필요한 것
 
