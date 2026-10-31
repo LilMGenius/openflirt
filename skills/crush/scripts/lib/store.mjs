@@ -55,7 +55,7 @@ export function addCrush({ name, id = idFor(name ?? ""), app = null, metOn = nul
   const dir = crushDir(id, root);
   if (existsSync(join(dir, "profile.json"))) throw new CrushError("이미 있는 상대다: " + id);
   for (const sub of ["evidence", "threads"]) mkdirSync(join(dir, sub), { recursive: true });
-  const profile = { id, name: name.trim(), app, metOn, photo: null, notes, createdAt: stamp(new Date()) };
+  const profile = { id, name: name.trim(), aliases: [], app, metOn, photo: null, notes, createdAt: stamp(new Date()) };
   writeJson(join(dir, "profile.json"), profile);
   writeJson(join(dir, "evidence.json"), []);
   return profile;
@@ -71,7 +71,7 @@ export const readProfile = (id, root = crushRoot()) => readJson(join(mustExist(i
 export function updateProfile(id, patch, root = crushRoot()) {
   const dir = mustExist(id, root);
   const profile = { ...readJson(join(dir, "profile.json")) };
-  for (const key of ["name", "app", "metOn", "notes", "photo"]) if (key in patch) profile[key] = patch[key];
+  for (const key of ["name", "aliases", "app", "metOn", "notes", "photo", "instagram"]) if (key in patch) profile[key] = patch[key];
   if (profile.metOn !== null && !DATE.test(profile.metOn)) throw new CrushError("metOn은 YYYY-MM-DD다: " + profile.metOn);
   writeJson(join(dir, "profile.json"), profile);
   return profile;
@@ -237,3 +237,87 @@ export const evidencePath = (id, file, root = crushRoot()) => {
   if (!path.startsWith(resolve(dir, "evidence") + (process.platform === "win32" ? "\\" : "/"))) throw new CrushError("evidence 폴더 밖 파일이다: " + file);
   return path;
 };
+
+
+// Routing: which crush a new piece of evidence belongs to. The names a file carries are read by fixed rules
+// (the KakaoTalk header and speakers, a thread's title and participants, the export's file name); only a
+// screenshot needs a model, which reports the name it sees and is then matched by the same rule.
+const HONORIFIC = /(님|씨|양|군)$/u;
+export const normName = (s) => String(s ?? "").normalize("NFC").replace(/^\*?\d+\s*/u, "").replace(/[\s\p{Extended_Pictographic}·•._-]+/gu, "").replace(HONORIFIC, "").toLowerCase();
+
+// Every crush whose name or alias equals the name, or, for names of two letters or more, contains it or is
+// contained in it ("서빈" and "*01 박서빈" are one person). More than one hit is ambiguous and is returned whole.
+export function matchCrush(name, crushes) {
+  const n = normName(name);
+  if (n.length === 0) return [];
+  const keys = (c) => [c.name, ...(c.aliases ?? [])].map(normName).filter(Boolean);
+  const exact = crushes.filter((c) => keys(c).includes(n));
+  if (exact.length) return exact;
+  if (n.length < 2) return [];
+  return crushes.filter((c) => keys(c).some((k) => k.length >= 2 && (k.includes(n) || n.includes(k))));
+}
+
+const KAKAO_FILE = /^KakaoTalk_[\d_]+?_(?:\d+_)*(.+?)(?:\.local)?\.txt$/u;
+// The other side's name as the file states it, or null. Never guesses from free text.
+export function nameHint(name, bytes, kind, me) {
+  if (kind === "kakaotalk") {
+    try {
+      const t = parseExport(bytes.toString("utf8"), { fileName: basename(name), me });
+      const others = t.participants.filter((p) => p !== t.me);
+      if (others.length === 1) return others[0];
+      if (t.title && !/\.txt$/.test(t.title)) return t.title;
+    } catch {}
+    return KAKAO_FILE.exec(basename(name))?.[1] ?? null;
+  }
+  if (kind === "thread") {
+    try { const t = JSON.parse(bytes.toString("utf8")); const others = t.participants.filter((p) => p !== t.me); return others.length === 1 ? others[0] : t.title ?? null; } catch { return null; }
+  }
+  return null;
+}
+
+export const fileKind = (name, bytes) => kindOf(name, bytes);
+
+export function addAlias(id, alias, root = crushRoot()) {
+  const dir = mustExist(id, root);
+  const p = readJson(join(dir, "profile.json"));
+  const have = [p.name, ...(p.aliases ?? [])].map(normName);
+  if (alias && !have.includes(normName(alias))) { p.aliases = [...(p.aliases ?? []), alias]; writeJson(join(dir, "profile.json"), p); }
+  return p;
+}
+
+// Decides the crush for a file: the name it carries matched against every crush, then the crush the asker
+// has open, then, when nothing matches and the file names someone, a new crush with that name.
+// Returns { id, created, reason } or { ambiguous: [...ids] } or { needsRead: true } for an unnamed screenshot.
+export function routeFile({ name, bytes, selected = null, me }, root = crushRoot()) {
+  const kind = kindOf(name, bytes);
+  const crushes = listCrushes(root);
+  const hint = nameHint(name, bytes, kind, me);
+  if (hint) {
+    const hits = matchCrush(hint, crushes);
+    if (hits.length === 1) { addAlias(hits[0].id, hint, root); return { id: hits[0].id, created: false, kind, reason: "이름 '" + hint + "'이 " + hits[0].name + "와 맞는다" }; }
+    if (hits.length > 1) return { ambiguous: hits.map((c) => c.id), kind, hint };
+    const p = addCrush({ name: hint.replace(/^\*?\d+\s*/u, "").trim() || hint, id: uniqueId(hint, root) }, root);
+    addAlias(p.id, hint, root);
+    return { id: p.id, created: true, kind, reason: "처음 보는 이름 '" + hint + "'이라 새 상대로 만들었다" };
+  }
+  if (selected) return { id: selected, created: false, kind, reason: "이름이 없는 파일이라 열려 있는 상대에 넣었다" };
+  if (kind === "image") return { needsRead: true, kind };
+  if (crushes.length === 1) return { id: crushes[0].id, created: false, kind, reason: "상대가 한 명뿐이라 그 상대에 넣었다" };
+  return { ambiguous: crushes.map((c) => c.id), kind, hint: null };
+}
+
+export function uniqueId(name, root = crushRoot()) {
+  const base = idFor(String(name).replace(/^\*?\d+\s*/u, "")) || "crush";
+  let id = base, n = 2;
+  while (existsSync(join(root, id))) id = base + "-" + n++;
+  return id;
+}
+
+// The conversation the asker has with openflirt about one crush: what they asked or sent and what came back.
+export const readChat = (id, root = crushRoot()) => readLines(join(mustExist(id, root), "chat.jsonl"));
+export function addChat(id, turn, root = crushRoot()) {
+  const dir = mustExist(id, root);
+  const entry = { at: stamp(new Date()), ...turn };
+  appendFileSync(join(dir, "chat.jsonl"), JSON.stringify(entry) + "\n");
+  return entry;
+}

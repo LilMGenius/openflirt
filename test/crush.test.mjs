@@ -6,7 +6,7 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
-import { addCrush, addEvents, computeState, CrushError, evidencePath, ingest, listCrushes, readEvidence, timeline } from "../skills/crush/scripts/lib/store.mjs";
+import { addCrush, addEvents, computeState, CrushError, evidencePath, ingest, listCrushes, matchCrush, readEvidence, readProfile, routeFile, timeline } from "../skills/crush/scripts/lib/store.mjs";
 
 const EXPORT = [
   "지수 님과 카카오톡 대화",
@@ -98,24 +98,46 @@ test("the studio answers reads without a token and refuses a write that does not
   const base = "http://127.0.0.1:" + server.address().port;
   const page = await (await fetch(base + "/")).text();
   const token = /name="openflirt-token" content="([0-9a-f]{32})"/.exec(page)[1];
-  const post = (headers) => fetch(base + "/api/crushes", { method: "POST", headers: { "content-type": "application/json", ...headers }, body: JSON.stringify({ name: "지수" }) });
+  const post = (headers) => fetch(base + "/api/inbox", { method: "POST", headers: { "x-filename": "chat.txt", ...headers }, body: EXPORT });
   assert.equal((await post({})).status, 403);
   assert.equal((await post({ "x-openflirt-token": "0".repeat(32) })).status, 403);
   assert.deepEqual(await (await fetch(base + "/api/crushes")).json(), []);
-  assert.equal((await post({ "x-openflirt-token": token })).status, 201);
+  assert.equal((await (await post({ "x-openflirt-token": token })).json()).created, true);
   const roster = await (await fetch(base + "/api/crushes")).json();
   assert.equal(roster[0].name, "지수");
+  const one = await (await fetch(base + "/api/crushes/" + encodeURIComponent(roster[0].id))).json();
+  assert.equal(one.timelineTotal, 3);
+  assert.ok(Array.isArray(await (await fetch(base + "/api/models")).json()));
   assert.equal((await fetch(base + "/api/crushes/..%2F..%2Fx")).status, 400);
   assert.equal((await fetch(base + "/../package.json")).status, 404);
+});
+
+test("a file goes to the crush its names point to, and a new name makes a new crush", (t) => {
+  const dir = root(t);
+  addCrush({ name: "서빈", id: "seobin" }, dir);
+  addCrush({ name: "지아", id: "jia" }, dir);
+  assert.deepEqual(matchCrush("*01 박서빈", listCrushes(dir)).map((c) => c.id), ["seobin"]);
+  assert.deepEqual(matchCrush("빈", listCrushes(dir)), []);
+  const kakao = EXPORT.replace("지수 님과", "*01 박서빈 님과").replaceAll("[지수]", "[*01 박서빈]");
+  assert.equal(routeFile({ name: "KakaoTalk_1_x.txt", bytes: bytes(kakao) }, dir).id, "seobin");
+  assert.ok(readProfile("seobin", dir).aliases.includes("*01 박서빈"));
+  const fresh = routeFile({ name: "chat.txt", bytes: bytes(EXPORT) }, dir);
+  assert.equal(fresh.created, true);
+  assert.equal(readProfile(fresh.id, dir).name, "지수");
+  assert.equal(routeFile({ name: "notes.md", bytes: bytes("메모"), selected: "jia" }, dir).id, "jia");
+  assert.equal(routeFile({ name: "IMG_1.png", bytes: Buffer.from([137, 80]) }, dir).needsRead, true);
+  assert.deepEqual(routeFile({ name: "notes.md", bytes: bytes("메모") }, dir).ambiguous.sort(), ["jia", "seobin", fresh.id].sort());
 });
 
 
 test("the studio finds the three tones in an answer, whether each sits on its line or heads a block", async () => {
   const { choicesOf } = await import("../studio/choices.js");
   const block = { answer: "판정은 관심\n\n담백\nㅋㅋㅋ 넹\n화요일 7시예요\n\n장난\nAI한테 넣어둘게요\n\n티징\n강지보다 기억력 안좋다면서\n", message: "x" };
-  assert.deepEqual(choicesOf(block), [{ tone: "담백", text: "ㅋㅋㅋ 넹\n화요일 7시예요" }, { tone: "장난", text: "AI한테 넣어둘게요" }, { tone: "티징", text: "강지보다 기억력 안좋다면서" }]);
+  assert.deepEqual(choicesOf(block), [{ tone: "담백", bubbles: ["ㅋㅋㅋ 넹", "화요일 7시예요"] }, { tone: "장난", bubbles: ["AI한테 넣어둘게요"] }, { tone: "티징", bubbles: ["강지보다 기억력 안좋다면서"] }]);
   const inline = { answer: "- 담백: \"ㅋㅋ 알려드릴게요\"\n- **장난**: 전화 오면 받으셔야 돼요", message: null };
-  assert.deepEqual(choicesOf(inline).map((c) => c.text), ["ㅋㅋ 알려드릴게요", "전화 오면 받으셔야 돼요"]);
+  assert.deepEqual(choicesOf(inline).map((c) => c.bubbles), [["ㅋㅋ 알려드릴게요"], ["전화 오면 받으셔야 돼요"]]);
+  const remark = { answer: "티징: \"ㅋㅋㅋ 강지보다 기억력 안좋다면서 / 제 AI 비서 쓰시려면 칼국수 한그릇이에요\" (지난번에 마음에 든다고 했던 그 줄이고, 이 자리에도 그대로 맞아)", message: null };
+  assert.deepEqual(choicesOf(remark), [{ tone: "티징", bubbles: ["ㅋㅋㅋ 강지보다 기억력 안좋다면서", "제 AI 비서 쓰시려면 칼국수 한그릇이에요"] }]);
   assert.deepEqual(choicesOf({ answer: "보낼 말은 없다.", message: null }), []);
-  assert.deepEqual(choicesOf({ answer: "그냥 답", message: "한 줄" }), [{ tone: "보낼 말", text: "한 줄" }]);
+  assert.deepEqual(choicesOf({ answer: "그냥 답", message: "한 줄" }), [{ tone: "보낼 말", bubbles: ["한 줄"] }]);
 });

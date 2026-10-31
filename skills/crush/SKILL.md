@@ -1,6 +1,6 @@
 ---
 name: crush
-description: "썸 타는 상대를 한 명씩 등록하고, 그 상대와의 카톡 내보내기, 인스타 DM, 데이팅앱이나 메신저 스크린샷, 메모를 상대별 로컬 폴더에 쌓아 하나의 타임라인과 행동 수치로 묶은 뒤 openflirt로 다음 행동을 고른다. 새 썸 상대 등록, 여러 상대 관리와 비교, 스크린샷에서 대화 읽기, 지금 우리 사이가 며칠째인지와 다음 행동을 묻는 요청에 쓴다."
+description: "썸 타는 상대를 한 명씩 등록하고, 그 상대와의 카톡 내보내기, 인스타 DM, 데이팅앱이나 메신저 스크린샷, 메모를 상대별 로컬 폴더에 쌓아 하나의 타임라인과 행동 수치로 묶은 뒤 OpenFlirt로 다음 행동을 고른다. 새 썸 상대 등록, 여러 상대 관리와 비교, 스크린샷에서 대화 읽기, 지금 우리 사이가 며칠째인지와 다음 행동을 묻는 요청에 쓴다."
 ---
 
 # crush
@@ -20,7 +20,11 @@ description: "썸 타는 상대를 한 명씩 등록하고, 그 상대와의 카
 7. 다음 행동: `node scripts/crush.mjs next <id> [--runtime codex|claude] [--ask <질문>]`가 상대 메모, 센 값, 최근 기록 60줄, 지난 추천 세 개와 내 반응을 한 질문으로 묶어 `bin/openflirt.mjs --json`에 넘기고, 검사를 통과한 답을 `decisions.jsonl`에 쌓는다. `node scripts/crush.mjs feedback <id> <추천 id> <like|sent|skip>`이 그 추천에 대한 반응을 적고, 다음 추천의 질문에 들어간다.
 8. `node scripts/crush.mjs list`는 등록한 상대 전부다.
 
-같은 일을 화면으로 하려면 저장소 뿌리에서 `node bin/studio.mjs --open`을 띄운다. 파일 끌어다 놓기, 인스타 DM 주소, 스크린샷 읽기, 메모, Next와 하트 버튼이 위 명령과 같은 함수(`scripts/lib/store.mjs`, `scripts/lib/agents.mjs`)를 부른다.
+같은 일을 화면으로 하려면 저장소 뿌리에서 `node bin/studio.mjs --open`을 띄운다. 등록 폼은 없고 입력창 하나뿐이다. 던진 파일은 `scripts/lib/store.mjs`의 `routeFile`이 상대를 정하고, 같은 창의 글은 `scripts/lib/agents.mjs`의 `askNext`로 OpenFlirt에 간다. 화면의 글과 답은 상대 폴더의 `chat.jsonl`에 남는다.
+
+## 상대 가리기
+
+`routeFile`은 파일이 스스로 밝힌 이름만 읽는다. 카톡 내보내기는 머리글과 말한 사람, `thread.json`은 제목과 참가자, 카톡 파일 이름이 그 이름이다. 이름은 앞의 번호와 공백, 님·씨 같은 호칭을 떼고 비교하고, 상대의 이름이나 별칭과 같으면 그 상대, 두 글자 이상에서 한쪽이 다른 쪽을 품으면(서빈과 박서빈) 그 상대다. 맞는 상대가 하나면 그리로 넣고 그 이름을 별칭으로 더한다. 둘 이상이면 고르게 묻고, 하나도 없으면 그 이름으로 새 상대를 만든다. 이름이 없는 파일은 열려 있는 상대에 넣는다. 열린 상대도 없는 스크린샷은 먼저 읽어 화면에 보이는 이름으로 같은 규칙을 쓴다. 게이지나 대화 내용으로 상대를 짐작하지 않는다.
 
 ## 게이지와 판정
 
@@ -32,8 +36,8 @@ description: "썸 타는 상대를 한 명씩 등록하고, 그 상대와의 카
 - `evidence/`, `evidence.json`: 받은 파일과 그 목록(`{ file, sha256, kind, source, addedAt, read, thread }`, `kind`는 kakaotalk, thread, image, text, other).
 - `threads/`: 대화 하나당 `thread.json` 하나와, 카톡이면 `transcript.md`.
 - `events.jsonl`: 한 줄에 `{ at, who, kind, text, source }`. `who`는 me, her, null.
-- `decisions.jsonl`: 한 줄에 openflirt의 판정, 할 일, 보낼 말, 답, 인용과 `feedback`.
+- `decisions.jsonl`: 한 줄에 OpenFlirt의 판정, 할 일, 보낼 말, 답, 인용과 `feedback`.
 
 ## 종료 코드
 
-`scripts/crush.mjs`는 0 끝남, 1 모델 실행(codex, openflirt) 실패, 2 인자가 틀렸거나 없는 상대거나 형식이 아닌 입력이다. 결과는 표준 출력에 JSON으로 낸다.
+`scripts/crush.mjs`는 0 끝남, 1 모델 실행(codex, OpenFlirt) 실패, 2 인자가 틀렸거나 없는 상대거나 형식이 아닌 입력이다. 결과는 표준 출력에 JSON으로 낸다.
