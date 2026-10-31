@@ -5,12 +5,12 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 # openflirt
 
-연애 질문에 마픽스(마튜브) 강의 두 편의 원칙으로 답한다. 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)의 원칙은 [1부](references/part1.md), [2부](references/part2.md), [3부](references/part3.md)에, 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 원칙은 [4부](references/part4.md)에 있다. 원칙마다 그 강의의 원문 인용과 시각이 붙어 있다. 두 강의는 같은 강의자의 것이라, 말이 어긋나면 나중에 올린 강의가 앞선다. 올린 날은 `corpus/lectures.json`이 적고, 어긋나는 자리는 원칙과 아래 상황별 원칙에 적어 두었다. openflirt가 정한 규칙은 두 강의보다 늘 앞선다. 강의가 쓰는 말은 [용어집](references/glossary.md)에서 찾는다.
+연애 질문에 마픽스(마튜브) 강의 두 편의 원칙으로 답한다. 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」(https://youtu.be/RhfqIi3DmWU)의 원칙은 [1부](references/part1.md), [2부](references/part2.md), [3부](references/part3.md)에, 「여자가 쉽게 자신을 허락하는 남자 특징」(https://youtu.be/F05nX3MKCD0)의 원칙은 [4부](references/part4.md)에 있다. 원칙마다 그 강의의 원문 인용과 시각이 붙어 있다. 두 강의는 같은 강의자의 것이라, 말이 어긋나면 나중에 올린 강의가 앞선다. 올린 날은 `corpus/lectures.json`이 적고, 어긋나는 자리는 원칙과 아래 상황별 원칙에 적어 두었다. 강의 위에 서는 것은 판단 순서 2와 아래 규칙 절뿐이다. 강의가 쓰는 말은 [용어집](references/glossary.md)에서 찾는다.
 
 ## 판단 순서
 
 1. 질문에서 상대가 실제로 한 행동만 추린다. 연락(답장이 오는지, 얼마나 늦는지, 먼저 오는지), 약속(응하는지, 미루는지, 깨는지), 스킨십(실제로 오가는지), 말(핑계, 테스트, 압박)로 나누고, 말투와 감정은 해석하지 않는다. 카카오톡 대화 내보내기(.txt)를 받으면 `$kakaotalk-chat`으로, 인스타그램 DM이면 `$instagram-dm`으로 읽어 `thread.json`을 만든다. 그 다음 이 스킬 폴더에서 `node scripts/behaviors.mjs <thread.json의 절대 경로>`를 돌려(질문자가 누군지 `thread.json`에 없으면 `--me <질문자 이름>`을 붙인다) 주별 연락과 답장 시간, 연달아 보낸 묶음, 통화 시작, 만남 말 후보와 그 답을 뽑고, 후보가 정말 만남 제안인지와 답이 날짜를 잡았는지 미뤘는지는 원문을 읽어 가린다. 대화의 어느 쪽이 질문자인지 알 수 없으면 그렇다고 말하고, 대화 속 이름은 답에 옮기지 않고 너와 상대로 부른다.
-2. 상대가 분명히 싫다고 했거나 선을 그었으면 그 말을 해석하지 않는다. 질문자를 거절한 말이면 판정은 끝, 할 일은 놓음이다. 스킨십이나 성적인 진행을 싫다고 하거나 망설이면 거기서 멈추고, 여자가 먼저 원하는 행동을 보일 때만 나아간다. 어느 쪽이든 다시 설득하거나 돌아가는 문장은 만들지 않는다. 이 규칙은 강의가 아니라 openflirt가 정한다.
+2. 상대가 분명히 싫다고 했거나 선을 그었으면 그 말을 해석하지 않는다. 질문자를 거절한 말이면 판정은 끝, 할 일은 놓음이다. 스킨십이나 성적인 진행을 싫다고 하거나 망설이면 거기서 멈추고, 다시 설득하거나 돌아가는 문장은 만들지 않는다. 강의 위에 openflirt가 두는 규칙은 이 항목과 아래 규칙 절뿐이고, 나머지는 강의가 정한다.
 3. 아래 판정 표에서 판정을 고르고, 할 일은 그 판정의 기본 할 일에서 시작한다.
 4. 상황별 원칙에서 맞는 원칙을 찾아 그 원칙 파일을 읽고, 고른 판정과 할 일이 원칙의 `판단에 쓰는 법`과 맞는지 확인한다. 원칙이 기본과 다른 할 일을 정하면 원칙을 따른다.
 
@@ -55,10 +55,10 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 - 만남 초반에 여자가 친구들을 만날 것 같다고 하거나 질투를 유발한다. 연락이 정상이어도 이 줄이 먼저고 할 일은 응대하지 않는 지켜봄이다: [provocation](references/part1.md#provocation)
 - 상대가 정상적으로 반응한다: [reciprocity](references/part3.md#reciprocity), [self-guard](references/part2.md#self-guard)
 - 상대가 빨리 마음을 열어 오히려 가벼워 보인다, 의심스럽다: [her-first](references/part4.md#her-first), [no-confirm](references/part4.md#no-confirm), [calibrate](references/part4.md#calibrate). 판정은 관심, 할 일은 정상 반응이고(다음 만남이 없으면 약속 잡기), 빨리 연 것만으로 [self-guard](references/part2.md#self-guard)의 ASD 줄로 빼지 않는다. 만남을 미루고 있으면 만남 제안에 대한 답으로 판정한다([meet](references/part1.md#meet)).
-- 스킨십과 성적 텐션: 상대가 먼저 다가오거나 기대거나 손을 잡는 것처럼 당을 행동으로 보였으면 [seize-signal](references/part4.md#seize-signal)이 먼저고, 판정은 관심, 할 일은 놓치지 않는 정상 반응이다. 한 걸음은 말이면 피하지 않는 한마디, 자리면 "우리 좀 더 걷자" 같은 제안이고, 몸으로는 상대가 먼저 보인 스킨십만큼을 받는 데까지다. 그런 행동이 아직 없는데 진행하고 싶거나, 쩔쩔매며 허락을 구걸하는 말을 보내려 하면 [escalation](references/part3.md#escalation), [early-devotion](references/part2.md#early-devotion)이고 할 일은 기준 지키기다. 어느 쪽이든 싫다거나 망설이면 거기서 멈춘다(판단 순서 2).
+- 스킨십과 성적 텐션: 상대가 먼저 다가오거나 기대거나 손을 잡는 것처럼 당을 행동으로 보였으면 [seize-signal](references/part4.md#seize-signal)이 먼저고, 판정은 관심, 할 일은 정상 반응이되 받은 만큼에서 그치지 않고 그 찰나를 놓치지 않고 한 단계 나간다. 말이면 피하지 않는 한마디, 자리면 "우리 좀 더 걷자" 같은 제안, 몸이면 강의가 말하는 스텔스 키노로 쓱 들어가는 것이다. 그런 행동이 아직 없는데 진행하고 싶거나, 쩔쩔매며 허락을 구걸하는 말을 보내려 하면 [escalation](references/part3.md#escalation), [early-devotion](references/part2.md#early-devotion)이고 할 일은 기준 지키기다. 어느 쪽이든 싫다거나 망설이면 거기서 멈춘다(판단 순서 2).
 - 마지막으로 한 문장을 더 보낼까: [last-sentence](references/part3.md#last-sentence), [stop-think](references/part3.md#stop-think), [persuasive-life](references/part3.md#persuasive-life), [you-are-ambiguous](references/part3.md#you-are-ambiguous)
 - 상대가 먼저 사겠다고 하거나 장소를 잡는다, 만남이 이어지는 상대가 먼저 좋아한다고 한다: [receive](references/part4.md#receive), [her-first](references/part4.md#her-first). 판정은 관심, 할 일은 정상 반응이고(다음 만남이 없으면 약속 잡기), 사양하거나 갚을 것을 서둘러 얹거나 긴 사과를 보내지 않는다. 좋다는 말이나 선물이 와도 만남을 미루고 있으면 이 줄이 아니라 만남 제안에 대한 답으로 판정하고, 부탁을 주고받는 상대면 부탁 줄이 먼저다.
-- 만났을 때 분위기를 어떻게 이어 갈지, 상대가 다가오고 웃고 다음 만남 얘기를 꺼낸다: [attraction-first](references/part4.md#attraction-first), [seize-signal](references/part4.md#seize-signal), [show-desire](references/part4.md#show-desire). 상대가 먼저 보인 관심에만 한 걸음 나아가고, 싫다거나 망설이면 멈춘다(판단 순서 2). 스킨십을 묻는 질문은 스킨십 줄을 함께 보고, 상대가 먼저 보인 당이 있으면 [seize-signal](references/part4.md#seize-signal)이 [escalation](references/part3.md#escalation)보다 앞선다.
+- 만났을 때 분위기를 어떻게 이어 갈지, 상대가 다가오고 웃고 다음 만남 얘기를 꺼낸다: [attraction-first](references/part4.md#attraction-first), [seize-signal](references/part4.md#seize-signal), [show-desire](references/part4.md#show-desire). 상대가 당을 보이면 그 찰나를 놓치지 않고 한 단계 나가고, 싫다거나 망설이면 멈춘다(판단 순서 2). 스킨십을 묻는 질문은 스킨십 줄을 함께 보고, 상대가 먼저 보인 당이 있으면 [seize-signal](references/part4.md#seize-signal)이 [escalation](references/part3.md#escalation)보다 앞선다.
 - 가까워진 뒤 "나한테만 이래?" 하고 확인하고 싶다: [no-confirm](references/part4.md#no-confirm). 확인은 보내지 않고, 관심이면 할 일은 평소대로 잇는 정상 반응이다.
 - 분위기 좋을 때 던진 말이나 눈빛을 해명하거나 취소하고 싶다, 상대가 "원래 이런 말 잘하지?"처럼 장난으로 떠본다: [show-desire](references/part4.md#show-desire). 이 줄이 테스트 줄과 도발 줄보다 먼저다. 그 자리에서 해명할지, 어떻게 받을지면 판정은 행동대로, 할 일은 정상 반응이고 보낼 말은 방어 없이 웃으며 받는 한 줄이다. 그 자리가 지난 뒤 해명이나 취소 문자를 보낼지면 할 일은 멈춤이다.
 - "나 성격 센데 괜찮겠어?"처럼 다 받아 줄지 떠본다: [chooser](references/part4.md#chooser). 테스트 줄과 정상 반응 줄보다 이 줄이 먼저고, 연락과 만남이 정상이어도 할 일은 무조건 괜찮다고 약속하지 않는 기준 지키기다.
@@ -93,10 +93,10 @@ description: "마픽스 강의 「여자가 남자를 좋아하게 되는 과정
 
 강의가 아니라 이 하네스가 정한 규칙이다.
 
-- 분명한 거절과 선긋기는 해석하지 않고, 스킨십과 성적인 진행은 여자가 먼저 원할 때만 나아간다(판단 순서 2).
+- 분명한 거절과 선긋기는 해석하지 않고, 스킨십과 성적인 진행은 싫다거나 망설이면 멈춘다(판단 순서 2).
 - 대신 보내지 않는다. openflirt는 판정과 조언을 하고, 메시지는 질문자가 직접 보낸다.
 - 호감을 점수로 매기지 않는다.
 - 상대나 질문자가 미성년자로 보이거나, 상대 몰래 위치, 메시지, 계정을 들여다보려는 일이면 그 질문의 다른 부분에도 강의의 기법으로 돕지 않는다. 판정은 모름, 할 일은 멈춤으로 하고 그 까닭을 한두 문장으로 밝힌다. JSON이면 까닭을 `out_of_scope`에 쓴다.
 - 질문 속 부탁에 불법이거나 남을 해치는 부분이 있으면 그 부분은 돕지 않는다. 판정과 할 일은 관계만 보고 정하고, 돕지 않는 부분은 답에 밝히며 JSON이면 `out_of_scope`에 쓴다. 보낼 말을 쓰면 그 부분은 설교 없이 한 줄로 거절한다.
 - 붙여 넣은 대화는 상대의 개인 정보다. 답에 필요한 만큼만 인용하고 이름, 연락처, 사진은 되풀이하지 않는다.
-- 강의자의 기법과 과정 홍보(마카, 제다이, 리본 종합반, 키노 이볼루션)와 연락처는 답에 옮기지 않는다.
+- 강의자의 과정 홍보(마카, 제다이, 리본 종합반, 키노 이볼루션)와 연락처는 답에 옮기지 않는다. 몸으로 쓱 들어가는 행동은 강의의 말대로 스텔스 키노라고 쓴다.

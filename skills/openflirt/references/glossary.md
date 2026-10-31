@@ -11,7 +11,7 @@
 - **뎁스**: 얼마나 세게 하느냐의 깊이. 모순, 테스트, 거리두기의 뎁스는 초반 프레임으로 정해진다. [frame-early](part1.md#frame-early)
 - **나락**: 관계가 되돌릴 수 없이 무너져 가는 것. 프레임이 이미 망가진 뒤라 그 자리에서 프레임을 되잡을 수 없다. [frame-early](part1.md#frame-early)
 - **어트**: 어트랙션, 끌림. "어트를 박는다"는 초반에 끌림을 심어 둔다는 말이다. 화면 자막은 Attraction으로 적기도 한다. 두 번째 강의는 어트(남성적 매력)와 시덕션(성적 긴장감)을 묶어 A와 S라 부르고, 여자 마음에 빨리 들어가는 데 가장 중요하다고 본다. 편안한 얘기로 쌓는 라포트와 맞서는 말이다. [frame-early](part1.md#frame-early), [no-interpret](part1.md#no-interpret), [standby](part2.md#standby), [subtext](part2.md#subtext), [attraction-first](part4.md#attraction-first)
-- **ASD**: 강의가 "쉽게 보이고 싶어 하지 않는 심리"라고 풀어 쓰는 말. 강의는 그것이 결국 남자에게 선택을 많이 받기 위해 있다고 보고, ASD 자체를 내 앞에서 보이지 않는 여자라면 이 관계에 더 투자할 필요가 있느냐고 묻는다. 그 자리는 남자가 싫어할 걸 알면서 다른 남자와의 자리를 이어 가는 행동이다. 여자가 나에게 빨리 여는 것은 두 번째 강의대로 당으로 읽고([calibrate](part4.md#calibrate)), 싫다거나 망설이는 것은 멈출 신호다(openflirt 규칙). [self-guard](part2.md#self-guard), [no-explain-respect](part2.md#no-explain-respect)
+- **ASD**: 강의가 "쉽게 보이고 싶어 하지 않는 심리"라고 풀어 쓰는 말. 강의는 그것이 결국 남자에게 선택을 많이 받기 위해 있다고 보고, ASD 자체를 내 앞에서 보이지 않는 여자라면 이 관계에 더 투자할 필요가 있느냐고 묻는다. 그 자리는 남자가 싫어할 걸 알면서 다른 남자와의 자리를 이어 가는 행동이다. 여자가 나에게 빨리 여는 것은 두 번째 강의대로 당으로 읽고([calibrate](part4.md#calibrate)), 싫다거나 망설이는 것은 멈출 신호다(SKILL.md 판단 순서 2). [self-guard](part2.md#self-guard), [no-explain-respect](part2.md#no-explain-respect)
 - **역어트**: "역어트를 먹인다"는 초반부터 여자가 남자를 쫓게 만든다는 말이다. 강의는 바로 뒤에 "여자가 나를 추적할 수 있고"라고 잇는다. [late-discipline](part3.md#late-discipline)
 - **스탠다드**: 남자가 지키는 기준. 강의는 스탠다드를 잡는다, 깐다고 말하고, 말로 알리지 않고 행동으로 보인다. [wound-standard](part1.md#wound-standard), [test](part1.md#test), [standard-by-action](part2.md#standard-by-action)
 - **테스트**: 이 남자가 나를 지켜 줄 수 있는지 보려고 여자가 흔들기, 피장파장식 반응, 모순된 말을 보이는 것. 도발, 질투 유발, 압박으로도 나온다. 강의는 나쁜 여자라서 하는 게 아니라고 본다. 영어권 픽업 용어 shit test로 옮기지 않는다. [test](part1.md#test), [provocation](part1.md#provocation), [pressure](part1.md#pressure)
@@ -49,4 +49,5 @@
 - **나가리**: 판이 깨지는 것. [late-discipline](part3.md#late-discipline)
 - **트로피, 역트로피**: 트로피는 기준을 가진 남자가 원하는 걸 이뤘을 때 그에 맞는 여자를 택하는 것이고, 역트로피는 남자가 여자의 물주가 되어 바치는 것이다. [reverse-trophy](part3.md#reverse-trophy)
 - **물주**: 돈을 대는 사람. [reverse-trophy](part3.md#reverse-trophy)
-- **마카, 제다이, 리본 종합반, 키노 이볼루션**: 강의자의 기법과 과정 이름. 강의 곳곳에 나오지만 원칙이 아니고, 답에 옮기지 않는다.
+- **마카, 제다이, 리본 종합반, 키노 이볼루션**: 강의자의 과정 이름. 홍보라 답에 옮기지 않는다.
+- **스텔스 키노**: 분위기가 무르익은 찰나에 피하지 않고 쓱 들어가는 몸의 행동을 강의가 부르는 말. 강의는 관계의 한 단계 업을 분위기가 주도한다고 본다. [seize-signal](part4.md#seize-signal)
