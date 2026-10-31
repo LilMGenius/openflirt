@@ -1,6 +1,22 @@
 # openflirt
 
-openflirt는 마픽스(마튜브)의 강의 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」 한 편의 원칙으로 연애와 썸 상황을 판정하고 할 일을 알려 주는 에이전트 하네스다. 사람에게는 한국어로 답하고, 다른 프로그램에는 정해진 꼴의 JSON으로 답한다.
+openflirt는 마픽스(마튜브)의 연애 강의 두 편, 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」와 「여자가 쉽게 자신을 허락하는 남자 특징」의 원칙으로 연애와 썸 상황을 판정하고 할 일을 알려 주는 에이전트 하네스다. 사람에게는 한국어로 답하고, 다른 프로그램에는 정해진 꼴의 JSON으로 답한다.
+
+## ChatGPT나 Claude에서 바로 쓰기
+
+저장소를 받지 않아도 된다. 아래 주소 하나에 스킬 본문, 용어집, 원칙 전부가 강의 원문 인용과 함께 들어 있다.
+
+```
+https://raw.githubusercontent.com/LilMGenius/openflirt/main/llms-full.txt
+```
+
+chatgpt.com이나 claude.ai에 이렇게 붙여 넣으면 된다.
+
+```
+https://raw.githubusercontent.com/LilMGenius/openflirt/main/llms-full.txt 를 끝까지 읽고, 그 안의 SKILL.md 판단 순서와 답하는 법대로 내 연애 질문에 답해 줘. 질문: …
+```
+
+긴 파일을 중간까지만 읽는 도구라면 [llms.txt](https://raw.githubusercontent.com/LilMGenius/openflirt/main/llms.txt)를 먼저 주면 된다. 파일마다의 원본 주소가 있어 원칙 파일을 하나씩 읽을 수 있다. 두 파일은 원본 파일에서 지어 내고, 원본과 달라지면 저장소 검사가 실패하니 늘 `main`의 원본과 같다.
 
 ## 이렇게 답한다
 
@@ -18,7 +34,7 @@ node bin/openflirt.mjs "금요일에 한잔하자고 했더니 '봐서 나중에
 
 답은 판정 하나와 할 일 하나로 시작하고, 근거가 된 강의 원문을 그 시각과 함께 붙인다. 위는 실제 실행에서 앞부분만 옮긴 것이다.
 
-`--json`을 주면 같은 판단을 [schema/answer.schema.json](schema/answer.schema.json)에 맞는 JSON으로 낸다. 스키마에 맞지 않거나, `citations`의 인용이 강의 전문의 그 시각에 글자 그대로 없는 답은 내보내지 않는다. 아래는 같은 질문의 실제 출력이고, `answer`만 줄였다.
+`--json`을 주면 같은 판단을 [schema/answer.schema.json](schema/answer.schema.json)에 맞는 JSON으로 낸다. 스키마에 맞지 않거나, `citations`의 인용이 `video`로 밝힌 강의 전문의 그 시각에 글자 그대로 없는 답은 내보내지 않는다. 아래는 같은 질문의 실제 출력이고, `answer`만 줄였다.
 
 ```json
 {
@@ -29,8 +45,8 @@ node bin/openflirt.mjs "금요일에 한잔하자고 했더니 '봐서 나중에
   "answer": "판정은 마찰이고 할 일은 뺌이에요. …",
   "principles": ["friction", "okay-end", "meet", "reciprocity"],
   "citations": [
-    { "t": "39:38", "quote": "이런 식으로 반응하면 추가 문자를 보낼 필요도 없고 설득하려고 들 필요도 없습니다." },
-    { "t": "46:13", "quote": "다음에 연락 안 해요. 솔직히 말하면 연락하면 안 돼요. 사실 지가 연락하겠지. 여자가 무조건 온다니까." }
+    { "video": "RhfqIi3DmWU", "t": "39:38", "quote": "이런 식으로 반응하면 추가 문자를 보낼 필요도 없고 설득하려고 들 필요도 없습니다." },
+    { "video": "RhfqIi3DmWU", "t": "46:13", "quote": "다음에 연락 안 해요. 솔직히 말하면 연락하면 안 돼요. 사실 지가 연락하겠지. 여자가 무조건 온다니까." }
   ],
   "out_of_scope": null
 }
@@ -80,14 +96,14 @@ node scripts/routing.mjs --runtime claude --out routing.json
 - 미성년자에 관한 일이나 상대 몰래 들여다보는 일은 돕지 않는다.
 - 질문 속 부탁에 불법이거나 남을 해치는 부분이 있으면 그 부분은 돕지 않고, 관계에 대해서만 답한다.
 - 질문은 고른 런타임이 쓰는 모델 제공자에게 보내진다. 붙여 넣은 대화는 상대의 개인 정보이니 이름, 연락처, 사진은 빼고 넣는다.
-- 강의는 남자가 여자를 만나는 상황을 다룬다. 그 밖의 관계에는 강의의 틀로 할 수 있는 말만 한다.
+- 강의 두 편은 남자가 여자를 만나는 상황을 다룬다. 그 밖의 관계에는 강의의 틀로 할 수 있는 말만 한다.
 - 답은 모델이 쓰기 때문에 같은 질문에도 문장은 실행마다 다를 수 있다.
 
 ## 안에 든 것
 
-- [강의 전문](corpus/RhfqIi3DmWU/transcript.md): 유튜브 자동 자막을 초안으로 삼고 Whisper large-v3 전사와 화면 자막을 맞대어 고쳤다. 문단마다 영상의 그 시각으로 가는 링크가 있고, 표기를 어떻게 정했는지는 [divergence.md](corpus/RhfqIi3DmWU/divergence.md)에 있다.
-- 원칙 48개: [1부](skills/openflirt/references/part1.md), [2부](skills/openflirt/references/part2.md), [3부](skills/openflirt/references/part3.md). 원칙마다 강의 원문 인용과 시각이 붙어 있고, 저장소 검사가 인용을 전문과 글자 그대로 맞춰 본다. 강의가 쓰는 말은 [용어집](skills/openflirt/references/glossary.md)에 있다.
-- 과정 홍보, 연락처, 강의 주제를 벗어난 여담은 전문에는 남아 있고 원칙에서는 뺐다. 소제목마다 어느 원칙에 담겼는지, 뺐다면 왜 뺐는지는 [coverage.md](corpus/RhfqIi3DmWU/coverage.md)에 있다.
+- 강의 전문: [첫 강의](corpus/RhfqIi3DmWU/transcript.md), [두 번째 강의](corpus/F05nX3MKCD0/transcript.md). 유튜브 자동 자막을 초안으로 삼고 Whisper large-v3 전사와 화면 자막을 맞대어 고쳤다. 문단마다 영상의 그 시각으로 가는 링크가 있고, 표기를 어떻게 정했는지는 강의마다의 `divergence.md`에 있다.
+- 원칙: 첫 강의는 [1부](skills/openflirt/references/part1.md), [2부](skills/openflirt/references/part2.md), [3부](skills/openflirt/references/part3.md), 두 번째 강의는 [4부](skills/openflirt/references/part4.md). 원칙마다 강의 원문 인용과 시각이 붙어 있고, 저장소 검사가 인용을 그 강의 전문과 글자 그대로 맞춰 본다. 강의가 쓰는 말은 [용어집](skills/openflirt/references/glossary.md)에 있다.
+- 과정 홍보, 연락처, 강의 주제를 벗어난 여담은 전문에는 남아 있고 원칙에서는 뺐다. 소제목마다 어느 원칙에 담겼는지, 뺐다면 왜 뺐는지는 강의마다의 coverage.md([첫 강의](corpus/RhfqIi3DmWU/coverage.md), [두 번째 강의](corpus/F05nX3MKCD0/coverage.md))에 있다.
 - 새 강의는 [lecture-corpus 스킬](skills/lecture-corpus/SKILL.md)로 넣는다.
 - [kakaotalk-chat](skills/kakaotalk-chat/SKILL.md)은 카카오톡 대화 내보내기 파일을, [instagram-dm](skills/instagram-dm/SKILL.md)은 인스타그램 DM 대화방을 시각이 붙은 `thread.json`과 읽기 쉬운 `transcript.md`로 바꾼다. 둘 다 openflirt와 따로 써도 된다.
 
@@ -95,4 +111,4 @@ node scripts/routing.mjs --runtime claude --out routing.json
 
 ## 출처
 
-강의: [마픽스 리얼라이프스타일]마튜브(@마픽스), 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」, https://youtu.be/RhfqIi3DmWU. 전문과 인용의 저작권은 강의자에게 있다.
+강의: [마픽스 리얼라이프스타일]마튜브(@마픽스), 「여자가 남자를 좋아하게 되는 과정 [완벽 총정리]」, https://youtu.be/RhfqIi3DmWU 와 「여자가 쉽게 자신을 허락하는 남자 특징」, https://youtu.be/F05nX3MKCD0. 전문과 인용의 저작권은 강의자에게 있다.
